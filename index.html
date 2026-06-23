@@ -13,46 +13,47 @@
         .logo { font-family: 'Montserrat'; font-size: 2.2rem; font-weight: 900; letter-spacing: -2px; }
         .logo span { color: var(--brand); }
         .tagline { color: var(--gold); font-size: 0.9rem; margin-top: 5px; font-weight: 600; text-transform: uppercase; }
-        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 20px; }
         .search-area { background: #fff; border-radius: 15px; padding: 15px; margin-bottom: 30px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         @media (min-width: 768px) { .search-area { flex-direction: row; padding: 25px; margin-top: -50px; } }
         input, select { flex: 1; padding: 15px; border-radius: 10px; border: 1px solid #ccc; font-size: 1rem; color: #000; font-weight: 600; outline: none; }
-        .grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-        @media (min-width: 600px) { .grid { grid-template-columns: 1fr 1fr; } }
-        @media (min-width: 1000px) { .grid { grid-template-columns: 1fr 1fr 1fr 1fr; } }
-        .card { background: var(--card); border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #222; text-decoration: none; color: inherit; height: 100%; }
-        .card-img { width: 100%; height: 180px; background: #000; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
+        .card { background: var(--card); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #222; text-decoration: none; color: inherit; transition: 0.3s; height: 500px; }
+        .card:hover { transform: translateY(-10px); border-color: var(--brand); }
+        .card-img { width: 100%; height: 220px; background: #000; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; }
         .card-img img { width: 100%; height: 100%; object-fit: cover; }
-        .card-info { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; }
-        .card-info span { color: var(--brand); font-weight: 800; font-size: 0.7rem; text-transform: uppercase; }
-        .card-info h3 { font-size: 1.1rem; margin: 8px 0; font-family: 'Montserrat'; line-height: 1.2; height: 2.4em; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-        .card-info p { font-size: 0.85rem; color: var(--dim); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .pagi { display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 30px; padding-bottom: 50px; }
-        .btn-pg { padding: 12px 20px; background: var(--card); border: 1px solid #333; color: #fff; border-radius: 8px; font-weight: 700; cursor: pointer; }
-        .btn-pg:disabled { opacity: 0.3; cursor: not-allowed; }
-        footer { text-align: center; padding: 40px 20px; border-top: 1px solid #111; font-size: 0.8rem; color: var(--dim); }
-        .loader { text-align: center; padding: 50px; font-weight: 800; color: var(--gold); }
+        .badge { position: absolute; top: 15px; left: 15px; background: var(--brand); color: #fff; padding: 6px 12px; border-radius: 8px; font-weight: 900; font-size: 0.7rem; text-transform: uppercase; z-index: 10; }
+        .card-info { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-info span { color: var(--gold); font-weight: 800; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 10px; }
+        .card-info h3 { font-size: 1.2rem; margin-bottom: 10px; font-family: 'Montserrat'; line-height: 1.3; height: 2.6em; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+        .card-info p { font-size: 0.9rem; color: var(--dim); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .pagi { display: flex; justify-content: center; align-items: center; gap: 15px; margin: 50px 0; }
+        .btn-pg { padding: 15px 25px; background: var(--card); border: 2px solid #333; color: #fff; border-radius: 12px; font-weight: 800; cursor: pointer; transition: 0.3s; }
+        .btn-pg:hover:not(:disabled) { border-color: var(--brand); color: var(--brand); }
+        .btn-pg:disabled { opacity: 0.2; cursor: not-allowed; }
+        footer { text-align: center; padding: 60px 20px; border-top: 1px solid #111; color: var(--dim); }
+        .credits span { color: var(--brand); font-weight: 800; }
+        #loader { text-align: center; padding: 100px; font-weight: 900; font-size: 1.5rem; color: var(--gold); }
     </style>
 </head>
 <body>
     <header><div class="logo">LA CLAVE<span> ACADEMY</span></div><p class="tagline">La Clave Argentina</p></header>
     <div class="container">
-        <div class="search-area"><input type="text" id="in-q" placeholder="Buscar curso..."><select id="sel-cat"><option value="">Temas</option></select><select id="sel-pla"><option value="">Academias</option></select></div>
-        <div id="loader" class="loader">CARGANDO...</div>
-        <div id="grid" class="grid"></div>
-        <div id="pagi" class="pagi"></div>
+        <div class="search-area"><input type="text" id="in-q" placeholder="Buscar curso..."><select id="sel-cat"><option value="">Todos los Temas</option></select><select id="sel-pla"><option value="">Academias</option></select></div>
+        <div id="loader">CONECTANDO...</div><div id="grid" class="grid"></div><div id="pagi" class="pagi"></div>
     </div>
-    <footer>© 2026 LA CLAVE ARGENTINA.</footer>
+    <footer><p>© 2026 LA CLAVE ARGENTINA.</p></footer>
     <script>
         const API_URL = 'https://ypzudkxowpxvdggvongz.supabase.co/rest/v1/';
         const API_KEY = 'sb_publishable_KmyqfJTmmW4R5FKUeB5b4A_GVFYnn4b';
         const headers = { 'apikey': API_KEY, 'Authorization': 'Bearer ' + API_KEY };
-        let page = 1; const perPage = 20; let total = 0;
-        function getImg(c) {
+        let page = 1; const perPage = 32; let total = 0;
+        const falls = ['https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80','https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80'];
+        function getImg(c, i) {
             const yt = c.url.match(/(?:youtube\.com.*v=|youtu\.be\/)([^"&?\/\s]{11})/);
-            if (yt) return `https://i.ytimg.com/vi/${yt[1]}/mqdefault.jpg`;
+            if (yt) return `https://i.ytimg.com/vi/${yt[1]}/hqdefault.jpg`;
             if (c.imagen_url && c.imagen_url.includes('http') && !c.imagen_url.toLowerCase().includes('placeholder')) return c.imagen_url;
-            return 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800';
+            return falls[i % falls.length];
         }
         async function load() {
             const grid = document.getElementById('grid'); const loader = document.getElementById('loader');
@@ -65,14 +66,14 @@
             url += '&order=creado_el.desc';
             try {
                 const res = await fetch(url, { headers }); const data = await res.json(); loader.style.display = 'none';
-                if(!data || data.length === 0) { grid.innerHTML = '<p style="text-align:center;grid-column:1/-1;">No hay resultados.</p>'; }
-                else { data.forEach(c => {
-                    const a = document.createElement('a'); a.className = 'card'; a.href = c.url; a.target = '_blank';
-                    a.innerHTML = `<div class="card-img"><img src="${getImg(c)}"></div><div class="card-info"><span>${c.plataforma}</span><h3>${c.titulo}</h3><p>${c.descripcion || ''}</p></div>`;
-                    grid.appendChild(a);
-                }); }
+                data.forEach((c, i) => {
+                    const card = document.createElement('div'); card.className = 'card'; card.onclick = () => window.open(c.url, '_blank');
+                    card.innerHTML = `<div class="card-img"><div class="badge">Oficial</div><img src="${getImg(c, i)}" onerror="this.src='${falls[0]}'"></div>
+                        <div class="card-info"><span>${c.plataforma}</span><h3>${c.titulo}</h3><p>${c.descripcion || ''}</p></div>`;
+                    grid.appendChild(card);
+                });
                 updateCount(q, cat, pla);
-            } catch(e) { loader.innerText = "Error."; }
+            } catch(e) { console.error(e); }
         }
         async function updateCount(q, cat, pla) {
             let url = `${API_URL}cursos?select=count,categorias!inner(nombre)`;
@@ -83,10 +84,10 @@
         }
         function renderPagi() {
             const wrap = document.getElementById('pagi'); wrap.innerHTML = ''; const totalPages = Math.ceil(total/perPage); if(totalPages <= 1) return;
-            const prev = document.createElement('button'); prev.className = 'btn-pg'; prev.innerText = '←'; prev.disabled = page === 1;
-            prev.onclick = () => { page--; load(); window.scrollTo(0,0); }; wrap.appendChild(prev);
-            const next = document.createElement('button'); next.className = 'btn-pg'; next.innerText = '→'; next.disabled = page === totalPages;
-            next.onclick = () => { page++; load(); window.scrollTo(0,0); }; wrap.appendChild(next);
+            const prev = document.createElement('button'); prev.className = 'btn-pg'; prev.innerText = '← ANTERIOR'; prev.disabled = page === 1;
+            prev.onclick = () => { page--; load(); window.scrollTo({top: 400, behavior: 'smooth'}); }; wrap.appendChild(prev);
+            const next = document.createElement('button'); next.className = 'btn-pg'; next.innerText = 'SIGUIENTE →'; next.disabled = page === totalPages;
+            next.onclick = () => { page++; load(); window.scrollTo({top: 400, behavior: 'smooth'}); }; wrap.appendChild(next);
         }
         async function init() {
             try {
@@ -96,7 +97,7 @@
                 load();
             } catch(e) { load(); }
         }
-        document.getElementById('in-q').oninput = () => { page=1; clearTimeout(window.t); window.t=setTimeout(load, 700); };
+        document.getElementById('in-q').oninput = () => { page=1; clearTimeout(window.t); window.t=setTimeout(load, 600); };
         document.getElementById('sel-cat').onchange = () => { page=1; load(); };
         document.getElementById('sel-pla').onchange = () => { page=1; load(); };
         init();
