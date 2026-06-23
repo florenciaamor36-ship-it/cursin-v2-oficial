@@ -70,7 +70,7 @@
     <div class="container">
         <div class="search-wrap">
             <input type="text" id="q-in" placeholder="¿Qué quieres aprender hoy?">
-            <select id="cat-sel"><option value="">Todas las Categorías</option></select>
+            <select id="cat-sel"><option value="">Todos los Temas</option></select>
             <select id="plat-sel"><option value="">Plataformas</option></select>
         </div>
 
@@ -126,7 +126,7 @@
         const headers = { 'apikey': S_KEY, 'Authorization': 'Bearer ' + S_KEY };
         
         let page = 1;
-        const perPage = 28;
+        const perPage = 32;
         let total = 0;
 
         const fallbacks = [
@@ -156,12 +156,12 @@
         function closeM() { document.getElementById('modal').style.display = 'none'; document.body.style.overflow = 'auto'; }
 
         async function fetchContent() {
-            const grid = document.getElementById('grid');
             const q = document.getElementById('q-in').value;
             const ct = document.getElementById('cat-sel').value;
             const pl = document.getElementById('plat-sel').value;
+            
             document.getElementById('loader').style.display = 'block';
-            grid.innerHTML = '';
+            document.getElementById('grid').innerHTML = '';
 
             let u = `${S_URL}cursos?select=*,categorias(nombre)&limit=${perPage}&offset=${(page - 1) * perPage}`;
             if (q) u += `&or=(titulo.ilike.*${encodeURIComponent(q)}*,descripcion.ilike.*${encodeURIComponent(q)}*)`;
@@ -187,7 +187,7 @@
                             <h3>${c.titulo}</h3>
                             <p>${c.descripcion || ''}</p>
                         </div>`;
-                    grid.appendChild(div);
+                    document.getElementById('grid').appendChild(div);
                 });
                 updateStats(q, ct, pl);
             } catch(e) { console.error(e); }
@@ -218,7 +218,10 @@
 
             let start = Math.max(1, page - 2);
             let end = Math.min(totalPages, start + 4);
-            for (let i = Math.max(1, Math.min(start, totalPages - 4)); i <= end; i++) {
+            if (end - start < 4) start = Math.max(1, end - 4);
+
+            for (let i = start; i <= end; i++) {
+                if(i < 1) continue;
                 const b = document.createElement('button');
                 b.innerText = i;
                 if (i === page) b.className = 'active';
@@ -248,9 +251,9 @@
             fetchContent();
         }
 
-        document.getElementById('q-in').oninput = () => { page=1; clearTimeout(window.t); window.t = setTimeout(fetchContent, 600); };
-        document.getElementById('cat-sel').onchange = () => { page=1; fetchContent(); };
-        document.getElementById('plat-sel').onchange = () => { page=1; fetchContent(); };
+        document.getElementById('q-in').addEventListener('input', () => { page=1; clearTimeout(window.t); window.t = setTimeout(fetchContent, 600); });
+        document.getElementById('cat-sel').addEventListener('change', () => { page=1; fetchContent(); });
+        document.getElementById('plat-sel').addEventListener('change', () => { page=1; fetchContent(); });
         init();
     </script>
 </body>
