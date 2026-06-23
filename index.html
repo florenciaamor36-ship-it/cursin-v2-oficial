@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Clave Academy | Educación con Propósito</title>
+    <title>La Clave Academy | Educación de Élite</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -25,7 +25,6 @@
             overflow-x: hidden;
         }
 
-        /* HEADER PREMIUM */
         header { 
             background: linear-gradient(180deg, #1a1a1a 0%, var(--dark) 100%);
             padding: 60px 20px 80px; 
@@ -64,9 +63,9 @@
             letter-spacing: 1px;
         }
 
-        /* BUSCADOR */
         .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
-        .search-container {
+        
+        .search-section {
             max-width: 1100px;
             margin: -40px auto 50px;
             background: #ffffff;
@@ -79,7 +78,7 @@
             position: relative;
             z-index: 100;
         }
-        .search-container input, .search-container select {
+        .search-section input, .search-section select {
             flex: 1;
             min-width: 250px;
             padding: 18px 24px;
@@ -91,9 +90,8 @@
             outline: none;
             transition: all 0.3s ease;
         }
-        .search-container input:focus { border-color: var(--brand); box-shadow: 0 0 0 4px rgba(255,0,0,0.1); }
+        .search-section input:focus { border-color: var(--brand); box-shadow: 0 0 0 4px rgba(255,0,0,0.1); }
 
-        /* GRID DE CURSOS */
         .grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
@@ -127,9 +125,7 @@
             width: 100%; 
             height: 100%; 
             object-fit: cover; 
-            transition: transform 0.5s ease;
         }
-        .card:hover .card-img img { transform: scale(1.1); }
         .badge {
             position: absolute;
             top: 15px;
@@ -174,17 +170,15 @@
             overflow: hidden;
         }
 
-        /* PAGINACIÓN */
-        .pagi { 
+        .pagi-container { 
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            gap: 12px; 
+            gap: 15px; 
             margin: 60px 0 100px;
-            flex-wrap: wrap;
         }
-        .pagi button { 
-            padding: 15px 22px; 
+        .pagi-btn { 
+            padding: 15px 25px; 
             border: 2px solid #333; 
             background: var(--surface); 
             color: white; 
@@ -192,44 +186,58 @@
             font-weight: 700; 
             cursor: pointer; 
             transition: all 0.3s;
-            min-width: 55px;
-            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .pagi button:hover:not(:disabled) { 
+        .pagi-btn:hover:not(:disabled) { 
             border-color: var(--brand); 
             color: var(--brand);
-            transform: scale(1.05);
         }
-        .pagi button.active { 
-            background: var(--brand); 
-            border-color: var(--brand); 
+        .pagi-btn:disabled { opacity: 0.2; cursor: not-allowed; }
+        
+        .pagi-numbers { display: flex; gap: 8px; }
+        .num-btn {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #333;
+            background: var(--surface);
             color: white;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .num-btn.active {
+            background: var(--brand);
+            border-color: var(--brand);
             box-shadow: 0 5px 15px rgba(255,0,0,0.3);
         }
-        .pagi button:disabled { opacity: 0.3; cursor: not-allowed; }
 
-        /* FOOTER */
         footer { 
             background: #000; 
             padding: 80px 20px; 
             text-align: center; 
             border-top: 1px solid #222;
         }
-        .footer-logo { 
-            font-family: 'Montserrat', sans-serif; 
-            font-size: 2rem; 
-            font-weight: 900; 
-            margin-bottom: 30px;
-        }
+        .footer-logo { font-family: 'Montserrat', sans-serif; font-size: 2rem; font-weight: 900; margin-bottom: 20px; }
         .footer-logo span { color: var(--brand); }
-        .legal { max-width: 800px; margin: 0 auto; color: var(--text-dim); font-size: 0.85rem; line-height: 1.8; }
-        .credits { margin-top: 40px; font-weight: 700; color: #fff; }
+        .credits { margin-top: 30px; font-weight: 700; }
         .credits span { color: var(--brand); }
 
-        #loader { text-align: center; padding: 100px; font-size: 1.5rem; color: var(--gold); }
+        #loading-overlay { 
+            position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; 
+            display: none; align-items: center; justify-content: center; font-size: 2rem; color: var(--gold);
+            font-family: 'Montserrat', sans-serif; font-weight: 900;
+        }
     </style>
 </head>
 <body>
+    <div id="loading-overlay">CARGANDO...</div>
+
     <header>
         <div class="stats-top">⚡ ACCESO TOTAL A <span id="total-count">...</span> CURSOS</div>
         <h1 class="logo">LA CLAVE<span> ACADEMY</span></h1>
@@ -237,25 +245,23 @@
     </header>
 
     <div class="container">
-        <div class="search-container">
-            <input type="text" id="search-in" placeholder="¿Qué querés aprender hoy? Ej: Programación, Marketing, UBA...">
-            <select id="cat-sel"><option value="">Todas las Categorías</option></select>
-            <select id="plat-sel"><option value="">Todas las Academias</option></select>
+        <div class="search-section">
+            <input type="text" id="main-search" placeholder="¿Qué buscás hoy? (Ej: Python, UBA, Excel...)">
+            <select id="cat-filter"><option value="">Todas las Categorías</option></select>
+            <select id="plat-filter"><option value="">Todas las Academias</option></select>
         </div>
 
-        <div id="loader">Cargando catálogo de La Clave...</div>
         <div id="grid" class="grid"></div>
-        <div id="pagi" class="pagi"></div>
+        <div id="pagination" class="pagi-container"></div>
     </div>
 
     <footer>
         <div class="footer-logo">LA CLAVE<span> ACADEMY</span></div>
-        <div class="legal">
+        <div style="max-width:800px; margin:0 auto; color:var(--text-dim); font-size:0.9rem; line-height:1.6;">
             © 2026 LA CLAVE ARGENTINA. Todos los derechos reservados. <br>
-            Queda prohibida la reproducción total o parcial de este sitio sin autorización expresa de los titulares. 
-            La Clave Academy funciona como un motor de búsqueda automatizado de recursos educativos abiertos de alta calidad.
+            Buscador automatizado de cursos gratuitos de alta calidad.
         </div>
-        <div class="credits">Diseñado y Creado por <span>LA CLAVE ARGENTINA</span> & <span>TIENDA SSH</span></div>
+        <div class="credits">Creado por <span>LA CLAVE ARGENTINA</span> & <span>TIENDA SSH</span></div>
     </footer>
 
     <script>
@@ -263,141 +269,124 @@
         const S_KEY = 'sb_publishable_KmyqfJTmmW4R5FKUeB5b4A_GVFYnn4b';
         const headers = { 'apikey': S_KEY, 'Authorization': 'Bearer ' + S_KEY };
         
-        let curP = 1;
-        const perP = 32;
-        let totalR = 0;
+        let currentPage = 1;
+        const limit = 32;
+        let totalCursos = 0;
 
-        const falls = [
-            'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80',
-            'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80',
-            'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&q=80'
-        ];
-
-        function getImg(c, i) {
+        function getHighResImg(c, i) {
             const yt = c.url.match(/(?:youtube\.com.*v=|youtu\.be\/)([^"&?\/\s]{11})/);
-            if (yt) return `https://i.ytimg.com/vi/${yt[1]}/maxresdefault.jpg`;
+            if (yt) return `https://i.ytimg.com/vi/${yt[1]}/hqdefault.jpg`;
             if (c.imagen_url && c.imagen_url.includes('http') && !c.imagen_url.toLowerCase().includes('logo')) return c.imagen_url;
-            return falls[i % falls.length];
+            return `https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80`;
         }
 
-        async function fetchCourses() {
+        async function doSearch() {
             const grid = document.getElementById('grid');
-            const loader = document.getElementById('loader');
-            const q = document.getElementById('search-in').value.trim();
-            const ct = document.getElementById('cat-sel').value;
-            const pl = document.getElementById('plat-sel').value;
+            const overlay = document.getElementById('loading-overlay');
+            const q = document.getElementById('main-search').value.trim();
+            const ct = document.getElementById('cat-filter').value;
+            const pl = document.getElementById('plat-filter').value;
 
-            loader.style.display = 'block';
+            overlay.style.display = 'flex';
             grid.innerHTML = '';
 
-            let u = `${S_URL}cursos?select=*,categorias(nombre)&limit=${perP}&offset=${(curP - 1) * perP}`;
-            if (q) u += `&or=(titulo.ilike.*${encodeURIComponent(q)}*,descripcion.ilike.*${encodeURIComponent(q)}*)`;
-            if (ct) u += `&categorias.nombre=eq.${encodeURIComponent(ct)}`;
-            if (pl) u += `&plataforma=eq.${encodeURIComponent(pl)}`;
-            u += '&order=creado_el.desc';
+            let query = `${S_URL}cursos?select=*,categorias(nombre)&limit=${limit}&offset=${(currentPage - 1) * limit}`;
+            if (q) query += `&or=(titulo.ilike.*${encodeURIComponent(q)}*,descripcion.ilike.*${encodeURIComponent(q)}*)`;
+            if (ct) query += `&categorias.nombre=eq.${encodeURIComponent(ct)}`;
+            if (pl) query += `&plataforma=eq.${encodeURIComponent(pl)}`;
+            query += '&order=creado_el.desc';
 
             try {
-                const response = await fetch(u, { headers });
+                const response = await fetch(query, { headers });
                 const data = await response.json();
-                loader.style.display = 'none';
-
-                if (data.length === 0) {
-                    grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:100px; color:#666; font-size:1.5rem;">No encontramos cursos con esos filtros.</div>';
-                }
+                overlay.style.display = 'none';
 
                 data.forEach((c, i) => {
-                    const div = document.createElement('div');
-                    div.className = 'card';
-                    div.onclick = () => window.open(c.url, '_blank');
-                    div.innerHTML = `
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.onclick = () => window.open(c.url, '_blank');
+                    card.innerHTML = `
                         <div class="card-img">
-                            <div class="badge">Oficial</div>
-                            <img src="${getImg(c, i)}" onerror="this.src='${falls[1]}'">
+                            <div class="badge">GRATIS</div>
+                            <img src="${getHighResImg(c, i)}" onerror="this.src='https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80'">
                         </div>
                         <div class="card-body">
                             <div class="plat-name">${c.plataforma}</div>
                             <h3>${c.titulo}</h3>
-                            <p>${c.descripcion || 'Accede a este programa de capacitación gratuita de alta calidad seleccionado por La Clave Argentina.'}</p>
+                            <p>${c.descripcion || 'Accedé a este programa oficial gratuito.'}</p>
                         </div>`;
-                    grid.appendChild(div);
+                    grid.appendChild(card);
                 });
                 
-                updateStats(q, ct, pl);
-            } catch (e) {
-                console.error(e);
-                loader.innerText = 'Error al conectar con La Clave.';
-            }
+                updateTotal(q, ct, pl);
+            } catch (e) { console.error(e); overlay.style.display = 'none'; }
         }
 
-        async function updateStats(q, ct, pl) {
-            let u = `${S_URL}cursos?select=count`;
-            if (q) u += `&or=(titulo.ilike.*${encodeURIComponent(q)}*,descripcion.ilike.*${encodeURIComponent(q)}*)`;
-            if (ct) u += `&categorias.nombre=eq.${encodeURIComponent(ct)}`;
-            if (pl) u += `&plataforma=eq.${encodeURIComponent(pl)}`;
+        async function updateTotal(q, ct, pl) {
+            let query = `${S_URL}cursos?select=count`;
+            if (q) query += `&or=(titulo.ilike.*${encodeURIComponent(q)}*,descripcion.ilike.*${encodeURIComponent(q)}*)`;
+            if (ct) query += `&categorias.nombre=eq.${encodeURIComponent(ct)}`;
+            if (pl) query += `&plataforma=eq.${encodeURIComponent(pl)}`;
             
-            const r = await fetch(u, { headers });
+            const r = await fetch(query, { headers });
             const d = await r.json();
-            totalR = d[0].count;
-            document.getElementById('total-count').innerText = totalR.toLocaleString();
+            totalCursos = d[0].count;
+            document.getElementById('total-count').innerText = totalCursos.toLocaleString();
             renderPagi();
         }
 
         function renderPagi() {
-            const wrap = document.getElementById('pagi');
+            const wrap = document.getElementById('pagination');
             wrap.innerHTML = '';
-            const tP = Math.ceil(totalR / perP);
-            if (tP <= 1) return;
+            const totalPages = Math.ceil(totalCursos / limit);
+            if (totalPages <= 1) return;
 
             const prev = document.createElement('button');
+            prev.className = 'pagi-btn';
             prev.innerHTML = '← Anterior';
-            prev.disabled = curP === 1;
-            prev.onclick = () => { curP--; fetchCourses(); window.scrollTo({top: 400, behavior: 'smooth'}); };
+            prev.disabled = currentPage === 1;
+            prev.onclick = () => { currentPage--; doSearch(); window.scrollTo({top: 400, behavior: 'smooth'}); };
             wrap.appendChild(prev);
 
-            let start = Math.max(1, curP - 2);
-            let end = Math.min(tP, start + 4);
+            const nums = document.createElement('div');
+            nums.className = 'pagi-numbers';
+            let start = Math.max(1, currentPage - 2);
+            let end = Math.min(totalPages, start + 4);
             if (end - start < 4) start = Math.max(1, end - 4);
-
-            for (let i = start; i <= end; i++) {
+            for (let i = Math.max(1, start); i <= end; i++) {
                 const b = document.createElement('button');
+                b.className = `num-btn ${i === currentPage ? 'active' : ''}`;
                 b.innerText = i;
-                if (i === curP) b.className = 'active';
-                b.onclick = () => { curP = i; fetchCourses(); window.scrollTo({top: 400, behavior: 'smooth'}); };
-                wrap.appendChild(b);
+                b.onclick = () => { currentPage = i; doSearch(); window.scrollTo({top: 400, behavior: 'smooth'}); };
+                nums.appendChild(b);
             }
+            wrap.appendChild(nums);
 
             const next = document.createElement('button');
+            next.className = 'pagi-btn';
             next.innerHTML = 'Siguiente →';
-            next.disabled = curP === tP;
-            next.onclick = () => { curP++; fetchCourses(); window.scrollTo({top: 400, behavior: 'smooth'}); };
+            next.disabled = currentPage === totalPages;
+            next.onclick = () => { currentPage++; doSearch(); window.scrollTo({top: 400, behavior: 'smooth'}); };
             wrap.appendChild(next);
         }
 
         async function init() {
-            try {
-                const [rc, rp] = await Promise.all([
-                    fetch(S_URL + 'categorias?select=nombre', { headers }).then(r => r.json()),
-                    fetch(S_URL + 'cursos?select=plataforma', { headers }).then(r => r.json())
-                ]);
-                
-                const cs = document.getElementById('cat-sel');
-                rc.sort((a,b) => a.nombre.localeCompare(b.nombre)).forEach(c => {
-                    const o = document.createElement('option'); o.value = o.innerText = c.nombre; cs.appendChild(o);
-                });
-
-                const ps = document.getElementById('plat-sel');
-                [...new Set(rp.map(p => p.plataforma))].sort().forEach(p => {
-                    if (p) { const o = document.createElement('option'); o.value = o.innerText = p; ps.appendChild(o); }
-                });
-
-                fetchCourses();
-            } catch (e) { console.error(e); }
+            const [rc, rp] = await Promise.all([
+                fetch(S_URL + 'categorias?select=nombre', { headers }).then(r => r.json()),
+                fetch(S_URL + 'cursos?select=plataforma', { headers }).then(r => r.json())
+            ]);
+            rc.sort((a,b) => a.nombre.localeCompare(b.nombre)).forEach(c => {
+                const o = document.createElement('option'); o.value = o.innerText = c.nombre; document.getElementById('cat-filter').appendChild(o);
+            });
+            [...new Set(rp.map(p => p.plataforma))].sort().forEach(p => {
+                if (p) { const o = document.createElement('option'); o.value = o.innerText = p; document.getElementById('plat-filter').appendChild(o); }
+            });
+            doSearch();
         }
 
-        document.getElementById('search-in').oninput = () => { curP = 1; clearTimeout(window.t); window.t = setTimeout(fetchCourses, 600); };
-        document.getElementById('cat-sel').onchange = () => { curP = 1; fetchCourses(); };
-        document.getElementById('plat-sel').onchange = () => { curP = 1; fetchCourses(); };
-
+        document.getElementById('main-search').oninput = () => { currentPage = 1; clearTimeout(window.t); window.t = setTimeout(doSearch, 600); };
+        document.getElementById('cat-filter').onchange = () => { currentPage = 1; doSearch(); };
+        document.getElementById('plat-filter').onchange = () => { currentPage = 1; doSearch(); };
         init();
     </script>
 </body>
