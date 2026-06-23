@@ -19,7 +19,7 @@
         .search-area { max-width: 1100px; margin: -30px auto 40px; background: #fff; padding: 20px; border-radius: 20px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); position: relative; z-index: 1000; }
         @media (min-width: 768px) { .search-area { flex-direction: row; padding: 30px; border-radius: 30px; margin-top: -50px; } }
         .search-area input, .search-area select { flex: 1; width: 100%; padding: 15px; border-radius: 12px; border: 2px solid #ddd; font-size: 1rem; color: #111; outline: none; font-weight: 600; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 50px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 50px; min-height: 400px; }
         @media (min-width: 768px) { .grid { gap: 30px; margin-bottom: 60px; } }
         .card { background: var(--surface); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #222; height: 480px; transition: 0.3s; cursor: pointer; text-decoration: none; color: inherit; }
         .card:hover { transform: translateY(-10px); border-color: var(--brand); }
@@ -93,23 +93,20 @@
             if (pl) u += `&plataforma=eq.${encodeURIComponent(pl)}`;
             u += '&order=creado_el.desc';
             try {
-                const res = await fetch(u, { headers }); const data = await res.json(); loader.style.display = 'none';
+                const res = await fetch(u, { headers: { ...headers, 'Prefer': 'count=exact' } });
+                total = parseInt(res.headers.get('content-range')?.split('/')[1]) || 0;
+                document.getElementById('t-count').innerText = total.toLocaleString();
+                const data = await res.json();
+                loader.style.display = 'none';
+                if (data.length === 0) { grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:50px;">No se encontraron resultados.</div>'; }
                 data.forEach(c => {
                     const d = document.createElement('a'); d.className = 'card'; d.href = c.url; d.target = '_blank';
                     d.innerHTML = `<div class="card-img"><div class="badge">OFICIAL</div><img src="${getImg(c)}" onerror="this.src='${falls[0]}'"></div>
                         <div class="card-body"><div class="plat">${c.plataforma}</div><h3>${c.titulo}</h3><p>${c.descripcion || 'Acceso gratuito certificado.'}</p></div>`;
                     grid.appendChild(d);
                 });
-                updateStats(q, ct, pl);
+                renderPagi();
             } catch (e) { loader.style.display = 'none'; }
-        }
-        async function updateStats(q, ct, pl) {
-            let u = `${S_URL}cursos?select=count,categorias!inner(nombre)`;
-            if (q) u += `&or=(titulo.ilike.*${encodeURIComponent(q)}*,descripcion.ilike.*${encodeURIComponent(q)}*)`;
-            if (ct) u += `&categorias.nombre=eq.${encodeURIComponent(ct)}`;
-            if (pl) u += `&plataforma=eq.${encodeURIComponent(pl)}`;
-            const res = await fetch(u, { headers }); const data = await res.json(); total = data[0].count;
-            document.getElementById('t-count').innerText = total.toLocaleString(); renderPagi();
         }
         function renderPagi() {
             const wrap = document.getElementById('pagi'); wrap.innerHTML = ''; const tP = Math.ceil(total / limit); if (tP <= 1) return;
