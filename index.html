@@ -6,160 +6,41 @@
     <title>La Clave Academy | Educación con Propósito</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --brand: #ff0000;
-            --gold: #ffd700;
-            --dark: #000000;
-            --surface: #111111;
-            --text: #ffffff;
-            --text-dim: #b3b3b3;
-            --blue: #2563eb;
-        }
-
+        :root { --brand: #ff0000; --gold: #ffd700; --dark: #000; --surface: #111; --text: #fff; --dim: #b3b3b3; --blue: #2563eb; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; background: var(--dark); color: var(--text); overflow-x: hidden; }
-
-        header { 
-            padding: 80px 20px 100px; 
-            text-align: center; 
-            background: linear-gradient(to bottom, #1a1a1a, var(--dark));
-            border-bottom: 5px solid var(--brand);
-        }
-        .stats-badge {
-            display: inline-block;
-            background: var(--brand);
-            color: white;
-            padding: 10px 25px;
-            border-radius: 50px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            font-size: 0.9rem;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            box-shadow: 0 5px 25px rgba(255,0,0,0.5);
-        }
-        .logo { 
-            font-family: 'Montserrat', sans-serif; 
-            font-size: 4.5rem; 
-            font-weight: 900; 
-            letter-spacing: -3px;
-        }
+        header { padding: 80px 20px 100px; text-align: center; background: linear-gradient(to bottom, #1a1a1a, #000); border-bottom: 5px solid var(--brand); }
+        .stats-badge { display: inline-block; background: var(--brand); color: #fff; padding: 10px 25px; border-radius: 50px; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 0.9rem; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 2px; box-shadow: 0 5px 25px rgba(255,0,0,0.5); }
+        .logo { font-family: 'Montserrat', sans-serif; font-size: 4.5rem; font-weight: 900; letter-spacing: -3px; line-height: 1; }
         .logo span { color: var(--brand); }
         .tagline { font-size: 1.4rem; color: var(--gold); margin-top: 15px; font-weight: 600; letter-spacing: 1px; }
-
         .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
-        .search-box {
-            max-width: 1100px;
-            margin: -50px auto 60px;
-            background: #ffffff;
-            padding: 35px;
-            border-radius: 30px;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 20px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.7);
-            position: relative;
-            z-index: 100;
-        }
+        .search-box { max-width: 1100px; margin: -50px auto 60px; background: #fff; padding: 35px; border-radius: 30px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 20px; box-shadow: 0 30px 60px rgba(0,0,0,0.7); position: relative; z-index: 100; }
         @media (max-width: 900px) { .search-box { grid-template-columns: 1fr; } }
-        
-        .search-box input, .search-box select {
-            width: 100%;
-            padding: 22px;
-            border-radius: 15px;
-            border: 2px solid #ddd;
-            font-size: 1.1rem;
-            color: #111;
-            outline: none;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-        .search-box input:focus { border-color: var(--brand); box-shadow: 0 0 0 5px rgba(255,0,0,0.1); }
-
-        .grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
-            gap: 40px; 
-            margin-bottom: 80px;
-        }
-        .card { 
-            background: var(--surface); 
-            border-radius: 25px; 
-            overflow: hidden; 
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid #222;
-            display: flex;
-            flex-direction: column;
-            height: 520px;
-            cursor: pointer;
-        }
-        .card:hover { 
-            transform: translateY(-15px); 
-            border-color: var(--brand);
-            box-shadow: 0 20px 40px rgba(255,0,0,0.2);
-        }
-        .card-img { height: 240px; background: #000; overflow: hidden; position: relative; }
+        .search-box input, .search-box select { width: 100%; padding: 22px; border-radius: 15px; border: 2px solid #ddd; font-size: 1.1rem; color: #111; outline: none; font-weight: 600; transition: 0.3s; }
+        .search-box input:focus { border-color: var(--brand); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 40px; margin-bottom: 80px; }
+        .card { background: var(--surface); border-radius: 25px; overflow: hidden; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 1px solid #222; display: flex; flex-direction: column; height: 520px; cursor: pointer; }
+        .card:hover { transform: translateY(-15px); border-color: var(--brand); box-shadow: 0 20px 40px rgba(255,0,0,0.2); }
+        .card-img { height: 240px; background: #000; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; }
         .card-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
         .card:hover .card-img img { transform: scale(1.1); }
-        
-        .badge {
-            position: absolute; top: 20px; left: 20px;
-            background: var(--brand); color: white; padding: 8px 16px;
-            border-radius: 10px; font-weight: 900; font-size: 0.75rem; text-transform: uppercase;
-        }
-
+        .badge { position: absolute; top: 20px; left: 20px; background: var(--brand); color: #fff; padding: 8px 16px; border-radius: 10px; font-weight: 900; font-size: 0.75rem; text-transform: uppercase; z-index: 10; }
         .card-body { padding: 30px; flex-grow: 1; display: flex; flex-direction: column; }
         .academy { color: var(--blue); font-weight: 800; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px; }
-        .card h3 { 
-            font-family: 'Montserrat', sans-serif; font-size: 1.4rem; margin-bottom: 15px; line-height: 1.3;
-            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-        }
-        .card p { 
-            color: var(--text-dim); font-size: 1rem; line-height: 1.6;
-            display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
-        }
-
-        .pagination { 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            gap: 15px; 
-            margin: 60px 0 100px;
-            flex-wrap: wrap;
-        }
-        .pagi-btn { 
-            padding: 18px 30px; 
-            border: 2px solid #333; 
-            background: var(--surface); 
-            color: white; 
-            border-radius: 18px; 
-            font-weight: 800; 
-            cursor: pointer; 
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-        }
+        .card h3 { font-family: 'Montserrat', sans-serif; font-size: 1.4rem; margin-bottom: 15px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .card p { color: var(--dim); font-size: 1rem; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .pagination { display: flex; justify-content: center; align-items: center; gap: 15px; margin: 60px 0 100px; flex-wrap: wrap; }
+        .pagi-btn { padding: 18px 30px; border: 2px solid #333; background: var(--surface); color: #fff; border-radius: 18px; font-weight: 800; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 10px; text-transform: uppercase; font-size: 0.9rem; }
         .pagi-btn:hover:not(:disabled) { border-color: var(--brand); color: var(--brand); }
         .pagi-btn:disabled { opacity: 0.2; cursor: not-allowed; }
-
-        .pagi-num {
-            width: 55px; height: 55px; border-radius: 15px;
-            display: flex; align-items: center; justify-content: center;
-            background: var(--surface); border: 2px solid #333;
-            font-weight: 800; cursor: pointer; transition: 0.3s;
-        }
+        .pagi-num { width: 55px; height: 55px; border-radius: 15px; display: flex; align-items: center; justify-content: center; background: var(--surface); border: 2px solid #333; font-weight: 800; cursor: pointer; transition: 0.3s; }
         .pagi-num.active { background: var(--brand); border-color: var(--brand); box-shadow: 0 5px 20px rgba(255,0,0,0.4); }
-
         footer { padding: 100px 20px; text-align: center; border-top: 2px solid #111; }
         .footer-logo { font-family: 'Montserrat', sans-serif; font-size: 2.5rem; font-weight: 900; margin-bottom: 30px; }
         .footer-logo span { color: var(--brand); }
         .credits { margin-top: 50px; font-weight: 800; font-size: 1.2rem; }
         .credits span { color: var(--brand); }
-
         #loader-wrap { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; display: none; align-items: center; justify-content: center; }
         .spinner { width: 70px; height: 70px; border: 6px solid #222; border-top-color: var(--brand); border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
@@ -167,45 +48,40 @@
 </head>
 <body>
     <div id="loader-wrap"><div class="spinner"></div></div>
-
     <header>
         <div class="stats-badge">⚡ ACCESO TOTAL A <span id="count">...</span> CURSOS</div>
         <div class="logo">LA CLAVE<span> ACADEMY</span></div>
         <p class="tagline">La Clave Argentina: Tu Pasaporte al Conocimiento</p>
     </header>
-
     <div class="container">
         <div class="search-box">
             <input type="text" id="q" placeholder="¿Qué buscás hoy? (Ej: Python, Excel, UBA...)">
             <select id="cat"><option value="">Todas las Categorías</option></select>
             <select id="plat"><option value="">Todas las Academias</option></select>
         </div>
-
         <div id="grid" class="grid"></div>
         <div id="pagi" class="pagination"></div>
     </div>
-
     <footer>
         <div class="footer-logo">LA CLAVE<span> ACADEMY</span></div>
-        <div style="color:var(--text-dim); line-height:2; max-width:800px; margin:0 auto;">
-            © 2026 LA CLAVE ARGENTINA. Todos los derechos reservados. <br>
-            Buscador oficial de capacitación gratuita y certificada.
-        </div>
+        <div style="color:var(--dim); line-height:2; max-width:800px; margin:0 auto;">© 2026 LA CLAVE ARGENTINA. Todos los derechos reservados. <br>Buscador oficial de capacitación gratuita y certificada.</div>
         <div class="credits">Diseñado y Creado por <span>LA CLAVE ARGENTINA</span> & <span>TIENDA SSH</span></div>
     </footer>
-
     <script>
         const S_URL = 'https://ypzudkxowpxvdggvongz.supabase.co/rest/v1/';
         const S_KEY = 'sb_publishable_KmyqfJTmmW4R5FKUeB5b4A_GVFYnn4b';
         const headers = { 'apikey': S_KEY, 'Authorization': 'Bearer ' + S_KEY };
-        
         let page = 1; const limit = 32; let total = 0;
-        const falls = ['https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1000&q=80'];
+        const falls = [
+            'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800',
+            'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800',
+            'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800'
+        ];
 
-        function getHQImg(c, i) {
+        function getImg(c, i) {
             const yt = c.url.match(/(?:youtube\.com.*v=|youtu\.be\/)([^"&?\/\s]{11})/);
-            if (yt) return `https://i.ytimg.com/vi/${yt[1]}/hqdefault.jpg`;
-            if (c.imagen_url && c.imagen_url.includes('http') && !c.imagen_url.toLowerCase().includes('logo')) return c.imagen_url;
+            if (yt) return `https://i.ytimg.com/vi/${yt[1]}/mqdefault.jpg`;
+            if (c.imagen_url && c.imagen_url.includes('http') && !c.imagen_url.toLowerCase().includes('placeholder') && !c.imagen_url.toLowerCase().includes('logo')) return c.imagen_url;
             return falls[i % falls.length];
         }
 
@@ -215,21 +91,17 @@
             const q = document.getElementById('q').value.trim();
             const ct = document.getElementById('cat').value;
             const pl = document.getElementById('plat').value;
-
             loader.style.display = 'flex';
             grid.innerHTML = '';
-
             let u = `${S_URL}cursos?select=*,categorias(nombre)&limit=${limit}&offset=${(page - 1) * limit}`;
             if (q) u += `&or=(titulo.ilike.*${encodeURIComponent(q)}*,descripcion.ilike.*${encodeURIComponent(q)}*)`;
             if (ct) u += `&categorias.nombre=eq.${encodeURIComponent(ct)}`;
             if (pl) u += `&plataforma=eq.${encodeURIComponent(pl)}`;
             u += '&order=creado_el.desc';
-
             try {
                 const r = await fetch(u, { headers });
                 const data = await r.json();
                 loader.style.display = 'none';
-
                 data.forEach((c, i) => {
                     const d = document.createElement('div');
                     d.className = 'card';
@@ -237,7 +109,7 @@
                     d.innerHTML = `
                         <div class="card-img">
                             <div class="badge">OFICIAL</div>
-                            <img src="${getHQImg(c, i)}" onerror="this.src='${falls[0]}'">
+                            <img src="${getImg(c, i)}" onerror="this.src='${falls[0]}'">
                         </div>
                         <div class="card-body">
                             <div class="academy">${c.plataforma}</div>
@@ -267,14 +139,10 @@
             wrap.innerHTML = '';
             const tP = Math.ceil(total / limit);
             if (tP <= 1) return;
-
             const prev = document.createElement('button');
-            prev.className = 'pagi-btn';
-            prev.innerHTML = '← Anterior';
-            prev.disabled = page === 1;
+            prev.className = 'pagi-btn'; prev.innerHTML = '← Anterior'; prev.disabled = page === 1;
             prev.onclick = () => { page--; fetchAll(); window.scrollTo({top: 500, behavior: 'smooth'}); };
             wrap.appendChild(prev);
-
             let start = Math.max(1, page - 2);
             let end = Math.min(tP, start + 4);
             if (end - start < 4) start = Math.max(1, end - 4);
@@ -285,29 +153,29 @@
                 b.onclick = () => { page = i; fetchAll(); window.scrollTo({top: 500, behavior: 'smooth'}); };
                 wrap.appendChild(b);
             }
-
             const next = document.createElement('button');
-            next.className = 'pagi-btn';
-            next.innerHTML = 'Siguiente →';
-            next.disabled = page === tP;
+            next.className = 'pagi-btn'; next.innerHTML = 'Siguiente →'; next.disabled = page === tP;
             next.onclick = () => { page++; fetchAll(); window.scrollTo({top: 500, behavior: 'smooth'}); };
             wrap.appendChild(next);
         }
 
         async function init() {
-            const [rc, rp] = await Promise.all([
-                fetch(S_URL+'categorias?select=nombre', {headers}).then(r=>r.json()),
-                fetch(S_URL+'cursos?select=plataforma', {headers}).then(r=>r.json())
-            ]);
-            rc.sort((a,b)=>a.nombre.localeCompare(b.nombre)).forEach(c=>{
-                const o=document.createElement('option'); o.value=o.innerText=c.nombre; document.getElementById('cat').appendChild(o);
-            });
-            [...new Set(rp.map(p=>p.plataforma))].sort().forEach(p=>{
-                if(p) { const o=document.createElement('option'); o.value=o.innerText=p; document.getElementById('plat').appendChild(o); }
-            });
-            fetchAll();
+            try {
+                const [rc, rp] = await Promise.all([
+                    fetch(S_URL+'categorias?select=nombre', {headers}).then(r=>r.json()),
+                    fetch(S_URL+'cursos?select=plataforma', {headers}).then(r=>r.json())
+                ]);
+                const cs = document.getElementById('cat');
+                rc.sort((a,b)=>a.nombre.localeCompare(b.nombre)).forEach(c=>{
+                    const o=document.createElement('option'); o.value=o.innerText=c.nombre; document.getElementById('cat').appendChild(o);
+                });
+                const ps = document.getElementById('plat');
+                [...new Set(rp.map(p=>p.plataforma))].sort().forEach(p=>{
+                    if(p) { const o=document.createElement('option'); o.value=o.innerText=p; document.getElementById('plat').appendChild(o); }
+                });
+                fetchAll();
+            } catch(e) {}
         }
-
         document.getElementById('q').oninput = () => { page=1; clearTimeout(window.t); window.t=setTimeout(fetchAll, 600); };
         document.getElementById('cat').onchange = () => { page=1; fetchAll(); };
         document.getElementById('plat').onchange = () => { page=1; fetchAll(); };
