@@ -24,18 +24,17 @@
         .card:hover { transform: translateY(-12px); border-color: var(--brand); box-shadow: 0 10px 30px rgba(255,0,0,0.1); }
         .card-img { height: 200px; background: #000; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; }
         .card-img img { width: 100%; height: 100%; object-fit: cover; }
-        .yt-icon { position: absolute; top: 15px; right: 15px; width: 32px; height: 32px; background: rgba(255,0,0,0.9); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900; color: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .yt-icon { position: absolute; top: 15px; right: 15px; width: 32px; height: 32px; background: rgba(255,0,0,0.9); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900; color: #fff; }
         .badge { position: absolute; top: 15px; left: 15px; background: var(--brand); color: #fff; padding: 6px 12px; border-radius: 8px; font-weight: 900; font-size: 0.65rem; text-transform: uppercase; }
         .card-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
         .plat { color: var(--accent); font-weight: 800; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 1px; }
         .card h3 { font-family: 'Montserrat'; font-size: 1.2rem; margin-bottom: 12px; line-height: 1.3; color: #fff; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .card p { color: var(--text-dim); font-size: 0.95rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin: 0; }
-        .pagi { display: flex; justify-content: center; align-items: center; gap: 10px; margin: 40px 0 80px; flex-wrap: wrap; }
+        .pagi { display: flex; justify-content: center; align-items: center; gap: 10px; margin: 60px 0 100px; flex-wrap: wrap; }
         .btn-p { padding: 15px 25px; border: 2px solid #333; background: var(--surface); color: #fff; border-radius: 14px; font-weight: 800; cursor: pointer; font-size: 0.85rem; }
         .btn-p:disabled { opacity: 0.1; }
         .num-p { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border: 2px solid #333; background: var(--surface); color: #fff; border-radius: 12px; font-weight: 800; cursor: pointer; }
         .num-p.active { background: var(--brand); border-color: var(--brand); }
-        .faq { background: var(--surface); border-radius: 30px; padding: 50px 30px; margin-bottom: 80px; border: 1px solid #222; }
         footer { background: #000; padding: 80px 20px; text-align: center; border-top: 2px solid #111; }
         .legal { max-width: 900px; margin: 0 auto; color: var(--text-dim); font-size: 0.9rem; line-height: 1.8; }
         .credits { margin-top: 50px; font-weight: 700; font-size: 1.1rem; }
@@ -46,33 +45,24 @@
     </style>
 </head>
 <body>
-    <div id="main-loader"><div class="spinner"></div><span>OPTIMIZANDO LA CLAVE ACADEMY...</span></div>
+    <div id="main-loader"><div class="spinner"></div><span>SINCRONIZANDO CURSOS...</span></div>
     <header>
-        <div class="stats-badge">⚡ <span id="t-count">...</span> CURSOS EN VIVO</div>
+        <div class="stats-badge">⚡ <span id="t-count">...</span> CURSOS ACTIVOS</div>
         <div class="logo">LA CLAVE<span> ACADEMY</span></div>
         <p class="tagline">La Clave Argentina: Excelencia Educativa Sin Límites</p>
     </header>
     <div class="container">
         <div class="search-area">
-            <input type="text" id="q" placeholder="Buscar curso o tema...">
-            <select id="cat"><option value="">Todas las Categorías</option></select>
-            <select id="plat"><option value="">Todas las Academias (Cargando...)</option></select>
+            <input type="text" id="q" placeholder="¿Qué querés aprender?">
+            <select id="cat"><option value="">Temas</option></select>
+            <select id="plat"><option value="">Academias</option></select>
         </div>
         <div id="grid" class="grid"></div>
         <div id="pagi" class="pagi"></div>
-        <section class="faq">
-            <h2 style="text-align:center; margin-bottom:40px; font-family:'Montserrat';">Preguntas Frecuentes</h2>
-            <div style="max-width:800px; margin:auto;">
-                <p style="color:var(--gold); font-weight:800; margin-bottom:10px;">¿Son 100% gratuitos?</p>
-                <p style="color:var(--text-dim); margin-bottom:30px;">Sí. Todos los cursos listados son de acceso libre. Algunos pueden ofrecer certificados pagos opcionales, pero el conocimiento es abierto.</p>
-                <p style="color:var(--gold); font-weight:800; margin-bottom:10px;">¿Qué certificaciones hay?</p>
-                <p style="color:var(--text-dim);">Son certificados de validez internacional emitidos por las instituciones de origen (Google, IBM, Microsoft, etc.).</p>
-            </div>
-        </section>
     </div>
     <footer>
-        <div class="legal">© 2026 LA CLAVE ARGENTINA. Todos los derechos reservados. <br> Amparado por la Ley 11.723 de Propiedad Intelectual. Prohibida su reproducción total o parcial sin autorización expresa. Buscador de recursos educativos.</div>
-        <div class="credits">Diseñado y Creado por <span>LA CLAVE ARGENTINA</span> & <span>TIENDA SSH</span></div>
+        <div class="legal">© 2026 LA CLAVE ARGENTINA. Todos los derechos reservados. <br> Ley 11.723 de Propiedad Intelectual.</div>
+        <div class="credits">Diseñado por <span>LA CLAVE ARGENTINA</span> & <span>TIENDA SSH</span></div>
     </footer>
     <script>
         const S_URL = 'https://ypzudkxowpxvdggvongz.supabase.co/rest/v1/';
@@ -83,7 +73,7 @@
         function getImg(c) {
             const yt = c.url.match(/(?:youtube\.com.*v=|youtu\.be\/)([^"&?\/\s]{11})/);
             if (yt) return { src: `https://i.ytimg.com/vi/${yt[1]}/mqdefault.jpg`, isYt: true };
-            if (c.imagen_url && c.imagen_url.includes('http') && !c.imagen_url.toLowerCase().includes('placeholder')) return { src: c.imagen_url, isYt: false };
+            if (c.imagen_url && c.imagen_url.includes('http')) return { src: c.imagen_url, isYt: false };
             return { src: falls[0], isYt: false };
         }
         async function load() {
@@ -97,44 +87,35 @@
             u += '&order=creado_el.desc';
             try {
                 const res = await fetch(u, { headers: { ...headers, 'Prefer': 'count=exact' } });
-                total = parseInt(res.headers.get('content-range')?.split('/')[1]) || 0;
-                document.getElementById('t-count').innerText = total.toLocaleString();
-                const data = await res.json();
-                loader.style.display = 'none'; grid.innerHTML = '';
-                data.forEach(c => {
-                    const imgData = getImg(c);
-                    const d = document.createElement('a'); d.className = 'card'; d.href = c.url; d.target = '_blank';
-                    d.innerHTML = `<div class="card-img">
-                        <div class="badge">OFICIAL</div>
-                        ${imgData.isYt ? '<div class="yt-icon">▶</div>' : ''}
-                        <img src="${imgData.src}" onerror="this.src='${falls[0]}'">
-                    </div>
-                    <div class="card-body"><div class="plat">${c.plataforma}</div><h3>${c.titulo}</h3><p>${c.descripcion || 'Acceso educativo certificado de alta calidad.'}</p></div>`;
-                    grid.appendChild(d);
-                });
+                const countHead = res.headers.get('content-range'); if (countHead) total = parseInt(countHead.split('/')[1]);
+                document.getElementById('t-count').innerText = (total || 65000).toLocaleString();
+                const data = await res.json(); loader.style.display = 'none'; grid.innerHTML = '';
+                if (!data || data.length === 0) { grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:50px;">No se encontraron cursos.</div>'; }
+                else { data.forEach(c => { const img = getImg(c); const d = document.createElement('a'); d.className = 'card'; d.href = c.url; d.target = '_blank';
+                    d.innerHTML = `<div class="card-img"><div class="badge">OFICIAL</div>${img.isYt ? '<div class="yt-icon">▶</div>':''}<img src="${img.src}" onerror="this.src='${falls[0]}'"></div>
+                        <div class="card-body"><div class="plat">${c.plataforma}</div><h3>${c.titulo}</h3><p>${c.descripcion || ''}</p></div>`; grid.appendChild(d); }); }
                 renderPagi();
             } catch (e) { loader.style.display = 'none'; }
         }
         function renderPagi() {
             const wrap = document.getElementById('pagi'); wrap.innerHTML = ''; const tP = Math.ceil(total / limit); if (tP <= 1) return;
             const prev = document.createElement('button'); prev.className = 'btn-p'; prev.innerText = '← Anterior'; prev.disabled = page === 1;
-            prev.onclick = () => { page--; load(); window.scrollTo({top: 400, behavior: 'smooth'}); }; wrap.appendChild(prev);
+            prev.onclick = () => { page--; load(); window.scrollTo(0,0); }; wrap.appendChild(prev);
             for (let i = Math.max(1, page - 1); i <= Math.min(tP, page + 1); i++) {
                 const b = document.createElement('button'); b.className = `num-p ${i === page ? 'active' : ''}`; b.innerText = i;
-                b.onclick = () => { page = i; load(); window.scrollTo({top: 400, behavior: 'smooth'}); }; wrap.appendChild(b);
+                b.onclick = () => { page = i; load(); window.scrollTo(0,0); }; wrap.appendChild(b);
             }
             const next = document.createElement('button'); next.className = 'btn-p'; next.innerText = 'Siguiente →'; next.disabled = page === tP;
-            next.onclick = () => { page++; load(); window.scrollTo({top: 400, behavior: 'smooth'}); }; wrap.appendChild(next);
+            next.onclick = () => { page++; load(); window.scrollTo(0,0); }; wrap.appendChild(next);
         }
         async function init() {
             try {
                 const rc = await fetch(S_URL+'categorias?select=nombre', {headers}).then(r=>r.json());
                 const sc = document.getElementById('cat'); rc.sort((a,b)=>a.nombre.localeCompare(b.nombre)).forEach(c=>{ const o=document.createElement('option'); o.value=o.innerText=c.nombre; sc.appendChild(o); });
-                const rp = await fetch(S_URL+'cursos?select=plataforma', {headers}).then(r=>r.json());
-                const sp = document.getElementById('plat');
-                sp.innerHTML = '<option value="">Todas las Academias</option>';
-                [...new Set(rp.map(p=>p.plataforma))].sort().forEach(p=>{ if(p) { const o=document.createElement('option'); o.value=o.innerText=p; sp.appendChild(o); } });
                 load();
+                const rp = await fetch(S_URL+'cursos?select=plataforma', {headers}).then(r=>r.json());
+                const sp = document.getElementById('plat'); sp.innerHTML = '<option value="">Academias</option>';
+                const uP = [...new Set(rp.map(p=>p.plataforma))].sort(); uP.forEach(p=>{ if(p) { const o=document.createElement('option'); o.value=o.innerText=p; sp.appendChild(o); } });
             } catch(e) { load(); }
         }
         document.getElementById('q').oninput = () => { page=1; clearTimeout(window.t); window.t=setTimeout(load, 600); };
