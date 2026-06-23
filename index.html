@@ -2,264 +2,114 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Clave Academy - Educación con Propósito</title>
+    <title>La Clave Academy</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --brand: #ff0000; --gold: #ffd700; --dark: #0a0a0a; --bg: #f4f6f9; --blue: #2563eb; }
+        :root { --brand: #ff0000; --gold: #ffd700; --dark: #0a0a0a; --bg: #f4f6f9; }
         body { font-family: 'Inter', sans-serif; margin: 0; background: var(--bg); color: #1a1a1a; }
-        h1, .logo, .faq-q { font-family: 'Montserrat', sans-serif; }
-
-        header { background: var(--dark); color: white; padding: 50px 20px; text-align: center; border-bottom: 4px solid var(--brand); position: relative; }
-        .logo { font-size: 3rem; font-weight: 900; letter-spacing: -2px; margin: 0; }
+        header { background: var(--dark); color: white; padding: 40px 20px; text-align: center; border-bottom: 4px solid var(--brand); }
+        .logo { font-family: 'Montserrat'; font-size: 2.5rem; font-weight: 900; margin: 0; }
         .logo span { color: var(--brand); }
-        .tagline { font-size: 1.1rem; opacity: 0.9; font-weight: 400; margin-top: 5px; color: var(--gold); }
-        .stats-top { display: inline-block; background: var(--brand); color: white; padding: 6px 20px; border-radius: 50px; font-weight: 800; font-size: 0.85rem; margin-bottom: 15px; text-transform: uppercase; }
-
-        .search-wrap { max-width: 1000px; margin: -35px auto 40px; background: white; padding: 25px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); display: flex; flex-wrap: wrap; gap: 15px; position: relative; z-index: 10; border: 1px solid #eee; }
-        input, select { flex: 1; min-width: 220px; padding: 16px; border-radius: 12px; border: 2px solid #e2e8f0; font-size: 1rem; outline: none; transition: 0.3s; }
-        input:focus { border-color: var(--brand); }
-
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; margin-bottom: 60px; }
-
-        .card { background: white; border-radius: 18px; overflow: hidden; cursor: pointer; transition: 0.3s; border: 1px solid #e2e8f0; display: flex; flex-direction: column; position: relative; }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 30px rgba(0,0,0,0.1); border-color: var(--brand); }
-        .card-img { height: 180px; background: #000; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .search-wrap { max-width: 900px; margin: -30px auto 30px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; flex-wrap: wrap; gap: 10px; position: relative; z-index: 10; }
+        input, select { flex: 1; min-width: 200px; padding: 12px; border-radius: 8px; border: 1px solid #ddd; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+        .card { background: white; border-radius: 12px; overflow: hidden; cursor: pointer; border: 1px solid #eee; transition: 0.2s; height: 100%; display: flex; flex-direction: column; }
+        .card:hover { border-color: var(--brand); transform: translateY(-5px); }
+        .card-img { height: 150px; background: #000; }
         .card-img img { width: 100%; height: 100%; object-fit: cover; }
-        .badge { position: absolute; top: 12px; left: 12px; background: var(--brand); color: white; padding: 4px 10px; border-radius: 6px; font-weight: 800; font-size: 0.65rem; z-index: 5; }
-        .card-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
-        .plat-name { font-size: 0.75rem; font-weight: 800; color: var(--blue); text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; }
-        .card h3 { margin: 0 0 10px 0; font-size: 1.1rem; line-height: 1.4; color: #0f172a; height: 2.8em; overflow: hidden; }
-        .card p { font-size: 0.88rem; color: #4b5563; line-height: 1.5; margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-
-        .pagi { display: flex; justify-content: center; align-items: center; gap: 8px; margin: 50px 0; }
-        .pagi button { padding: 12px 18px; border: 1px solid #cbd5e1; background: white; border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.2s; min-width: 45px; }
-        .pagi button:hover:not(:disabled) { border-color: var(--brand); color: var(--brand); }
+        .card-body { padding: 15px; flex-grow: 1; }
+        .pagi { display: flex; justify-content: center; gap: 5px; margin: 30px 0; }
+        .pagi button { padding: 10px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 5px; }
         .pagi button.active { background: var(--brand); color: white; border-color: var(--brand); }
-
-        .faq-section { background: white; padding: 60px 20px; border-radius: 30px; margin-bottom: 60px; border: 1px solid #e5e7eb; }
-        .faq-title { text-align: center; font-size: 2rem; margin-bottom: 40px; }
-        .faq-item { max-width: 800px; margin: 0 auto 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
-        .faq-q { font-weight: 800; color: var(--dark); font-size: 1.1rem; margin-bottom: 5px; display: block; }
-        .faq-a { color: #4b5563; line-height: 1.6; }
-
-        footer { background: var(--dark); color: white; padding: 60px 20px; text-align: center; }
-        .footer-logo { font-size: 1.8rem; font-weight: 900; margin-bottom: 20px; }
-        .footer-logo span { color: var(--brand); }
-        .legal-text { max-width: 900px; margin: 0 auto; opacity: 0.6; font-size: 0.8rem; line-height: 1.6; }
-        .credits { margin-top: 30px; font-weight: bold; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
-        .credits span { color: var(--brand); }
-
-        .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 10000; display: none; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(10px); }
-        .m-card { background: white; width: 100%; max-width: 750px; border-radius: 30px; overflow: hidden; position: relative; animation: modalPop 0.3s ease; }
-        @keyframes modalPop { from { opacity:0; transform: scale(0.9); } to { opacity:1; transform: scale(1); } }
-        .m-close { position: absolute; top: 15px; right: 25px; font-size: 3rem; color: white; cursor: pointer; z-index: 101; font-weight: 300; }
-        .m-hero { height: 350px; background: #000; display: flex; align-items: center; justify-content: center; }
-        .m-hero img { width: 100%; height: 100%; object-fit: cover; }
-        .m-body { padding: 40px; }
-        .btn-go { display: block; width: 100%; background: var(--brand); color: white; text-align: center; padding: 22px; border-radius: 18px; text-decoration: none; font-weight: 900; font-size: 1.3rem; transition: 0.3s; }
+        footer { background: var(--dark); color: white; padding: 40px; text-align: center; font-size: 0.8rem; }
     </style>
 </head>
 <body>
     <header>
-        <div class="stats-top">⚡ ACCESO TOTAL A <span id="total-count">...</span> CURSOS</div>
-        <h1 class="logo">LA CLAVE<span> ACADEMY</span></h1>
-        <p class="tagline">La Clave Argentina: Tu Pasaporte al Conocimiento</p>
+        <div class="logo">LA CLAVE<span> ACADEMY</span></div>
+        <div id="total-count" style="color:var(--gold); font-weight:800; margin-top:10px;">Cargando...</div>
     </header>
-
     <div class="container">
         <div class="search-wrap">
-            <input type="text" id="q-in" placeholder="¿Qué quieres aprender hoy?">
-            <select id="cat-sel"><option value="">Todos los Temas</option></select>
-            <select id="plat-sel"><option value="">Plataformas</option></select>
+            <input type="text" id="q" placeholder="Buscar curso...">
+            <select id="cat"><option value="">Temas</option></select>
+            <select id="plat"><option value="">Academias</option></select>
         </div>
-
         <div id="grid" class="grid"></div>
-        <div id="loader" style="text-align:center; padding:100px; font-size:1.5rem; color:#94a3b8;">⛏️ Accediendo a la base de datos...</div>
         <div id="pagi" class="pagi"></div>
-
-        <section class="faq-section">
-            <h2 class="faq-title">Preguntas Frecuentes</h2>
-            <div class="faq-item">
-                <span class="faq-q">¿Son realmente gratuitos los cursos?</span>
-                <span class="faq-a">Sí. Todos los cursos listados en La Clave Academy son gratuitos. Algunos ofrecen la opción de compra de certificado, pero el acceso al conocimiento es libre.</span>
-            </div>
-            <div class="faq-item">
-                <span class="faq-q">¿Entregan certificados oficiales?</span>
-                <span class="faq-a">Depende de la entidad emisora (UNAM, Santander, Google, etc.). Muchos de ellos otorgan certificaciones con validez internacional al completar todos los módulos.</span>
-            </div>
-            <div class="faq-item">
-                <span class="faq-q">¿Cada cuánto se actualiza el catálogo?</span>
-                <span class="faq-a">Nuestro motor de búsqueda impulsado por La Clave Argentina escanea la web diariamente para sumar miles de cursos nuevos cada mes.</span>
-            </div>
-        </section>
     </div>
-
-    <div id="modal" class="modal" onclick="if(event.target==this)closeM()">
-        <span class="m-close" onclick="closeM()">&times;</span>
-        <div class="m-card">
-            <div id="m-img" class="m-hero"></div>
-            <div class="m-body">
-                <div id="m-plat" class="plat-name" style="color:var(--brand)"></div>
-                <h2 id="m-title" style="font-size: 1.8rem;"></h2>
-                <p id="m-desc" style="color:#4b5563; line-height:1.7; margin: 20px 0 30px 0; font-size: 1.1rem;"></p>
-                <a id="m-link" href="#" target="_blank" class="btn-go">OBTENER MI CURSO GRATIS</a>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <div class="footer-logo">LA CLAVE<span> ACADEMY</span></div>
-        <div class="legal-text">
-            © 2026 LA CLAVE ARGENTINA. Todos los derechos reservados. <br>
-            Queda prohibida la reproducción total o parcial de este sitio sin autorización expresa. Este catálogo es un buscador automatizado de recursos educativos abiertos. El contenido y las certificaciones son responsabilidad de las plataformas emisoras. <br>
-            De acuerdo a la Ley de Propiedad Intelectual, La Clave Academy funciona como un índice de acceso público a la educación.
-        </div>
-        <div class="credits">
-            Diseñado y Creado por <span>LA CLAVE ARGENTINA</span> & <span>TIENDA SSH</span>
-        </div>
-    </footer>
-
+    <footer>© 2026 LA CLAVE ARGENTINA & TIENDA SSH.</footer>
     <script>
         const S_URL = 'https://ypzudkxowpxvdggvongz.supabase.co/rest/v1/';
         const S_KEY = 'sb_publishable_KmyqfJTmmW4R5FKUeB5b4A_GVFYnn4b';
         const headers = { 'apikey': S_KEY, 'Authorization': 'Bearer ' + S_KEY };
-        
-        let currentPage = 1;
-        const perPage = 32;
-        let totalRecords = 0;
+        let curP = 1; const perP = 32;
 
-        const fallbacks = [
-            'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800',
-            'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800',
-            'https://images.unsplash.com/photo-1558655146-d09347e92766?w=800',
-            'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800',
-            'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800'
-        ];
-
-        function getImg(c, i) {
-            const ytMatch = c.url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
-            if (ytMatch) return `https://i.ytimg.com/vi/${ytMatch[1]}/mqdefault.jpg`;
-            if (c.imagen_url && c.imagen_url.includes('http') && !c.imagen_url.toLowerCase().includes('logo')) return c.imagen_url;
-            return fallbacks[i % fallbacks.length];
-        }
-
-        function openM(c, i) {
-            document.getElementById('m-img').innerHTML = `<img src="${getImg(c, i)}">`;
-            document.getElementById('m-title').innerText = c.titulo;
-            document.getElementById('m-desc').innerText = c.descripcion || "Accede ahora mismo a este programa educativo exclusivo seleccionado por La Clave Academy.";
-            document.getElementById('m-plat').innerText = c.plataforma;
-            document.getElementById('m-link').href = c.url;
-            document.getElementById('modal').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-        function closeM() { document.getElementById('modal').style.display = 'none'; document.body.style.overflow = 'auto'; }
-
-        async function fetchContent() {
+        async function load() {
+            const q = document.getElementById('q').value;
+            const ct = document.getElementById('cat').value;
+            const pl = document.getElementById('plat').value;
             const grid = document.getElementById('grid');
-            const q = document.getElementById('q-in').value;
-            const ct = document.getElementById('cat-sel').value;
-            const pl = document.getElementById('plat-sel').value;
+            grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:50px;">Buscando cursos...</div>';
             
-            document.getElementById('loader').style.display = 'block';
-            grid.innerHTML = '';
-            document.getElementById('pagi').innerHTML = '';
-
-            let u = `${S_URL}cursos?select=*,categorias(nombre)&limit=${perPage}&offset=${(currentPage - 1) * perPage}`;
-            if (q) u += `&or=(titulo.ilike.*${encodeURIComponent(q)}*,descripcion.ilike.*${encodeURIComponent(q)}*)`;
-            if (ct) u += `&categorias.nombre=eq.${encodeURIComponent(ct)}`;
-            if (pl) u += `&plataforma.eq.${encodeURIComponent(pl)}`;
-            u += '&order=creado_el.desc';
-
+            let u = `${S_URL}cursos?select=*,categorias(nombre)&limit=${perP}&offset=${(curP-1)*perP}`;
+            if(q) u += `&or=(titulo.ilike.*${encodeURIComponent(q)}*,descripcion.ilike.*${encodeURIComponent(q)}*)`;
+            if(ct) u += `&categorias.nombre=eq.${encodeURIComponent(ct)}`;
+            if(pl) u += `&plataforma=eq.${encodeURIComponent(pl)}`;
+            u += `&order=creado_el.desc&v=${Date.now()}`;
+            
             try {
-                const response = await fetch(u, { headers });
-                const data = await response.json();
-                document.getElementById('loader').style.display = 'none';
-                data.forEach((c, i) => {
-                    const div = document.createElement('div');
-                    div.className = 'card';
-                    div.onclick = () => openM(c, i);
-                    div.innerHTML = `
-                        <div class="card-img">
-                            <div class="badge">OFFICIAL</div>
-                            <img src="${getImg(c, i)}" onerror="this.src='${fallbacks[0]}'">
-                        </div>
-                        <div class="card-body">
-                            <div class="plat-name">${c.plataforma}</div>
-                            <h3>${c.titulo}</h3>
-                            <p>${c.descripcion || ''}</p>
-                        </div>`;
-                    grid.appendChild(div);
+                const r = await fetch(u, { headers });
+                const data = await r.json();
+                grid.innerHTML = '';
+                data.forEach(c => {
+                    const d = document.createElement('div'); d.className = 'card';
+                    d.onclick = () => window.open(c.url, '_blank');
+                    d.innerHTML = `<div class="card-img"><img src="${c.imagen_url || 'https://via.placeholder.com/300x150?text=La+Clave'}"></div>
+                                   <div class="card-body"><strong>${c.plataforma}</strong><br>${c.titulo}</div>`;
+                    grid.appendChild(d);
                 });
-                
-                // Actualizar total y paginación
-                updateStats(q, ct, pl);
-            } catch(e) { 
-                console.error(e);
-                document.getElementById('loader').innerText = 'Error al cargar cursos.';
-            }
+                count(q, ct, pl);
+            } catch(e) { grid.innerHTML = 'Error de conexión.'; }
         }
 
-        async function updateStats(q, ct, pl) {
+        async function count(q, ct, pl) {
             let u = `${S_URL}cursos?select=count`;
-            if (q) u += `&or=(titulo.ilike.*${encodeURIComponent(q)}*,descripcion.ilike.*${encodeURIComponent(q)}*)`;
-            if (ct) u += `&categorias.nombre=eq.${encodeURIComponent(ct)}`;
-            if (pl) u += `&plataforma.eq.${encodeURIComponent(pl)}`;
-            const r = await fetch(u, { headers });
+            if(q) u += `&or=(titulo.ilike.*${encodeURIComponent(q)}*,descripcion.ilike.*${encodeURIComponent(q)}*)`;
+            if(ct) u += `&categorias.nombre=eq.${encodeURIComponent(ct)}`;
+            if(pl) u += `&plataforma=eq.${encodeURIComponent(pl)}`;
+            const r = await fetch(u+`&v=${Date.now()}`, { headers });
             const d = await r.json();
-            totalRecords = d[0].count;
-            document.getElementById('total-count').innerText = totalRecords.toLocaleString();
-            renderPagi();
+            document.getElementById('total-count').innerText = d[0].count.toLocaleString() + ' CURSOS GRATUITOS';
+            pagi(d[0].count);
         }
 
-        function renderPagi() {
-            const wrap = document.getElementById('pagi');
-            wrap.innerHTML = '';
-            const totalPages = Math.ceil(totalRecords / perPage);
-            if (totalPages <= 1) return;
-
-            const prev = document.createElement('button');
-            prev.innerText = '‹'; prev.disabled = currentPage === 1;
-            prev.onclick = () => { currentPage--; fetchContent(); window.scrollTo(0,0); };
-            wrap.appendChild(prev);
-
-            let start = Math.max(1, currentPage - 2);
-            let end = Math.min(totalPages, start + 4);
-            if (end - start < 4) start = Math.max(1, end - 4);
-
-            for (let i = Math.max(1, start); i <= end; i++) {
-                const b = document.createElement('button');
-                b.innerText = i;
-                if (i === currentPage) b.className = 'active';
-                b.onclick = () => { currentPage = i; fetchContent(); window.scrollTo(0,0); };
-                wrap.appendChild(b);
+        function pagi(total) {
+            const w = document.getElementById('pagi'); w.innerHTML = '';
+            const tP = Math.ceil(total/perP);
+            if(tP <= 1) return;
+            for(let i=Math.max(1, curP-2); i<=Math.min(tP, curP+2); i++) {
+                const b = document.createElement('button'); b.innerText = i;
+                if(i===curP) b.className='active';
+                b.onclick = () => { curP=i; load(); window.scrollTo(0,0); };
+                w.appendChild(b);
             }
-
-            const next = document.createElement('button');
-            next.innerText = '›'; next.disabled = currentPage === totalPages;
-            next.onclick = () => { currentPage++; fetchContent(); window.scrollTo(0,0); };
-            wrap.appendChild(next);
         }
 
         async function init() {
             const [rc, rp] = await Promise.all([
-                fetch(S_URL + 'categorias?select=nombre', { headers }).then(r => r.json()),
-                fetch(S_URL + 'cursos?select=plataforma', { headers }).then(r => r.json())
+                fetch(S_URL+'categorias?select=nombre', {headers}).then(r=>r.json()),
+                fetch(S_URL+'cursos?select=plataforma', {headers}).then(r=>r.json())
             ]);
-            const cs = document.getElementById('cat-sel');
-            rc.sort((a,b)=>a.nombre.localeCompare(b.nombre)).forEach(c => {
-                const o = document.createElement('option'); o.value = c.nombre; o.innerText = c.nombre; cs.appendChild(o);
-            });
-            const ps = document.getElementById('plat-sel');
-            [...new Set(rp.map(p => p.plataforma))].sort().forEach(p => {
-                const o = document.createElement('option'); o.value = p; o.innerText = p; ps.appendChild(o);
-            });
-            fetchContent();
+            rc.sort((a,b)=>a.nombre.localeCompare(b.nombre)).forEach(c=>{ const o=document.createElement('option'); o.value=o.innerText=c.nombre; document.getElementById('cat').appendChild(o); });
+            [...new Set(rp.map(p=>p.plataforma))].sort().forEach(p=>{ const o=document.createElement('option'); o.value=o.innerText=p; document.getElementById('plat').appendChild(o); });
+            load();
         }
 
-        document.getElementById('q-in').addEventListener('input', () => { currentPage = 1; clearTimeout(window.t); window.t = setTimeout(fetchContent, 600); });
-        document.getElementById('cat-sel').addEventListener('change', () => { currentPage = 1; fetchContent(); });
-        document.getElementById('plat-sel').addEventListener('change', () => { currentPage = 1; fetchContent(); });
+        document.getElementById('q').oninput = () => { curP=1; clearTimeout(window.t); window.t=setTimeout(load, 500); };
+        document.getElementById('cat').onchange = () => { curP=1; load(); };
+        document.getElementById('plat').onchange = () => { curP=1; load(); };
         init();
     </script>
 </body>
