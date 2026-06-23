@@ -2,206 +2,246 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cursin V2 - La Mina de Oro de la Educación</title>
+    <title>Cursin V2 - La Mina de Oro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        :root { --blue: #2563eb; --dark: #0f172a; --amber: #f59e0b; }
-        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; margin: 0; background: #f1f5f9; color: var(--dark); }
-        
-        header { background: white; padding: 30px 20px; text-align: center; border-bottom: 1px solid #e2e8f0; }
-        .stats { background: #fffbeb; color: #92400e; padding: 6px 16px; border-radius: 99px; font-weight: 700; font-size: 0.85rem; display: inline-block; margin-bottom: 10px; border: 1px solid #fde68a; }
-        
-        .search-area { max-width: 1000px; margin: 20px auto; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-        input, select { padding: 12px 16px; border-radius: 12px; border: 1px solid #cbd5e1; font-size: 0.95rem; background: white; outline: none; }
-        input:focus, select:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
-        input { width: 350px; }
+        :root { --brand: #ff0000; --gold: #ffd700; --dark: #0f172a; --bg: #f8fafc; }
+        body { font-family: 'Roboto', sans-serif; margin: 0; background: var(--bg); color: var(--dark); overflow-x: hidden; }
+        h1, h2, h3, .brand-font { font-family: 'Montserrat', sans-serif; }
 
-        .container { max-width: 1400px; margin: 20px auto; padding: 0 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
+        /* Identidad Visual */
+        .hero { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white; padding: 60px 20px; text-align: center; position: relative; border-bottom: 5px solid var(--brand); }
+        .hero::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; background: url('https://www.transparenttextures.com/patterns/cubes.png'); opacity: 0.1; pointer-events: none; }
         
-        /* Tarjeta Estilo Premium */
-        .card { background: white; border-radius: 20px; border: 1px solid #e2e8f0; overflow: hidden; cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; height: 100%; position: relative; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-        .card:hover { transform: translateY(-6px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
-        
-        .img-container { height: 180px; width: 100%; background: #f8fafc; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
-        .img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
-        .img-container img.is-logo { object-fit: contain; width: 80%; height: 80%; padding: 10%; }
+        .logo-area { font-size: 3rem; font-weight: 900; margin-bottom: 10px; letter-spacing: -2px; }
+        .logo-area span { color: var(--brand); }
+        .stats-pill { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 8px 20px; border-radius: 50px; font-weight: bold; border: 1px solid rgba(255,255,255,0.2); display: inline-block; margin-bottom: 20px; }
 
-        .official-tag { position: absolute; top: 12px; left: 12px; background: #fbbf24; color: #78350f; padding: 4px 10px; border-radius: 8px; font-weight: 800; font-size: 0.7rem; z-index: 2; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        
-        .card-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
-        .plat-label { font-size: 0.75rem; font-weight: 800; color: var(--blue); text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; }
-        .card h3 { margin: 0 0 10px 0; font-size: 1.1rem; line-height: 1.4; color: #1e293b; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.8em; }
-        .card p { font-size: 0.85rem; color: #64748b; line-height: 1.5; margin: 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        /* Buscador Pro */
+        .search-container { max-width: 900px; margin: -40px auto 40px; background: white; padding: 25px; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); display: flex; flex-wrap: wrap; gap: 15px; position: relative; z-index: 10; }
+        input, select { flex: 1; min-width: 200px; padding: 15px 20px; border-radius: 12px; border: 2px solid #e2e8f0; font-size: 1rem; outline: none; transition: 0.3s; }
+        input:focus { border-color: var(--brand); }
 
-        /* Paginación */
-        .pagination { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 50px 0; align-items: center; }
-        .pagination button { min-width: 40px; height: 40px; border: 1px solid #e2e8f0; background: white; border-radius: 10px; cursor: pointer; font-weight: 600; color: #64748b; }
-        .pagination button.active { background: var(--blue); color: white; border-color: var(--blue); }
-        .pagination button:disabled { opacity: 0.4; cursor: not-allowed; }
+        /* Grid */
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px 60px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
+
+        /* Tarjeta Estilo Netflix/EdTech */
+        .card { background: white; border-radius: 20px; overflow: hidden; cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 1px solid #e2e8f0; position: relative; display: flex; flex-direction: column; }
+        .card:hover { transform: scale(1.03) translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.12); border-color: var(--brand); }
+        
+        .card-img { height: 180px; position: relative; background: #000; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .card-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
+        .card-img .overlay-hint { position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; color: white; font-weight: bold; font-size: 1.1rem; }
+        .card:hover .overlay-hint { opacity: 1; }
+
+        .badge-premium { position: absolute; top: 15px; right: 15px; background: var(--brand); color: white; padding: 5px 12px; border-radius: 8px; font-weight: 900; font-size: 0.7rem; letter-spacing: 1px; z-index: 5; }
+        
+        .card-body { padding: 20px; flex-grow: 1; }
+        .p-name { color: var(--brand); font-weight: 800; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 10px; }
+        .card h3 { margin: 0 0 10px 0; font-size: 1.15rem; line-height: 1.3; color: #1e293b; height: 3em; overflow: hidden; }
+        .card p { font-size: 0.9rem; color: #64748b; line-height: 1.6; height: 3.2em; overflow: hidden; margin: 0; }
+
+        /* Paginación Gigante */
+        .pagi { display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 50px; }
+        .pagi button { padding: 12px 20px; border-radius: 12px; border: 1px solid #e2e8f0; background: white; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .pagi button:hover:not(:disabled) { border-color: var(--brand); color: var(--brand); }
+        .pagi button.active { background: var(--brand); color: white; border-color: var(--brand); }
+        .pagi .arrow { font-size: 1.5rem; line-height: 1; }
 
         /* Modal */
-        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); display: none; justify-content: center; align-items: center; z-index: 9999; backdrop-filter: blur(10px); padding: 20px; }
-        .modal-card { background: white; border-radius: 28px; max-width: 700px; width: 100%; overflow: hidden; position: relative; animation: zoomIn 0.3s ease; }
-        @keyframes zoomIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-        .modal-close { position: absolute; top: 20px; right: 25px; width: 40px; height: 40px; background: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 1.5rem; font-weight: bold; color: black; z-index: 10; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .modal-hero { height: 300px; background: #f8fafc; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .modal-hero img { width: 100%; height: 100%; object-fit: cover; }
-        .modal-hero img.is-logo { object-fit: contain; width: 50%; height: 50%; }
-        .modal-body { padding: 40px; }
-        .btn-action { display: block; background: var(--blue); color: white; text-align: center; padding: 20px; border-radius: 16px; text-decoration: none; font-weight: 800; font-size: 1.2rem; margin-top: 25px; transition: 0.2s; }
+        .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 10000; display: none; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(10px); }
+        .modal-content { background: white; width: 100%; max-width: 800px; border-radius: 30px; overflow: hidden; position: relative; animation: modalPop 0.4s ease; }
+        @keyframes modalPop { from { opacity: 0; transform: scale(0.9) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        .m-close { position: absolute; top: 20px; right: 25px; font-size: 2rem; color: white; cursor: pointer; z-index: 100; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .m-hero { height: 350px; background-size: cover; background-position: center; position: relative; }
+        .m-body { padding: 40px; }
+        .m-body h2 { font-size: 2rem; margin: 0 0 15px 0; letter-spacing: -0.5px; }
+        .m-desc { font-size: 1.1rem; line-height: 1.8; color: #4b5563; margin-bottom: 30px; max-height: 200px; overflow-y: auto; }
+        .btn-claim { display: block; width: 100%; background: var(--brand); color: white; text-align: center; padding: 22px; border-radius: 20px; text-decoration: none; font-weight: 900; font-size: 1.3rem; transition: 0.3s; box-shadow: 0 15px 30px rgba(255,0,0,0.2); }
+        .btn-claim:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(255,0,0,0.3); }
+
+        /* Footer */
+        footer { background: #0f172a; color: white; padding: 40px; text-align: center; margin-top: 60px; }
     </style>
 </head>
 <body>
-    <header>
-        <div class="stats">🚀 <span id="total-count">...</span> CURSOS CERTIFICADOS</div>
-        <h1>Cursin V2 📚</h1>
-        <div class="search-area">
-            <input type="text" id="q-input" placeholder="¿Qué quieres aprender hoy?">
-            <select id="cat-select"><option value="">Todas las Categorías</option></select>
-            <select id="plat-select"><option value="">Todas las Plataformas</option></select>
-        </div>
-    </header>
-
-    <div class="container">
-        <div id="course-grid" class="grid"></div>
-        <div id="loader-msg" style="text-align:center; padding:100px;">⛏️ Picando la mina de oro...</div>
-        <div id="pagination-nav" class="pagination"></div>
+    <div class="hero">
+        <div class="stats-pill">🚀 EXPLORANDO <span id="total-val">65,650</span> CURSOS PREMIUM</div>
+        <div class="logo-area">CURSIN<span>.V2</span></div>
+        <p style="font-size: 1.2rem; opacity: 0.8; font-weight: 300;">La Mina de Oro de la Educación Gratuita</p>
     </div>
 
-    <div id="modal-view" class="modal" onclick="if(event.target==this)closeModal()">
-        <div class="modal-card">
-            <span class="modal-close" onclick="closeModal()">&times;</span>
-            <div id="m-hero-wrap" class="modal-hero"></div>
-            <div class="modal-body">
-                <div id="m-plat-label" class="plat-label"></div>
-                <h2 id="m-title-h2" style="margin-top:0;"></h2>
-                <p id="m-desc-p" style="line-height:1.7; color:#475569;"></p>
-                <a id="m-btn-link" href="#" target="_blank" class="btn-action">IR AL CURSO Y CERTIFICARME</a>
+    <div class="container">
+        <div class="search-container">
+            <input type="text" id="search-in" placeholder="¿Qué habilidad quieres dominar hoy?">
+            <select id="cat-sel"><option value="">Todos los Temas</option></select>
+            <select id="plat-sel"><option value="">Todas las Entidades</option></select>
+        </div>
+
+        <div id="course-grid" class="grid"></div>
+        <div id="loader" style="text-align:center; padding:100px; font-size:1.5rem; color:#64748b;">⛏️ Extrayendo cursos...</div>
+        
+        <div id="pagi-wrap" class="pagi"></div>
+    </div>
+
+    <div id="course-modal" class="modal" onclick="if(event.target==this)closeM()">
+        <span class="m-close" onclick="closeM()">&times;</span>
+        <div class="modal-content">
+            <div id="m-img" class="m-hero"></div>
+            <div class="m-body">
+                <div id="m-plat" class="p-name"></div>
+                <h2 id="m-title"></h2>
+                <div id="m-desc" class="m-desc"></div>
+                <a id="m-link" href="#" target="_blank" class="btn-claim">¡EMPEZAR AHORA GRATIS!</a>
             </div>
         </div>
     </div>
 
+    <footer>
+        <p>Impulsado por <b>La Clave Argentina</b></p>
+        <p style="opacity: 0.5; font-size: 0.8rem;">&copy; 2026 Cursin Platform. El conocimiento debe ser libre.</p>
+    </footer>
+
     <script>
-        const SUPA_URL = 'https://ypzudkxowpxvdggvongz.supabase.co/rest/v1/';
-        const SUPA_KEY = 'sb_publishable_KmyqfJTmmW4R5FKUeB5b4A_GVFYnn4b';
-        const HEADERS = { 'apikey': SUPA_KEY, 'Authorization': 'Bearer ' + SUPA_KEY };
+        const S_URL = 'https://ypzudkxowpxvdggvongz.supabase.co/rest/v1/';
+        const S_KEY = 'sb_publishable_KmyqfJTmmW4R5FKUeB5b4A_GVFYnn4b';
+        const headers = { 'apikey': S_KEY, 'Authorization': 'Bearer ' + S_KEY };
         
-        let pageIdx = 1;
-        const perPage = 24;
-        let totalCount = 0;
+        let page = 1;
+        const perPage = 30;
+        let total = 0;
 
-        function getYTThumb(url) {
-            if (!url) return null;
-            const match = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
-            return match ? `https://i.ytimg.com/vi/${match[1]}/mqdefault.jpg` : null;
+        // Librería de imágenes para evitar repetición
+        const fallbackImgs = [
+            'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800',
+            'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800',
+            'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800',
+            'https://images.unsplash.com/photo-1558655146-d09347e92766?w=800',
+            'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800',
+            'https://images.unsplash.com/photo-1524178232363-1fb28f74b0cd?w=800'
+        ];
+
+        // Logos de YT nítidos
+        const ytLogos = [
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/1024px-YouTube_full-color_icon_%282017%29.svg.png',
+            'https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png'
+        ];
+
+        function getImg(c, index) {
+            // 1. Prioridad: Portada de YouTube
+            const ytMatch = c.url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+            if (ytMatch) return `https://i.ytimg.com/vi/${ytMatch[1]}/hqdefault.jpg`;
+            
+            // 2. Si tiene imagen propia y no es un logo pixelado
+            if (c.imagen_url && c.imagen_url.includes('http') && !c.imagen_url.toLowerCase().includes('logo')) return c.imagen_url;
+            
+            // 3. Fallback rotativo por índice para que no se repitan
+            return fallbackImgs[index % fallbackImgs.length];
         }
 
-        function getSafeImg(c) {
-            const yt = getYTThumb(c.url);
-            if (yt) return yt;
-            if (c.imagen_url && c.imagen_url.startsWith('http')) return c.imagen_url;
-            return 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800';
-        }
-
-        function openModal(c) {
-            const thumb = getSafeImg(c);
-            const isLogo = !getYTThumb(c.url) && (c.plataforma.toLowerCase().includes('youtube') || c.plataforma.toLowerCase().includes('microsoft'));
-            document.getElementById('m-hero-wrap').innerHTML = `<img src="${thumb}" class="${isLogo ? 'is-logo' : ''}">`;
-            document.getElementById('m-title-h2').innerText = c.titulo;
-            document.getElementById('m-desc-p').innerText = c.descripcion || "Este curso gratuito te permite aprender a tu ritmo y obtener una certificación oficial al finalizar.";
-            document.getElementById('m-plat-label').innerText = c.plataforma;
-            document.getElementById('m-btn-link').href = c.url;
-            document.getElementById('modal-view').style.display = 'flex';
+        function openM(c, index) {
+            document.getElementById('m-img').style.backgroundImage = `url('${getImg(c, index)}')`;
+            document.getElementById('m-title').innerText = c.titulo;
+            document.getElementById('m-desc').innerText = c.descripcion || "Accede a este contenido de alta calidad y obtén tu certificación oficial al finalizar todos los módulos.";
+            document.getElementById('m-plat').innerText = c.plataforma;
+            document.getElementById('m-link').href = c.url;
+            document.getElementById('course-modal').style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
-
-        function closeModal() { document.getElementById('modal-view').style.display = 'none'; document.body.style.overflow = 'auto'; }
+        function closeM() { document.getElementById('course-modal').style.display = 'none'; document.body.style.overflow = 'auto'; }
 
         async function fetchContent() {
             const grid = document.getElementById('course-grid');
-            const loader = document.getElementById('loader-msg');
-            const search = document.getElementById('q-input').value;
-            const cat = document.getElementById('cat-select').value;
-            const plat = document.getElementById('plat-select').value;
+            const search = document.getElementById('search-in').value;
+            const cat = document.getElementById('cat-sel').value;
+            const plat = document.getElementById('plat-sel').value;
 
-            loader.style.display = 'block';
+            document.getElementById('loader').style.display = 'block';
             grid.innerHTML = '';
-            document.getElementById('pagination-nav').innerHTML = '';
 
-            let u = `${SUPA_URL}cursos?select=*,categorias(nombre)&limit=${perPage}&offset=${(pageIdx - 1) * perPage}`;
+            let u = `${S_URL}cursos?select=*,categorias(nombre)&limit=${perPage}&offset=${(page - 1) * perPage}`;
             if (search) u += `&or=(titulo.ilike.*${encodeURIComponent(search)}*,descripcion.ilike.*${encodeURIComponent(search)}*)`;
             if (cat) u += `&categorias.nombre=eq.${encodeURIComponent(cat)}`;
             if (plat) u += `&plataforma.eq.${encodeURIComponent(plat)}`;
             u += '&order=creado_el.desc';
 
             try {
-                const response = await fetch(u, { headers: HEADERS });
-                const data = await response.json();
+                const r = await fetch(u, { headers });
+                const data = await r.json();
                 
-                loader.style.display = 'none';
-                data.forEach(c => {
-                    const isOff = ['santander', 'unam', 'mexicox', 'google'].some(v => c.plataforma.toLowerCase().includes(v));
-                    const isLogo = !getYTThumb(c.url) && (c.plataforma.toLowerCase().includes('youtube') || c.plataforma.toLowerCase().includes('microsoft'));
+                // Actualizar total count
+                const rc = await fetch(`${S_URL}cursos?select=count`, { headers });
+                total = (await rc.json())[0].count;
+                document.getElementById('total-val').innerText = total.toLocaleString();
+
+                document.getElementById('loader').style.display = 'none';
+                data.forEach((c, i) => {
                     const card = document.createElement('div');
                     card.className = 'card';
-                    card.onclick = () => openModal(c);
+                    card.onclick = () => openM(c, i);
                     card.innerHTML = `
-                        <div class="img-container">
-                            ${isOff ? '<div class="official-tag">OFICIAL</div>' : ''}
-                            <img src="${getSafeImg(c)}" class="${isLogo ? 'is-logo' : ''}" onerror="this.src='https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600'">
+                        <div class="card-img">
+                            <div class="badge-premium">OFICIAL</div>
+                            <img src="${getImg(c, i)}" onerror="this.src='${fallbackImgs[0]}'">
+                            <div class="overlay-hint">VER DETALLES</div>
                         </div>
-                        <div class="card-content">
-                            <div class="plat-label">${c.plataforma}</div>
+                        <div class="card-body">
+                            <div class="p-name">${c.plataforma}</div>
                             <h3>${c.titulo}</h3>
-                            <p>${c.descripcion || ''}</p>
+                            <p>${c.descripcion || 'Haz clic para ver la descripción completa y certificarte.'}</p>
                         </div>`;
                     grid.appendChild(card);
                 });
                 renderPagi();
-            } catch (err) { loader.innerText = 'Error al cargar.'; }
+            } catch(e) { console.error(e); }
         }
 
         function renderPagi() {
-            const nav = document.getElementById('pagination-nav');
-            const totalPages = Math.ceil(totalCount / perPage);
-            const start = Math.max(1, pageIdx - 2);
-            const end = Math.min(totalPages, start + 4);
+            const wrap = document.getElementById('pagi-wrap');
+            wrap.innerHTML = '';
+            const totalPages = Math.ceil(total / perPage);
+            
+            const prev = document.createElement('button');
+            prev.innerHTML = '<span class="arrow">‹</span>';
+            prev.disabled = page === 1;
+            prev.onclick = () => { page--; fetchContent(); window.scrollTo(0,0); };
+            wrap.appendChild(prev);
 
-            for (let i = (end - start < 4 ? Math.max(1, end - 4) : start); i <= end; i++) {
-                if(i < 1) continue;
-                const b = document.createElement('button'); b.innerText = i;
-                if (i === pageIdx) b.className = 'active';
-                b.onclick = () => { pageIdx = i; fetchContent(); window.scrollTo(0,0); };
-                nav.appendChild(b);
+            let start = Math.max(1, page - 2);
+            let end = Math.min(totalPages, start + 4);
+            for (let i = start; i <= end; i++) {
+                const b = document.createElement('button');
+                b.innerText = i;
+                if (i === page) b.className = 'active';
+                b.onclick = () => { page = i; fetchContent(); window.scrollTo(0,0); };
+                wrap.appendChild(b);
             }
+
+            const next = document.createElement('button');
+            next.innerHTML = '<span class="arrow">›</span>';
+            next.disabled = page === totalPages;
+            next.onclick = () => { page++; fetchContent(); window.scrollTo(0,0); };
+            wrap.appendChild(next);
         }
 
         async function init() {
-            const [rc, rCount] = await Promise.all([
-                fetch(SUPA_URL + 'categorias', { headers: HEADERS }).then(r => r.json()),
-                fetch(SUPA_URL + 'cursos?select=count', { headers: HEADERS }).then(r => r.json())
-            ]);
-            
-            totalCount = rCount[0].count;
-            document.getElementById('total-count').innerText = totalCount.toLocaleString();
-
-            const cs = document.getElementById('cat-select');
+            const rc = await fetch(S_URL + 'categorias', { headers }).then(r => r.json());
+            const cs = document.getElementById('cat-sel');
             rc.sort((a,b)=>a.nombre.localeCompare(b.nombre)).forEach(c => {
                 const o = document.createElement('option'); o.value = c.nombre; o.innerText = c.nombre; cs.appendChild(o);
             });
-
-            const rp = await fetch(SUPA_URL + 'cursos?select=plataforma', { headers: HEADERS }).then(r => r.json());
-            const ps = document.getElementById('plat-select');
+            const rp = await fetch(S_URL + 'cursos?select=plataforma', { headers }).then(r => r.json());
+            const ps = document.getElementById('plat-sel');
             [...new Set(rp.map(p => p.plataforma))].sort().forEach(p => {
-                const o = document.createElement('option'); o.value = p; o.innerText = p; ps.appendChild(o);
+                ps.innerHTML += `<option value="${p}">${p}</option>`;
             });
-
             fetchContent();
         }
 
-        document.getElementById('q-input').oninput = () => { pageIdx = 1; clearTimeout(window.t); window.t = setTimeout(fetchContent, 600); };
-        document.getElementById('cat-select').onchange = () => { pageIdx = 1; fetchContent(); };
-        document.getElementById('plat-select').onchange = () => { pageIdx = 1; fetchContent(); };
+        document.getElementById('search-in').oninput = () => { page=1; clearTimeout(window.t); window.t = setTimeout(fetchContent, 600); };
+        document.getElementById('cat-sel').onchange = () => { page=1; fetchContent(); };
+        document.getElementById('plat-sel').onchange = () => { page=1; fetchContent(); };
         init();
     </script>
 </body>
