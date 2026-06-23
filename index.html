@@ -146,12 +146,22 @@
         ];
 
         function getImg(c, i) {
-            // MOTOR DE PORTADAS REALES
+            // MOTOR DE PORTADAS REALES - MEJORADO PARA CALIDAD
             const ytMatch = c.url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
-            if (ytMatch) return `https://i.ytimg.com/vi/${ytMatch[1]}/hqdefault.jpg`;
+            if (ytMatch) {
+                // Usamos hqdefault o mqdefault para asegurar que siempre haya imagen nítida
+                return `https://i.ytimg.com/vi/${ytMatch[1]}/mqdefault.jpg`;
+            }
             
-            if (c.imagen_url && c.imagen_url.includes('http') && !c.imagen_url.toLowerCase().includes('logo')) return c.imagen_url;
-            return fallbacks[i % fallbacks.length];
+            const isYTPlatform = c.plataforma && c.plataforma.toLowerCase().includes('youtube');
+            const hasLogoInImg = c.imagen_url && c.imagen_url.toLowerCase().includes('logo');
+
+            // Si es Youtube pero no pudimos sacar el ID del video, o si la imagen es un logo pixelado
+            if (isYTPlatform || hasLogoInImg || !c.imagen_url || !c.imagen_url.includes('http')) {
+                return fallbacks[i % fallbacks.length];
+            }
+            
+            return c.imagen_url;
         }
 
         function openM(c, i) {
