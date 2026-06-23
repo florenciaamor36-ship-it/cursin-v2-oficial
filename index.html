@@ -18,7 +18,7 @@
         .search-box { max-width: 1100px; margin: -50px auto 60px; background: #fff; padding: 35px; border-radius: 30px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 20px; box-shadow: 0 30px 60px rgba(0,0,0,0.7); position: relative; z-index: 100; }
         @media (max-width: 900px) { .search-box { grid-template-columns: 1fr; } }
         .search-box input, .search-box select { width: 100%; padding: 22px; border-radius: 15px; border: 2px solid #ddd; font-size: 1.1rem; color: #111; outline: none; font-weight: 600; transition: 0.3s; }
-        .search-box input:focus { border-color: var(--brand); }
+        .search-box input:focus, .search-box select:focus { border-color: var(--brand); }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 40px; margin-bottom: 80px; }
         .card { background: var(--surface); border-radius: 25px; overflow: hidden; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 1px solid #222; display: flex; flex-direction: column; height: 520px; cursor: pointer; }
         .card:hover { transform: translateY(-15px); border-color: var(--brand); box-shadow: 0 20px 40px rgba(255,0,0,0.2); }
@@ -72,10 +72,10 @@
         const S_KEY = 'sb_publishable_KmyqfJTmmW4R5FKUeB5b4A_GVFYnn4b';
         const headers = { 'apikey': S_KEY, 'Authorization': 'Bearer ' + S_KEY };
         let page = 1; const limit = 32; let total = 0;
+        
         const falls = [
             'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800',
-            'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800',
-            'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800'
+            'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800'
         ];
 
         function getImg(c, i) {
@@ -91,17 +91,22 @@
             const q = document.getElementById('q').value.trim();
             const ct = document.getElementById('cat').value;
             const pl = document.getElementById('plat').value;
+            
             loader.style.display = 'flex';
             grid.innerHTML = '';
-            let u = `${S_URL}cursos?select=*,categorias(nombre)&limit=${limit}&offset=${(page - 1) * limit}`;
+
+            let u = `${S_URL}cursos?select=*,categorias!inner(nombre)&limit=${limit}&offset=${(page - 1) * limit}`;
+            
             if (q) u += `&or=(titulo.ilike.*${encodeURIComponent(q)}*,descripcion.ilike.*${encodeURIComponent(q)}*)`;
             if (ct) u += `&categorias.nombre=eq.${encodeURIComponent(ct)}`;
             if (pl) u += `&plataforma=eq.${encodeURIComponent(pl)}`;
             u += '&order=creado_el.desc';
+
             try {
                 const r = await fetch(u, { headers });
                 const data = await r.json();
                 loader.style.display = 'none';
+                if (data.length === 0) { grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:100px;">No se encontraron cursos.</div>'; }
                 data.forEach((c, i) => {
                     const d = document.createElement('div');
                     d.className = 'card';
@@ -123,7 +128,7 @@
         }
 
         async function updateStats(q, ct, pl) {
-            let u = `${S_URL}cursos?select=count`;
+            let u = `${S_URL}cursos?select=count,categorias!inner(nombre)`;
             if (q) u += `&or=(titulo.ilike.*${encodeURIComponent(q)}*,descripcion.ilike.*${encodeURIComponent(q)}*)`;
             if (ct) u += `&categorias.nombre=eq.${encodeURIComponent(ct)}`;
             if (pl) u += `&plataforma=eq.${encodeURIComponent(pl)}`;
