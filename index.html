@@ -125,9 +125,9 @@
         const S_KEY = 'sb_publishable_KmyqfJTmmW4R5FKUeB5b4A_GVFYnn4b';
         const headers = { 'apikey': S_KEY, 'Authorization': 'Bearer ' + S_KEY };
         
-        let page = 1;
+        let currentPage = 1;
         const perPage = 32;
-        let total = 0;
+        let totalRecords = 0;
 
         const fallbacks = [
             'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800',
@@ -156,14 +156,16 @@
         function closeM() { document.getElementById('modal').style.display = 'none'; document.body.style.overflow = 'auto'; }
 
         async function fetchContent() {
+            const grid = document.getElementById('grid');
             const q = document.getElementById('q-in').value;
             const ct = document.getElementById('cat-sel').value;
             const pl = document.getElementById('plat-sel').value;
             
             document.getElementById('loader').style.display = 'block';
-            document.getElementById('grid').innerHTML = '';
+            grid.innerHTML = '';
+            document.getElementById('pagi').innerHTML = '';
 
-            let u = `${S_URL}cursos?select=*,categorias(nombre)&limit=${perPage}&offset=${(page - 1) * perPage}`;
+            let u = `${S_URL}cursos?select=*,categorias(nombre)&limit=${perPage}&offset=${(currentPage - 1) * perPage}`;
             if (q) u += `&or=(titulo.ilike.*${encodeURIComponent(q)}*,descripcion.ilike.*${encodeURIComponent(q)}*)`;
             if (ct) u += `&categorias.nombre=eq.${encodeURIComponent(ct)}`;
             if (pl) u += `&plataforma.eq.${encodeURIComponent(pl)}`;
@@ -187,10 +189,15 @@
                             <h3>${c.titulo}</h3>
                             <p>${c.descripcion || ''}</p>
                         </div>`;
-                    document.getElementById('grid').appendChild(div);
+                    grid.appendChild(div);
                 });
+                
+                // Actualizar total y paginación
                 updateStats(q, ct, pl);
-            } catch(e) { console.error(e); }
+            } catch(e) { 
+                console.error(e);
+                document.getElementById('loader').innerText = 'Error al cargar cursos.';
+            }
         }
 
         async function updateStats(q, ct, pl) {
@@ -200,38 +207,37 @@
             if (pl) u += `&plataforma.eq.${encodeURIComponent(pl)}`;
             const r = await fetch(u, { headers });
             const d = await r.json();
-            total = d[0].count;
-            document.getElementById('total-count').innerText = total.toLocaleString();
+            totalRecords = d[0].count;
+            document.getElementById('total-count').innerText = totalRecords.toLocaleString();
             renderPagi();
         }
 
         function renderPagi() {
             const wrap = document.getElementById('pagi');
             wrap.innerHTML = '';
-            const totalPages = Math.ceil(total / perPage);
+            const totalPages = Math.ceil(totalRecords / perPage);
             if (totalPages <= 1) return;
 
             const prev = document.createElement('button');
-            prev.innerText = '‹'; prev.disabled = page === 1;
-            prev.onclick = () => { page--; fetchContent(); window.scrollTo(0,0); };
+            prev.innerText = '‹'; prev.disabled = currentPage === 1;
+            prev.onclick = () => { currentPage--; fetchContent(); window.scrollTo(0,0); };
             wrap.appendChild(prev);
 
-            let start = Math.max(1, page - 2);
+            let start = Math.max(1, currentPage - 2);
             let end = Math.min(totalPages, start + 4);
             if (end - start < 4) start = Math.max(1, end - 4);
 
-            for (let i = start; i <= end; i++) {
-                if(i < 1) continue;
+            for (let i = Math.max(1, start); i <= end; i++) {
                 const b = document.createElement('button');
                 b.innerText = i;
-                if (i === page) b.className = 'active';
-                b.onclick = () => { page = i; fetchContent(); window.scrollTo(0,0); };
+                if (i === currentPage) b.className = 'active';
+                b.onclick = () => { currentPage = i; fetchContent(); window.scrollTo(0,0); };
                 wrap.appendChild(b);
             }
 
             const next = document.createElement('button');
-            next.innerText = '›'; next.disabled = page === totalPages;
-            next.onclick = () => { page++; fetchContent(); window.scrollTo(0,0); };
+            next.innerText = '›'; next.disabled = currentPage === totalPages;
+            next.onclick = () => { currentPage++; fetchContent(); window.scrollTo(0,0); };
             wrap.appendChild(next);
         }
 
@@ -251,9 +257,9 @@
             fetchContent();
         }
 
-        document.getElementById('q-in').addEventListener('input', () => { page=1; clearTimeout(window.t); window.t = setTimeout(fetchContent, 600); });
-        document.getElementById('cat-sel').addEventListener('change', () => { page=1; fetchContent(); });
-        document.getElementById('plat-sel').addEventListener('change', () => { page=1; fetchContent(); });
+        document.getElementById('q-in').addEventListener('input', () => { currentPage = 1; clearTimeout(window.t); window.t = setTimeout(fetchContent, 600); });
+        document.getElementById('cat-sel').addEventListener('change', () => { currentPage = 1; fetchContent(); });
+        document.getElementById('plat-sel').addEventListener('change', () => { currentPage = 1; fetchContent(); });
         init();
     </script>
 </body>
