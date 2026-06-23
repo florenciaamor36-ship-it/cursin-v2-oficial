@@ -3,90 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>La Clave Academy | Educación con Propósito</title>
+    <title>La Clave Academy | Excelencia Educativa</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root { --brand: #ff0000; --gold: #ffd700; --dark: #000; --surface: #121212; --text: #fff; --text-dim: #a0a0a0; --accent: #2563eb; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; background: var(--dark); color: var(--text); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-
         header { padding: 60px 20px 80px; text-align: center; background: linear-gradient(180deg, #1a1a1a, #000); border-bottom: 4px solid var(--brand); }
         .stats-badge { display: inline-block; background: var(--brand); color: white; padding: 10px 25px; border-radius: 50px; font-weight: 800; font-size: 0.85rem; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px; box-shadow: 0 5px 20px rgba(255,0,0,0.4); }
         .logo { font-family: 'Montserrat'; font-size: 3rem; font-weight: 900; letter-spacing: -2px; line-height: 1; }
         @media (min-width: 768px) { .logo { font-size: 4.5rem; letter-spacing: -3px; } }
         .logo span { color: var(--brand); }
         .tagline { font-size: 1rem; color: var(--gold); margin-top: 10px; font-weight: 600; letter-spacing: 1px; font-family: 'Montserrat'; }
-
         .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
         .search-area { max-width: 1100px; margin: -40px auto 50px; background: #fff; padding: 25px; border-radius: 24px; display: flex; flex-direction: column; gap: 15px; box-shadow: 0 25px 50px rgba(0,0,0,0.5); position: relative; z-index: 1000; }
         @media (min-width: 768px) { .search-area { flex-direction: row; padding: 35px; border-radius: 30px; margin-top: -55px; } }
-        .search-area input, .search-area select { flex: 1; width: 100%; padding: 18px 24px; border-radius: 12px; border: 2px solid #ddd; font-size: 1rem; color: #111; outline: none; font-weight: 600; transition: 0.3s; }
-        .search-area input:focus { border-color: var(--brand); }
-
+        .search-area input, .search-area select { flex: 1; width: 100%; padding: 18px 24px; border-radius: 12px; border: 2px solid #ddd; font-size: 1rem; color: #111; outline: none; font-weight: 600; }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; margin-bottom: 60px; min-height: 500px; }
-        @media (min-width: 768px) { .grid { gap: 35px; } }
-        
-        .card { background: var(--surface); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #222; height: 480px; transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); cursor: pointer; text-decoration: none; color: inherit; }
+        .card { background: var(--surface); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #222; height: 480px; transition: 0.4s; cursor: pointer; text-decoration: none; color: inherit; }
         .card:hover { transform: translateY(-12px); border-color: var(--brand); box-shadow: 0 10px 30px rgba(255,0,0,0.1); }
-        
         .card-img { height: 200px; background: #000; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; }
-        .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-        .card:hover .card-img img { transform: scale(1.1); }
-        .badge { position: absolute; top: 15px; left: 15px; background: var(--brand); color: #fff; padding: 6px 12px; border-radius: 8px; font-weight: 900; font-size: 0.65rem; text-transform: uppercase; z-index: 10; }
-
+        .card-img img { width: 100%; height: 100%; object-fit: cover; }
+        .yt-icon { position: absolute; top: 15px; right: 15px; width: 32px; height: 32px; background: rgba(255,0,0,0.9); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900; color: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .badge { position: absolute; top: 15px; left: 15px; background: var(--brand); color: #fff; padding: 6px 12px; border-radius: 8px; font-weight: 900; font-size: 0.65rem; text-transform: uppercase; }
         .card-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
         .plat { color: var(--accent); font-weight: 800; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 1px; }
         .card h3 { font-family: 'Montserrat'; font-size: 1.2rem; margin-bottom: 12px; line-height: 1.3; color: #fff; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .card p { color: var(--text-dim); font-size: 0.95rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin: 0; }
-
-        .pagi { display: flex; justify-content: center; align-items: center; gap: 15px; margin: 60px 0 100px; flex-wrap: wrap; }
-        .btn-p { padding: 15px 25px; border: 2px solid #333; background: var(--surface); color: #fff; border-radius: 14px; font-weight: 800; cursor: pointer; font-size: 0.85rem; text-transform: uppercase; transition: 0.3s; }
-        .btn-p:hover:not(:disabled) { border-color: var(--brand); color: var(--brand); }
-        .btn-p:disabled { opacity: 0.1; cursor: not-allowed; }
-        .num-p { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border: 2px solid #333; background: var(--surface); color: #fff; border-radius: 12px; font-weight: 800; cursor: pointer; transition: 0.3s; }
-        .num-p.active { background: var(--brand); border-color: var(--brand); box-shadow: 0 5px 15px rgba(255,0,0,0.3); }
-
+        .pagi { display: flex; justify-content: center; align-items: center; gap: 10px; margin: 40px 0 80px; flex-wrap: wrap; }
+        .btn-p { padding: 15px 25px; border: 2px solid #333; background: var(--surface); color: #fff; border-radius: 14px; font-weight: 800; cursor: pointer; font-size: 0.85rem; }
+        .btn-p:disabled { opacity: 0.1; }
+        .num-p { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border: 2px solid #333; background: var(--surface); color: #fff; border-radius: 12px; font-weight: 800; cursor: pointer; }
+        .num-p.active { background: var(--brand); border-color: var(--brand); }
         .faq { background: var(--surface); border-radius: 30px; padding: 50px 30px; margin-bottom: 80px; border: 1px solid #222; }
-        .faq h2 { font-family: 'Montserrat'; font-size: 2.2rem; margin-bottom: 40px; text-align: center; }
-        .faq-i { max-width: 900px; margin: 0 auto 30px; border-bottom: 1px solid #222; padding-bottom: 25px; }
-        .faq-i h4 { font-family: 'Montserrat'; font-size: 1.2rem; color: var(--gold); margin-bottom: 12px; }
-        .faq-i p { color: var(--text-dim); line-height: 1.7; font-size: 1.05rem; }
-
         footer { background: #000; padding: 80px 20px; text-align: center; border-top: 2px solid #111; }
         .legal { max-width: 900px; margin: 0 auto; color: var(--text-dim); font-size: 0.9rem; line-height: 1.8; }
         .credits { margin-top: 50px; font-weight: 700; font-size: 1.1rem; }
         .credits span { color: var(--brand); }
-
-        #main-loader { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 5000; display: none; flex-direction: column; align-items: center; justify-content: center; font-weight: 900; color: var(--gold); font-family: 'Montserrat'; gap: 20px; }
+        #main-loader { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 5000; display: none; flex-direction: column; align-items: center; justify-content: center; font-weight: 900; color: var(--gold); gap: 20px; }
         .spinner { width: 50px; height: 50px; border: 5px solid #222; border-top-color: var(--brand); border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
-        .no-results { grid-column: 1/-1; text-align: center; padding: 100px; color: var(--text-dim); font-size: 1.3rem; font-weight: 600; }
     </style>
 </head>
 <body>
-    <div id="main-loader"><div class="spinner"></div><span>SINCRONIZANDO LA CLAVE ACADEMY...</span></div>
+    <div id="main-loader"><div class="spinner"></div><span>OPTIMIZANDO LA CLAVE ACADEMY...</span></div>
     <header>
-        <div class="stats-badge">⚡ <span id="t-count">...</span> CURSOS LIBRES</div>
+        <div class="stats-badge">⚡ <span id="t-count">...</span> CURSOS EN VIVO</div>
         <div class="logo">LA CLAVE<span> ACADEMY</span></div>
-        <p class="tagline">La Clave Argentina: Tu Pasaporte al Futuro</p>
+        <p class="tagline">La Clave Argentina: Excelencia Educativa Sin Límites</p>
     </header>
     <div class="container">
         <div class="search-area">
-            <input type="text" id="q" placeholder="¿Qué querés aprender hoy?">
-            <select id="cat"><option value="">Todos los Temas</option></select>
-            <select id="plat"><option value="">Academias</option></select>
+            <input type="text" id="q" placeholder="Buscar curso o tema...">
+            <select id="cat"><option value="">Todas las Categorías</option></select>
+            <select id="plat"><option value="">Todas las Academias (Cargando...)</option></select>
         </div>
         <div id="grid" class="grid"></div>
         <div id="pagi" class="pagi"></div>
         <section class="faq">
-            <h2>Preguntas Frecuentes</h2>
-            <div class="faq-i"><h4>¿Los cursos son realmente gratuitos?</h4><p>Sí, absolutamente. Todos los cursos en nuestro catálogo son de acceso libre y gratuito. Nuestro objetivo es democratizar la educación de alta calidad.</p></div>
-            <div class="faq-i"><h4>¿Quién emite los certificados?</h4><p>Las certificaciones son emitidas directamente por las instituciones oficiales (Google, Microsoft, UNAM, Santander, etc.) tras completar satisfactoriamente sus programas.</p></div>
-            <div class="faq-i"><h4>¿Cómo me inscribo?</h4><p>Simplemente hacé clic en el curso que te interese y te redirigiremos automáticamente a la plataforma oficial del curso para que inicies tu formación.</p></div>
+            <h2 style="text-align:center; margin-bottom:40px; font-family:'Montserrat';">Preguntas Frecuentes</h2>
+            <div style="max-width:800px; margin:auto;">
+                <p style="color:var(--gold); font-weight:800; margin-bottom:10px;">¿Son 100% gratuitos?</p>
+                <p style="color:var(--text-dim); margin-bottom:30px;">Sí. Todos los cursos listados son de acceso libre. Algunos pueden ofrecer certificados pagos opcionales, pero el conocimiento es abierto.</p>
+                <p style="color:var(--gold); font-weight:800; margin-bottom:10px;">¿Qué certificaciones hay?</p>
+                <p style="color:var(--text-dim);">Son certificados de validez internacional emitidos por las instituciones de origen (Google, IBM, Microsoft, etc.).</p>
+            </div>
         </section>
     </div>
     <footer>
-        <div class="legal">© 2026 LA CLAVE ARGENTINA. Todos los derechos reservados. <br> Amparado por la Ley 11.723 de Propiedad Intelectual. Prohibida su reproducción total o parcial sin autorización expresa. Buscador automatizado de recursos educativos abiertos.</div>
+        <div class="legal">© 2026 LA CLAVE ARGENTINA. Todos los derechos reservados. <br> Amparado por la Ley 11.723 de Propiedad Intelectual. Prohibida su reproducción total o parcial sin autorización expresa. Buscador de recursos educativos.</div>
         <div class="credits">Diseñado y Creado por <span>LA CLAVE ARGENTINA</span> & <span>TIENDA SSH</span></div>
     </footer>
     <script>
@@ -94,85 +79,61 @@
         const S_KEY = 'sb_publishable_KmyqfJTmmW4R5FKUeB5b4A_GVFYnn4b';
         const headers = { 'apikey': S_KEY, 'Authorization': 'Bearer ' + S_KEY };
         let page = 1; const limit = 20; let total = 0;
-        const falls = [
-            'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800',
-            'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800',
-            'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800'
-        ];
-
-        function getImg(c, i) {
+        const falls = ['https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800'];
+        function getImg(c) {
             const yt = c.url.match(/(?:youtube\.com.*v=|youtu\.be\/)([^"&?\/\s]{11})/);
-            if (yt) return `https://i.ytimg.com/vi/${yt[1]}/hqdefault.jpg`;
-            if (c.imagen_url && c.imagen_url.includes('http') && !c.imagen_url.toLowerCase().includes('placeholder') && !c.imagen_url.endsWith('.svg')) return c.imagen_url;
-            return falls[i % 3];
+            if (yt) return { src: `https://i.ytimg.com/vi/${yt[1]}/mqdefault.jpg`, isYt: true };
+            if (c.imagen_url && c.imagen_url.includes('http') && !c.imagen_url.toLowerCase().includes('placeholder')) return { src: c.imagen_url, isYt: false };
+            return { src: falls[0], isYt: false };
         }
-
         async function load() {
             const grid = document.getElementById('grid'); const loader = document.getElementById('main-loader');
             const q = document.getElementById('q').value.trim(); const ct = document.getElementById('cat').value; const pl = document.getElementById('plat').value;
-            
             loader.style.display = 'flex';
-            
             let u = `${S_URL}cursos?select=*,categorias!inner(nombre)&limit=${limit}&offset=${(page-1)*limit}`;
             if (q) u += `&or=(titulo.ilike.*${encodeURIComponent(q)}*,descripcion.ilike.*${encodeURIComponent(q)}*)`;
             if (ct) u += `&categorias.nombre=eq.${encodeURIComponent(ct)}`;
             if (pl) u += `&plataforma=eq.${encodeURIComponent(pl)}`;
             u += '&order=creado_el.desc';
-
             try {
                 const res = await fetch(u, { headers: { ...headers, 'Prefer': 'count=exact' } });
                 total = parseInt(res.headers.get('content-range')?.split('/')[1]) || 0;
                 document.getElementById('t-count').innerText = total.toLocaleString();
-                
                 const data = await res.json();
-                loader.style.display = 'none';
-                grid.innerHTML = '';
-
-                if (data.length === 0) {
-                    grid.innerHTML = '<div class="no-results">No encontramos resultados para tu búsqueda. Intentá con otros términos.</div>';
-                    renderPagi();
-                    return;
-                }
-
-                data.forEach((c, i) => {
+                loader.style.display = 'none'; grid.innerHTML = '';
+                data.forEach(c => {
+                    const imgData = getImg(c);
                     const d = document.createElement('a'); d.className = 'card'; d.href = c.url; d.target = '_blank';
-                    d.innerHTML = `<div class="card-img"><div class="badge">PROGRAMA OFICIAL</div><img src="${getImg(c, i)}" onerror="this.src='${falls[1]}'"></div>
-                        <div class="card-body"><div class="plat">${c.plataforma}</div><h3>${c.titulo}</h3><p>${c.descripcion || 'Iniciá esta capacitación oficial de alta calidad hoy mismo.'}</p></div>`;
+                    d.innerHTML = `<div class="card-img">
+                        <div class="badge">OFICIAL</div>
+                        ${imgData.isYt ? '<div class="yt-icon">▶</div>' : ''}
+                        <img src="${imgData.src}" onerror="this.src='${falls[0]}'">
+                    </div>
+                    <div class="card-body"><div class="plat">${c.plataforma}</div><h3>${c.titulo}</h3><p>${c.descripcion || 'Acceso educativo certificado de alta calidad.'}</p></div>`;
                     grid.appendChild(d);
                 });
                 renderPagi();
-            } catch (e) { 
-                loader.style.display = 'none';
-                grid.innerHTML = '<div class="no-results">Error de conexión. Por favor, refrescá la página.</div>';
-            }
+            } catch (e) { loader.style.display = 'none'; }
         }
-
         function renderPagi() {
             const wrap = document.getElementById('pagi'); wrap.innerHTML = ''; const tP = Math.ceil(total / limit); if (tP <= 1) return;
-            const prev = document.createElement('button'); prev.className = 'btn-p'; prev.innerHTML = '← Anterior'; prev.disabled = page === 1;
+            const prev = document.createElement('button'); prev.className = 'btn-p'; prev.innerText = '← Anterior'; prev.disabled = page === 1;
             prev.onclick = () => { page--; load(); window.scrollTo({top: 400, behavior: 'smooth'}); }; wrap.appendChild(prev);
-            
-            let start = Math.max(1, page - 1);
-            let end = Math.min(tP, page + 1);
-            if (page === 1) end = Math.min(tP, 3);
-            if (page === tP) start = Math.max(1, tP - 2);
-
-            for (let i = start; i <= end; i++) {
+            for (let i = Math.max(1, page - 1); i <= Math.min(tP, page + 1); i++) {
                 const b = document.createElement('button'); b.className = `num-p ${i === page ? 'active' : ''}`; b.innerText = i;
                 b.onclick = () => { page = i; load(); window.scrollTo({top: 400, behavior: 'smooth'}); }; wrap.appendChild(b);
             }
-            const next = document.createElement('button'); next.className = 'btn-p'; next.innerHTML = 'Siguiente →'; next.disabled = page === tP;
+            const next = document.createElement('button'); next.className = 'btn-p'; next.innerText = 'Siguiente →'; next.disabled = page === tP;
             next.onclick = () => { page++; load(); window.scrollTo({top: 400, behavior: 'smooth'}); }; wrap.appendChild(next);
         }
-
         async function init() {
             try {
-                const [rc, rp] = await Promise.all([ 
-                    fetch(S_URL+'categorias?select=nombre', {headers}).then(r=>r.json()), 
-                    fetch(S_URL+'cursos?select=plataforma', {headers}).then(r=>r.json()) 
-                ]);
+                const rc = await fetch(S_URL+'categorias?select=nombre', {headers}).then(r=>r.json());
                 const sc = document.getElementById('cat'); rc.sort((a,b)=>a.nombre.localeCompare(b.nombre)).forEach(c=>{ const o=document.createElement('option'); o.value=o.innerText=c.nombre; sc.appendChild(o); });
-                const sp = document.getElementById('plat'); [...new Set(rp.map(p=>p.plataforma))].sort().forEach(p=>{ if(p) { const o=document.createElement('option'); o.value=o.innerText=p; sp.appendChild(o); } });
+                const rp = await fetch(S_URL+'cursos?select=plataforma', {headers}).then(r=>r.json());
+                const sp = document.getElementById('plat');
+                sp.innerHTML = '<option value="">Todas las Academias</option>';
+                [...new Set(rp.map(p=>p.plataforma))].sort().forEach(p=>{ if(p) { const o=document.createElement('option'); o.value=o.innerText=p; sp.appendChild(o); } });
                 load();
             } catch(e) { load(); }
         }
