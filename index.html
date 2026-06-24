@@ -30,7 +30,7 @@
             line-height: 1.4;
         }
 
-        /* LOADER: CENTRADO ABSOLUTO POR VIEWPORT */
+        /* LOADER: CENTRADO ABSOLUTO */
         #status-overlay { 
             position: fixed; inset: 0; background: var(--bg); z-index: 10000; 
             display: flex; flex-direction: column; align-items: center; justify-content: center; 
@@ -52,6 +52,7 @@
             box-shadow: 0 10px 25px rgba(255,0,0,0.3); transition: 0.3s; margin-top: 25px;
             font-size: 0.9rem; letter-spacing: 1px;
         }
+        .btn-retry:hover { transform: scale(1.05); background: var(--brand-dark); }
 
         /* BARRA DE NAVEGACIÓN */
         nav { 
@@ -78,11 +79,11 @@
         #overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9000; display: none; backdrop-filter: blur(4px); }
 
         /* HERO */
-        header { padding: 60px 20px; text-align: center; background: radial-gradient(circle at center, #1a0000 0%, #050505 70%); }
+        header { padding: 50px 20px; text-align: center; background: radial-gradient(circle at center, #1a0000 0%, #050505 70%); }
         .h-title { font-family: 'Montserrat'; font-size: 2.5rem; font-weight: 900; line-height: 1.1; }
         .h-title span { color: var(--brand); }
 
-        /* CONTENEDOR Y GRID */
+        /* BUSCADOR */
         .container { max-width: 1300px; margin: 0 auto; padding: 0 20px; display: flex; flex-direction: column; align-items: center; }
         .search-box { 
             background: #fff; border-radius: 50px; padding: 0 25px; 
@@ -93,7 +94,7 @@
 
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; margin-bottom: 60px; width: 100%; }
 
-        /* TARJETAS REDISEÑADAS v90 */
+        /* TARJETAS PREMIUM */
         .card { 
             background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border);
             overflow: hidden; display: flex; flex-direction: column; transition: 0.3s;
@@ -140,7 +141,7 @@
     <div id="status-overlay">
         <div id="status-content">
             <div class="spin"></div>
-            <p style="font-family:Montserrat; font-weight:900; color:var(--brand); letter-spacing:2px; font-size:0.9rem;">SINCRONIZANDO ACADEMIA...</p>
+            <p style="font-family:Montserrat; font-weight:900; color:var(--brand); letter-spacing:2px; font-size:0.9rem;">CONECTANDO CON LA ACADEMIA...</p>
         </div>
     </div>
     
@@ -201,7 +202,7 @@
         async function load() {
             const grid = document.getElementById('grid'), overlay = document.getElementById('status-overlay'), content = document.getElementById('status-content');
             overlay.style.display = 'flex';
-            content.innerHTML = '<div class="spin"></div><p style="font-family:Montserrat; font-weight:900; color:var(--brand); letter-spacing:2px; font-size:0.9rem;">SINCRONIZANDO ACADEMIA...</p>';
+            content.innerHTML = '<div class="spin"></div><p style="font-family:Montserrat; font-weight:900; color:var(--brand); letter-spacing:2px; font-size:0.9rem;">CONECTANDO CON LA ACADEMIA...</p>';
 
             let url = `${S_URL}cursos?select=*&limit=${limit}&offset=${(page-1)*limit}&order=creado_el.desc`;
             if(window.aP) url += `&plataforma=ilike.*${window.aP}*`;
@@ -216,6 +217,7 @@
                 grid.innerHTML = '';
                 data.forEach((c) => {
                     const isYT = c.plataforma.toLowerCase().includes('youtube');
+                    // Cache-buster para la imagen de YouTube
                     const ytImg = 'https://raw.githubusercontent.com/florenciaamor36-ship-it/cursin-v2-oficial/main/youtube_fallback.jpg?v=' + Date.now();
                     const mainImg = isYT ? ytImg : (c.imagen_url || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600');
                     
@@ -239,10 +241,9 @@
                 renderPagi(); overlay.style.display = 'none';
             } catch (e) {
                 content.innerHTML = `
-                    <div class="error-msg">
-                        <div style="font-size:3rem; margin-bottom:15px;">📡</div>
-                        <h2 style="font-family:Montserrat; margin-bottom:10px;">¡UPS! SIN CONEXIÓN</h2>
-                        <p style="color:var(--text-dim); font-size:0.85rem;">No pudimos sincronizar los cursos con el servidor.</p>
+                    <div style="padding:20px;">
+                        <h2 style="font-family:Montserrat; font-size:1.2rem; margin-bottom:10px;">¡UPS! PROBLEMA DE RED</h2>
+                        <p style="color:var(--text-dim); font-size:0.85rem;">No pudimos sincronizar los cursos.</p>
                         <button onclick="location.reload()" class="btn-retry">REINTENTAR AHORA</button>
                     </div>`;
             }
@@ -251,6 +252,7 @@
         function renderPagi() {
             const container = document.getElementById('pagination'); container.innerHTML = '';
             const tP = Math.ceil(totalItems / limit);
+            if(tP <= 1) return;
             for(let i = Math.max(1, page-1); i <= Math.min(tP, page+1); i++) {
                 const b = document.createElement('button'); b.className = `p-btn ${i === page ? 'active' : ''}`;
                 b.innerText = i; b.onclick = () => { page = i; load(); window.scrollTo(0,0); };
