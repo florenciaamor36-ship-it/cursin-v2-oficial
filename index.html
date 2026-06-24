@@ -3,208 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>La Clave Academy | Educación de Élite</title>
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#ff0000">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>La Clave Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --brand: #ff0000;
-            --bg: #050505;
-            --surface: #121212;
-            --border: rgba(255,255,255,0.1);
-            --text: #ffffff;
-            --text-dim: #999;
-            --radius: 12px;
-        }
+        :root { --brand: #ff0000; --bg: #050505; --surface: #121212; --border: rgba(255,255,255,0.1); --text: #fff; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; line-height: 1.4; }
-
-        /* LOADER / STATUS OVERLAY (PERFECT CENTERING) */
+        /* LOADER: SOLUCIÓN DEFINITIVA DE CENTRADO */
         #status-overlay {
-            position: fixed; inset: 0; background: var(--bg); z-index: 10000;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            text-align: center; padding: 20px;
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: var(--bg); z-index: 10000;
+            display: flex; align-items: center; justify-content: center;
         }
+        .loader-box { text-align: center; width: 100%; display: flex; flex-direction: column; align-items: center; }
         .spin {
-            width: 40px; height: 40px; border: 3px solid #222; border-top-color: var(--brand);
+            width: 40px; height: 40px; border: 4px solid #222; border-top-color: var(--brand);
             border-radius: 50%; animation: r 0.8s linear infinite; margin-bottom: 20px;
         }
         @keyframes r { to { transform: rotate(360deg); } }
 
+        /* MENSAJE DE ERROR AMIGABLE */
+        .error-card { padding: 30px; max-width: 320px; }
         .btn-retry {
-            background: var(--brand); color: #fff; border: none; padding: 12px 30px;
-            border-radius: 50px; font-weight: 800; cursor: pointer; font-family: Montserrat;
-            margin-top: 20px; box-shadow: 0 10px 20px rgba(255,0,0,0.2); transition: 0.3s;
+            background: var(--brand); color: #fff; border: none; padding: 14px 40px;
+            border-radius: 50px; font-weight: 900; cursor: pointer; font-family: Montserrat;
+            margin-top: 25px; font-size: 0.8rem; letter-spacing: 1px;
         }
-        .btn-retry:hover { transform: scale(1.05); background: #cc0000; }
 
-        /* NAVIGATION */
-        nav {
-            height: 65px; padding: 0 20px; display: flex; justify-content: space-between; align-items: center;
-            background: #000; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000;
-        }
-        .nav-logo { font-family: 'Montserrat'; font-weight: 900; font-size: 1rem; flex: 1; text-align: center; }
+        /* NAVEGACIÓN Y SIDEBAR */
+        nav { height: 60px; padding: 0 15px; display: flex; align-items: center; background: #000; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
+        .nav-logo { flex: 1; text-align: center; font-family: Montserrat; font-weight: 900; font-size: 0.9rem; }
         .nav-logo span { color: var(--brand); }
-        .menu-btn { font-size: 1.8rem; cursor: pointer; color: #fff; width: 40px; }
+        .menu-btn { font-size: 1.5rem; cursor: pointer; width: 30px; }
 
-        /* SIDEBAR */
         #sidebar {
-            position: fixed; top: 0; left: -100%; width: 280px; height: 100vh;
-            background: #0d0d0d; z-index: 9999; transition: 0.3s ease;
-            border-right: 1px solid var(--border); padding: 25px; display: flex; flex-direction: column; overflow-y: auto;
+            position: fixed; top: 0; left: -280px; width: 280px; height: 100vh;
+            background: #0a0a0a; z-index: 9999; transition: 0.3s;
+            border-right: 1px solid var(--border); padding: 20px; overflow-y: auto;
         }
         #sidebar.active { left: 0; }
-        #sidebar .close { align-self: flex-end; font-size: 2rem; cursor: pointer; margin-bottom: 10px; color: var(--text-dim); }
-        #sidebar h4 { color: var(--brand); font-family: Montserrat; font-size: 0.7rem; letter-spacing: 2px; margin: 20px 0 10px; text-transform: uppercase; }
-        #sidebar a { color: #fff; text-decoration: none; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 0.9rem; display: block; }
-
+        #sidebar h4 { color: var(--brand); font-family: Montserrat; font-size: 0.7rem; margin: 20px 0 10px; text-transform: uppercase; letter-spacing: 1px; }
+        #sidebar a { color: #fff; text-decoration: none; display: block; padding: 12px 0; font-size: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
         #overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 9000; display: none; }
 
-        /* HERO */
-        header { padding: 40px 20px; text-align: center; }
-        .h-title { font-family: 'Montserrat'; font-size: 2.2rem; font-weight: 900; }
-        .h-title span { color: var(--brand); }
-        .h-desc { color: var(--text-dim); font-size: 0.9rem; max-width: 600px; margin: 10px auto 0; }
-
-        /* MAIN */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; display: flex; flex-direction: column; align-items: center; }
+        /* BUSCADOR */
+        .container { padding: 20px 15px; display: flex; flex-direction: column; align-items: center; }
         .search-box {
-            background: #fff; border-radius: 50px; padding: 0 20px;
-            display: flex; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            margin-bottom: 40px; margin-top: -25px; width: 100%; max-width: 500px; height: 50px;
+            background: #fff; border-radius: 50px; padding: 0 20px; height: 45px;
+            display: flex; align-items: center; width: 100%; max-width: 400px; margin-bottom: 30px;
         }
-        .search-box input { flex: 1; border: none; font-size: 0.9rem; font-weight: 600; outline: none; color: #000; background: transparent; }
+        .search-box input { border: none; outline: none; width: 100%; font-weight: 600; color: #000; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin-bottom: 50px; width: 100%; }
-
-        /* CARDS & LOGOS v78 */
-        .card {
-            background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border);
-            overflow: hidden; display: flex; flex-direction: column; transition: 0.3s;
-            text-decoration: none; color: inherit; height: 420px; position: relative;
-        }
-        .card:hover { transform: translateY(-5px); border-color: var(--brand); }
-
-        .c-img { height: 150px; background: #111; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        /* GRID Y TARJETAS */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; width: 100%; }
+        .card { background: var(--surface); border-radius: 8px; border: 1px solid var(--border); overflow: hidden; display: flex; flex-direction: column; text-decoration: none; color: inherit; }
+        
+        .c-img { height: 100px; background: #111; position: relative; overflow: hidden; }
         .c-img img.main { width: 100%; height: 100%; object-fit: cover; }
-
-        /* LOGO INSTITUCIÓN (SIZE FIXED TO 18px) */
+        
+        /* LOGO: TAMAÑO FIJO 18PX (NO MÁS GIGANTES) */
         .c-logo {
-            position: absolute; bottom: 8px; right: 8px; width: 18px; height: 18px;
-            background: #fff; border-radius: 3px; padding: 2px; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;
+            position: absolute; bottom: 5px; right: 5px; width: 18px; height: 18px;
+            background: #fff; border-radius: 2px; padding: 2px; display: flex; align-items: center; justify-content: center;
         }
         .c-logo img { width: 100%; height: 100%; object-fit: contain; }
 
-        .c-body { padding: 15px; flex: 1; display: flex; flex-direction: column; }
-        .c-body h3 { font-family: 'Montserrat'; font-size: 0.95rem; font-weight: 800; margin-bottom: 8px; height: 2.6em; overflow: hidden; }
-        .c-desc { font-size: 0.75rem; color: var(--text-dim); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 10px; }
-        .c-plat { margin-top: auto; color: var(--brand); font-weight: 800; font-size: 0.65rem; text-transform: uppercase; }
+        .c-body { padding: 10px; flex: 1; display: flex; flex-direction: column; }
+        .c-body h3 { font-family: Montserrat; font-size: 0.75rem; font-weight: 900; line-height: 1.2; margin-bottom: 5px; height: 2.4em; overflow: hidden; }
+        .c-plat { margin-top: auto; color: var(--brand); font-weight: 900; font-size: 0.6rem; text-transform: uppercase; }
 
-        /* PAGINATION */
-        .pagi { display: flex; justify-content: center; align-items: center; gap: 5px; margin-bottom: 60px; flex-wrap: wrap; }
-        .p-btn {
-            background: var(--surface); color: #fff; border: 1px solid var(--border);
-            min-width: 32px; height: 32px; border-radius: 5px;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; font-weight: 700; font-size: 0.75rem;
-        }
+        .pagi { display: flex; justify-content: center; gap: 5px; margin: 40px 0; flex-wrap: wrap; }
+        .p-btn { background: #1a1a1a; color: #fff; border: 1px solid var(--border); min-width: 30px; height: 30px; border-radius: 4px; cursor: pointer; font-size: 0.7rem; font-weight: 700; }
         .p-btn.active { background: var(--brand); border-color: var(--brand); }
-        .p-dots { color: #444; font-weight: 900; }
 
-        /* FAQ */
-        #faq-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.98); z-index: 10001; display: none; align-items: center; justify-content: center; padding: 20px; }
-        .faq-content { background: var(--surface); max-width: 500px; width: 100%; border-radius: 20px; border: 1px solid var(--border); padding: 30px; position: relative; }
-
-        footer { padding: 40px 20px; text-align: center; border-top: 1px solid var(--border); background: #000; }
-        .f-credits { font-size: 0.65rem; color: #444; margin-top: 15px; line-height: 1.6; }
+        footer { padding: 40px 15px; text-align: center; border-top: 1px solid var(--border); font-size: 0.65rem; color: #444; }
     </style>
 </head>
 <body>
     <div id="status-overlay">
-        <div id="status-content">
+        <div class="loader-box" id="status-content">
             <div class="spin"></div>
-            <p id="status-text" style="font-family:Montserrat; font-weight:900; color:var(--brand); font-size:0.75rem; letter-spacing:2px;">SINCRONIZANDO...</p>
+            <p style="font-family:Montserrat; font-weight:900; color:var(--brand); font-size:0.7rem; letter-spacing:2px;">SINCRONIZANDO...</p>
         </div>
     </div>
 
     <div id="overlay" onclick="toggleMenu()"></div>
-
     <div id="sidebar">
-        <div class="close" onclick="toggleMenu()">×</div>
-        <div class="nav-logo" style="text-align:left; margin-bottom:20px;">LA CLAVE<span> ACADEMY</span></div>
-        <h4>Plataforma</h4>
+        <div onclick="toggleMenu()" style="text-align:right; font-size:1.5rem; cursor:pointer;">×</div>
+        <h4 style="margin-top:10px">Secciones</h4>
         <a href="javascript:void(0)" onclick="location.reload()">Inicio</a>
-        <a href="javascript:void(0)" onclick="toggleFAQ()">Preguntas Frecuentes</a>
+        <a href="javascript:void(0)" onclick="toggleFAQ()">FAQ</a>
         <h4>Categorías</h4>
-        <a href="javascript:void(0)" onclick="setCat('Todos')">Todos los Cursos</a>
+        <a href="javascript:void(0)" onclick="setCat('Todos')">Ver Todo</a>
         <a href="javascript:void(0)" onclick="setCat('Inteligencia Artificial')">Inteligencia Artificial</a>
         <a href="javascript:void(0)" onclick="setCat('Programación')">Programación</a>
-        <a href="javascript:void(0)" onclick="setCat('Marketing')">Marketing Digital</a>
-        <a href="javascript:void(0)" onclick="setCat('Diseño')">Diseño</a>
-        <h4>Entidades</h4>
         <a href="javascript:void(0)" onclick="setPlat('Google')">Google</a>
-        <a href="javascript:void(0)" onclick="setPlat('IBM')">IBM</a>
-        <a href="javascript:void(0)" onclick="setPlat('Microsoft')">Microsoft Learn</a>
-        <a href="javascript:void(0)" onclick="setPlat('UNAM')">UNAM Oficial</a>
-        <a href="javascript:void(0)" onclick="setPlat('Cisco')">Cisco Networking</a>
+        <a href="javascript:void(0)" onclick="setPlat('Microsoft')">Microsoft</a>
     </div>
 
     <nav>
         <div class="menu-btn" onclick="toggleMenu()">☰</div>
         <div class="nav-logo">LA CLAVE<span> ACADEMY</span></div>
-        <div style="width:40px"></div>
+        <div style="width:30px"></div>
     </nav>
 
-    <header>
-        <h1 class="h-title">EDUCACIÓN DE<br><span>ÉLITE GRATUITA</span></h1>
-        <p class="h-desc">Accede a formación certificada de las mejores instituciones del mundo sin costo.</p>
-    </header>
-
     <div class="container">
-        <div class="search-box"><input type="text" id="q" placeholder="¿Qué quieres aprender?" autocomplete="off"></div>
+        <div class="search-box"><input type="text" id="q" placeholder="¿Qué quieres dominar?" autocomplete="off"></div>
         <div id="grid" class="grid"></div>
         <div id="pagination" class="pagi"></div>
     </div>
 
-    <div id="faq-modal">
-        <div class="faq-content">
-            <span style="position:absolute; top:15px; right:20px; font-size:1.5rem; cursor:pointer;" onclick="toggleFAQ()">×</span>
-            <h2 style="font-family:Montserrat; margin-bottom:15px; color:var(--brand);">Preguntas Frecuentes</h2>
-            <div style="text-align:left; font-size:0.8rem; line-height:1.6;">
-                <p><b>¿Es gratis?</b> Sí, indexamos formación sin costo.</p><br>
-                <p><b>¿Dan certificado?</b> La mayoría sí, tras cumplir requisitos.</p>
-            </div>
-        </div>
-    </div>
-
     <footer>
-        <div class="nav-logo" style="font-size:1.2rem;">LA CLAVE<span> ACADEMY</span></div>
-        <div class="f-credits">
-            <p>© 2026 <b>La Clave Argentina</b> & <b>Tienda SSH</b>. Todos los derechos reservados.</p>
-            <p>Amparado por la Ley 11.723 de Propiedad Intelectual.</p>
-        </div>
+        <p><b>La Clave Argentina</b> & <b>Tienda SSH</b></p>
+        <p style="margin-top:5px">Ley 11.723 Propiedad Intelectual</p>
     </footer>
 
     <script>
         const S_URL = 'https://ypzudkxowpxvdggvongz.supabase.co/rest/v1/';
         const S_KEY = 'sb_publishable_KmyqfJTmmW4R5FKUeB5b4A_GVFYnn4b';
         const headers = { 'apikey': S_KEY, 'Authorization': 'Bearer ' + S_KEY };
-        let page = 1, limit = 12, totalItems = 65684;
+        let page = 1, limit = 12, total = 0;
         const LOGOS = { 'google': 'https://www.gstatic.com/images/branding/product/2x/googleg_96dp.png', 'microsoft': 'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg', 'ibm': 'https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg', 'coursera': 'https://upload.wikimedia.org/wikipedia/commons/9/97/Coursera-Logo_600x600.svg', 'youtube': 'https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg' };
-        const FB = ['https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600','https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=600'];
 
-        function toggleMenu() { const s = document.getElementById('sidebar'), o = document.getElementById('overlay'); const a = s.classList.toggle('active'); o.style.display = a ? 'block' : 'none'; }
-        function toggleFAQ() { const f = document.getElementById('faq-modal'); f.style.display = f.style.display === 'flex' ? 'none' : 'flex'; }
+        function toggleMenu() { const s = document.getElementById('sidebar'), o = document.getElementById('overlay'); s.classList.toggle('active'); o.style.display = s.classList.contains('active') ? 'block' : 'none'; }
         function setCat(c) { window.aP = ''; document.getElementById('q').value = (c === 'Todos' ? '' : c); page = 1; load(); toggleMenu(); }
         function setPlat(p) { window.aP = p; document.getElementById('q').value = ''; page = 1; load(); toggleMenu(); }
 
         async function load() {
             const grid = document.getElementById('grid'), overlay = document.getElementById('status-overlay'), content = document.getElementById('status-content');
             overlay.style.display = 'flex';
-            content.innerHTML = '<div class="spin"></div><p style="font-family:Montserrat; font-weight:900; color:var(--brand); font-size:0.75rem; letter-spacing:2px;">SINCRONIZANDO...</p>';
+            content.innerHTML = '<div class="spin"></div><p style="font-family:Montserrat; font-weight:900; color:var(--brand); font-size:0.7rem; letter-spacing:2px;">SINCRONIZANDO...</p>';
             let url = `${S_URL}cursos?select=*&limit=${limit}&offset=${(page-1)*limit}&order=creado_el.desc`;
             if(window.aP) url += `&plataforma=ilike.*${window.aP}*`;
             else if(document.getElementById('q').value) url += `&or=(titulo.ilike.*${encodeURIComponent(document.getElementById('q').value)}*,descripcion.ilike.*${encodeURIComponent(document.getElementById('q').value)}*)`;
@@ -212,40 +141,33 @@
             try {
                 const res = await fetch(url, { headers: { ...headers, 'Prefer': 'count=exact' } });
                 const data = await res.json();
-                const cr = res.headers.get('content-range'); if(cr) totalItems = parseInt(cr.split('/')[1]);
+                const cr = res.headers.get('content-range'); if(cr) total = parseInt(cr.split('/')[1]);
                 grid.innerHTML = '';
-                data.forEach((c, i) => {
-                    const card = document.createElement('a'); card.className = 'card'; card.href = c.url; card.target = '_blank';
+                data.forEach((c) => {
                     let logo = 'https://cdn-icons-png.flaticon.com/512/3429/3429141.png';
                     for(let k in LOGOS) { if(c.plataforma.toLowerCase().includes(k)) logo = LOGOS[k]; }
-                    const img = c.imagen_url || FB[i % FB.length];
-                    card.innerHTML = `<div class="c-img"><img class="main" src="${img}" onerror="this.src='${FB[0]}'" loading="lazy"><div class="c-logo"><img src="${logo}"></div></div>
-                        <div class="c-body"><h3>${c.titulo}</h3><p class="c-desc">${c.descripcion || ''}</p><div class="c-plat">${c.plataforma}</div></div>`;
-                    grid.appendChild(card);
+                    grid.innerHTML += `<a class="card" href="${c.url}" target="_blank"><div class="c-img"><img class="main" src="${c.imagen_url || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400'}"><div class="c-logo"><img src="${logo}"></div></div><div class="c-body"><h3>${c.titulo}</h3><div class="c-plat">${c.plataforma}</div></div></a>`;
                 });
                 renderPagi(); overlay.style.display = 'none';
             } catch (e) {
-                content.innerHTML = `<h2 style="font-family:Montserrat; font-size:1.1rem; margin-bottom:10px;">SIN CONEXIÓN</h2><p style="color:var(--text-dim); font-size:0.8rem;">No pudimos sincronizar los cursos.</p><button onclick="location.reload()" class="btn-retry">REINTENTAR AHORA</button>`;
+                content.innerHTML = `<div class="error-card"><h2 style="font-family:Montserrat; font-size:1rem; margin-bottom:10px;">SIN CONEXIÓN</h2><p style="color:#888; font-size:0.75rem;">No pudimos sincronizar los cursos.</p><button onclick="location.reload()" class="btn-retry">REINTENTAR</button></div>`;
             }
         }
 
         function renderPagi() {
             const container = document.getElementById('pagination'); container.innerHTML = '';
-            const tP = Math.ceil(totalItems / limit); if(tP <= 1) return;
+            const tP = Math.ceil(total / limit); if(tP <= 1) return;
             const add = (p, txt, active = false) => {
                 const b = document.createElement('button'); b.className = `p-btn ${active ? 'active' : ''}`;
-                b.innerText = txt; b.onclick = () => { page = p; load(); window.scrollTo({top: 0, behavior: 'smooth'}); };
+                b.innerText = txt; b.onclick = () => { page = p; load(); window.scrollTo(0,0); };
                 container.appendChild(b);
             };
             if (page > 1) add(page - 1, '←');
-            let s = Math.max(1, page - 2), e = Math.min(tP, page + 2);
-            if(s > 1) { add(1, '1'); if(s > 2) container.innerHTML += '<span class="p-dots">...</span>'; }
-            for(let i = s; i <= e; i++) add(i, i, i === page);
-            if(e < tP) { if(e < tP - 1) container.innerHTML += '<span class="p-dots">...</span>'; add(tP, tP); }
+            for(let i = Math.max(1, page-1); i <= Math.min(tP, page+1); i++) add(i, i, i === page);
             if (page < tP) add(page + 1, '→');
         }
 
-        document.getElementById('q').oninput = () => { page = 1; clearTimeout(window.t); window.t = setTimeout(load, 600); };
+        document.getElementById('q').oninput = () => { page = 1; clearTimeout(window.t); window.t = setTimeout(load, 500); };
         load();
     </script>
 </body>
