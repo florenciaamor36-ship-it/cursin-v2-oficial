@@ -228,8 +228,13 @@
                 data.forEach((c, i) => {
                     const card = document.createElement('a'); card.className = 'card'; card.href = c.url; card.target = '_blank';
                     let logo = 'https://cdn-icons-png.flaticon.com/512/3429/3429141.png';
+                    const isYT = c.plataforma.toLowerCase().includes('youtube');
                     for(let k in LOGOS) { if(c.plataforma.toLowerCase().includes(k)) logo = LOGOS[k]; }
-                    const img = c.imagen_url || FB[i % FB.length];
+                    
+                    // Lógica de Imagen: Si es YouTube, usamos la que enviaste. Si no, la de la DB o el Fallback.
+                    const ytImg = 'https://raw.githubusercontent.com/florenciaamor36-ship-it/cursin-v2-oficial/main/youtube_fallback.jpg';
+                    const img = isYT ? ytImg : (c.imagen_url || FB[i % FB.length]);
+                    
                     card.innerHTML = `
                         <div class="c-img">
                             <img class="main" src="${img}" onerror="this.src='${FB[0]}'" loading="lazy">
