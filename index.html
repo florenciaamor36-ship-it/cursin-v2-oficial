@@ -158,6 +158,10 @@
         footer { padding: 80px 20px; text-align: center; border-top: 1px solid var(--border); background: #000; width: 100%; }
         .f-credits { font-size: 0.8rem; color: #444; margin-top: 30px; line-height: 1.8; max-width: 800px; margin-inline: auto; }
         .f-credits b { color: #888; }
+        /* BANNER INSTALACIÓN PWA */
+        #install-banner { position: fixed; bottom: 20px; left: 20px; right: 20px; background: var(--surface); border: 1px solid var(--brand); padding: 15px 20px; border-radius: 15px; display: none; align-items: center; justify-content: space-between; z-index: 9999; box-shadow: 0 10px 30px rgba(0,0,0,0.8); animation: slideUp 0.5s ease; }
+        @keyframes slideUp { from { transform: translateY(100px); } to { transform: translateY(0); } }
+        .btn-install { background: var(--brand); color: #fff; border: none; padding: 8px 20px; border-radius: 50px; font-weight: 800; font-family: Montserrat; font-size: 0.8rem; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -349,6 +353,36 @@
 
         document.getElementById('q').oninput = () => { page = 1; clearTimeout(window.t); window.t = setTimeout(load, 600); };
         load();
+    </script>
+    <!-- BANNER INSTALACIÓN -->
+    <div id="install-banner">
+        <div style="display:flex; align-items:center; gap:12px;">
+            <span style="font-size:1.5rem;">📱</span>
+            <div>
+                <b style="display:block; font-size:0.9rem; font-family:Montserrat;">LA CLAVE APP</b>
+                <span style="font-size:0.7rem; color:var(--text-dim);">Instala para acceso rápido</span>
+            </div>
+        </div>
+        <button class="btn-install" id="install-btn">INSTALAR</button>
+    </div>
+
+    <script>
+        let deferredPrompt;
+        window.addEventListener("beforeinstallprompt", (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            document.getElementById("install-banner").style.display = "flex";
+        });
+        document.getElementById("install-btn").addEventListener("click", async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === "accepted") {
+                    document.getElementById("install-banner").style.display = "none";
+                }
+                deferredPrompt = null;
+            }
+        });
     </script>
 </body>
 </html>
