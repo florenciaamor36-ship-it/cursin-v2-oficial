@@ -285,7 +285,7 @@
 
             const query = document.getElementById('q').value.trim();
             // CORRECCIÓN BUSCADOR: Filtro exacto por coincidencia de palabras
-            let url = `${S_URL}cursos?select=*&limit=${limit}&offset=${(page-1)*limit}&order=creado_el.desc`;
+            let url = `${S_URL}cursos?select=*&limit=${limit}&offset=${(page-1)*limit}&order=titulo.asc`;
             
             if(window.aP) {
                 url += `&plataforma=ilike.*${window.aP}*`;
