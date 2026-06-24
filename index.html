@@ -81,12 +81,27 @@
         }
         .cats::-webkit-scrollbar { display: none; }
         .cat-btn { 
-            background: var(--surface); color: var(--text); padding: 10px 20px; 
+            background: var(--surface); color: var(--text); padding: 12px 24px; 
             border-radius: 100px; border: 1px solid var(--border); 
             white-space: nowrap; cursor: pointer; font-weight: 600; font-size: 0.85rem;
             transition: 0.3s;
         }
-        .cat-btn:hover, .cat-btn.active { background: var(--brand); border-color: var(--brand); }
+        .cat-btn:hover, .cat-btn.active { background: var(--brand); border-color: var(--brand); box-shadow: 0 4px 15px rgba(255,0,0,0.3); }
+
+        /* MENÚ HAMBURGUESA v64 */
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: #fff; }
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover { color: #fff; }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .nav-links { 
+                position: fixed; top: 70px; left: -100%; width: 100%; height: calc(100vh - 70px); 
+                background: #000; flex-direction: column; padding: 40px; transition: 0.4s; z-index: 1000;
+            }
+            .nav-links.active { left: 0; }
+        }
 
         /* GRID DE TARJETAS */
         .grid { 
@@ -168,12 +183,17 @@
 
     <nav>
         <div class="nav-logo">LA CLAVE<span> ACADEMY</span></div>
-        <div class="notif-btn" onclick="toggleN()">🔔<span class="notif-badge">3</span></div>
+        <div class="menu-toggle" onclick="toggleM()">☰</div>
+        <div class="nav-links" id="n-links">
+            <a href="#faq" onclick="toggleFAQ()">Preguntas Frecuentes</a>
+            <a href="#legal" onclick="toggleM()">Legal</a>
+            <div class="notif-btn" onclick="toggleN()">🔔<span class="notif-badge">3</span></div>
+        </div>
         <div id="n-panel">
             <div class="n-header">NOVEDADES</div>
             <div class="n-item">🔥 15 nuevos cursos de IA agregados hoy.</div>
             <div class="n-item">✅ Google actualizó sus certificaciones.</div>
-            <div class="n-item">🚀 Nueva interfaz optimizada v60.</div>
+            <div class="n-item">🚀 Nueva interfaz optimizada v64.</div>
         </div>
     </nav>
 
@@ -201,6 +221,31 @@
         <div class="pagi" id="pagi-numbers"></div>
     </div>
 
+    <!-- FAQ & LEGAL v64 -->
+    <div id="faq-modal" style="position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:9000; display:none; align-items:center; justify-content:center; padding:20px; overflow-y:auto;">
+        <div style="background:var(--surface); max-width:700px; width:100%; border-radius:30px; border:1px solid var(--border); padding:40px; position:relative;">
+            <span style="position:absolute; top:20px; right:30px; font-size:2rem; cursor:pointer;" onclick="toggleFAQ()">×</span>
+            <h2 style="font-family:Montserrat; margin-bottom:30px;">Preguntas Frecuentes</h2>
+            <div style="display:flex; flex-direction:column; gap:20px; text-align:left;">
+                <div><h4 style="color:var(--brand)">¿Los cursos son realmente gratis?</h4><p style="color:#888; font-size:0.9rem;">Sí, todos los cursos indexados en La Clave Academy son de acceso gratuito en sus plataformas de origen.</p></div>
+                <div><h4 style="color:var(--brand)">¿Obtengo certificado?</h4><p style="color:#888; font-size:0.9rem;">La mayoría de los cursos ofrecen certificación. Algunos pueden requerir un pago mínimo a la plataforma (Google, Coursera) para emitir el certificado oficial.</p></div>
+                <div><h4 style="color:var(--brand)">¿Cada cuánto se actualiza?</h4><p style="color:#888; font-size:0.9rem;">Nuestro sistema de descubrimiento automático busca nuevos cursos cada 24 horas.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <footer style="padding:100px 20px; text-align:center; border-top:1px solid var(--border); background:#000;">
+        <div class="nav-logo" style="margin-bottom:30px;">LA CLAVE<span> ACADEMY</span></div>
+        <p style="color:var(--text-dim); font-size:0.9rem; max-width:800px; margin:0 auto 40px; line-height:1.8;">
+            La Clave Academy es un buscador independiente de recursos educativos. Los derechos de propiedad intelectual de los cursos pertenecen a sus respectivos autores e instituciones.
+        </p>
+        <div style="font-size:0.75rem; color:#444; display:flex; flex-direction:column; gap:10px;">
+            <p>© 2026 LA CLAVE ACADEMY ARGENTINA. Todos los derechos reservados.</p>
+            <p>Amparado bajo la Ley de Propiedad Intelectual 11.723.</p>
+            <p>Términos de Servicio | Política de Privacidad | Derechos de Autor</p>
+        </div>
+    </footer>
+
     <script>
         const S_URL = 'https://ypzudkxowpxvdggvongz.supabase.co/rest/v1/';
         const S_KEY = 'sb_publishable_KmyqfJTmmW4R5FKUeB5b4A_GVFYnn4b';
@@ -224,12 +269,25 @@
             'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800'
         ];
 
+        function toggleFAQ() {
+            const f = document.getElementById('faq-modal');
+            f.style.display = f.style.display === 'flex' ? 'none' : 'flex';
+            toggleM();
+        }
+
+        function toggleM() {
+            const l = document.getElementById('n-links');
+            l.classList.toggle('active');
+        }
+
         async function load() {
             const g = document.getElementById('grid');
             const q = document.getElementById('q').value;
             const l = document.getElementById('loader');
             
             l.style.display = 'flex';
+            l.innerHTML = '<div class="spin"></div><p style="margin-top:20px; font-family:Montserrat; font-weight:900; color:var(--brand); letter-spacing:2px;">SINCRONIZANDO...</p>';
+            
             let u = `${S_URL}cursos?select=*&limit=${limit}&offset=${(page-1)*limit}&order=creado_el.desc`;
             if(q) u += `&or=(titulo.ilike.*${encodeURIComponent(q)}*,descripcion.ilike.*${encodeURIComponent(q)}*)`;
 
