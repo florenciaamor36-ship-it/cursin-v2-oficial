@@ -76,17 +76,24 @@
 
             let u = `${S_URL}cursos?select=*&limit=15&order=creado_el.desc`;
             if(q) u += `&or=(titulo.ilike.*${encodeURIComponent(q)}*,descripcion.ilike.*${encodeURIComponent(q)}*)`;
-            const res = await fetch(u, {headers}); const data = await res.json();
-            document.getElementById('loader').style.display = 'none'; g.innerHTML = '';
-            data.forEach(c => {
-                const isNew = (new Date() - new Date(c.creado_el)) < (72 * 60 * 60 * 1000);
-                const card = document.createElement('div'); card.className = 'card'; card.onclick = () => openPage(c);
-                card.innerHTML = `${isNew ? '<span class="badge-new">DESCUBRIMIENTO SEMANAL</span>' : ''}<div class="c-img"><img src="${c.imagen_url || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800'}" loading="lazy"></div>
-                    <div class="c-body"><div class="c-meta">Certificación Oficial Verificada</div><h3>${c.titulo}</h3><p class="c-desc">${c.descripcion || ''}</p><div class="c-footer"><span class="c-plat">${c.plataforma}</span></div></div>`;
-                g.appendChild(card);
-            });
-            const urlParams = new URLSearchParams(window.location.search); const courseSlug = urlParams.get('curso');
-            if (courseSlug && !window.modalOpen) { const target = data.find(c => c.titulo.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '') === courseSlug); if (target) openPage(target); }
+            try {
+                const res = await fetch(u, {headers});
+                if (!res.ok) throw new Error('Error en Supabase');
+                const data = await res.json();
+                document.getElementById('loader').style.display = 'none'; g.innerHTML = '';
+                data.forEach(c => {
+                    const isNew = (new Date() - new Date(c.creado_el)) < (72 * 60 * 60 * 1000);
+                    const card = document.createElement('div'); card.className = 'card'; card.onclick = () => openPage(c);
+                    card.innerHTML = `${isNew ? '<span class="badge-new">DESCUBRIMIENTO SEMANAL</span>' : ''}<div class="c-img"><img src="${c.imagen_url || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800'}" loading="lazy"></div>
+                        <div class="c-body"><div class="c-meta">Certificación Oficial Verificada</div><h3>${c.titulo}</h3><p class="c-desc">${c.descripcion || ''}</p><div class="c-footer"><span class="c-plat">${c.plataforma}</span></div></div>`;
+                    g.appendChild(card);
+                });
+                const courseSlug = urlParams.get('curso');
+                if (courseSlug && !window.modalOpen) { const target = data.find(c => c.titulo.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '') === courseSlug); if (target) openPage(target); }
+            } catch (e) {
+                console.error(e);
+                document.getElementById('loader').innerHTML = `<p style="color:white; text-align:center">Error al cargar cursos.<br>Revisa tu conexión o intenta más tarde.</p>`;
+            }
         }
         function openPage(c) {
             window.modalOpen = true; const overlay = document.getElementById('page-overlay'); const inner = document.getElementById('p-inner');
