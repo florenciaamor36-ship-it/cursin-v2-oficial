@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>La Clave Academy | PWA & Novedades</title>
+    <title>La Clave Academy | Educación de Élite Certificada</title>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#ff0000">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -11,72 +11,89 @@
         :root { --brand: #ff0000; --gold: #ffd700; --bg: #050505; --surface: #0f0f0f; --border: rgba(255,255,255,0.08); --text: #fff; --text-dim: #999; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
-        nav { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); background: rgba(0,0,0,0.8); position: sticky; top: 0; z-index: 2000; backdrop-filter: blur(10px); }
-        .nav-logo { font-family: 'Montserrat'; font-weight: 900; font-size: 1.2rem; }
+        nav { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); background: rgba(0,0,0,0.9); position: sticky; top: 0; z-index: 2000; backdrop-filter: blur(15px); }
+        .nav-logo { font-family: 'Montserrat'; font-weight: 900; font-size: 1.3rem; letter-spacing: -1px; }
         .nav-logo span { color: var(--brand); }
-        .notif-wrap { position: relative; cursor: pointer; }
-        .notif-count { position: absolute; top: -5px; right: -5px; background: var(--brand); color: #fff; font-size: 0.6rem; font-weight: 900; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-        #notif-panel { position: absolute; top: 100%; right: 0; width: 300px; background: #111; border: 1px solid var(--border); border-radius: 12px; margin-top: 10px; display: none; max-height: 400px; overflow-y: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
-        .notif-item { padding: 15px; border-bottom: 1px solid var(--border); font-size: 0.8rem; }
-        .notif-item.new { border-left: 3px solid var(--brand); background: rgba(255,0,0,0.05); }
-        .notif-date { font-size: 0.7rem; color: var(--text-dim); margin-top: 5px; display: block; }
-        header { padding: 60px 20px; text-align: center; }
-        .h-title { font-family: 'Montserrat'; font-size: 3rem; font-weight: 900; }
+        .notif-wrap { position: relative; cursor: pointer; display: flex; align-items: center; gap: 10px; }
+        .notif-count { background: var(--brand); color: #fff; font-size: 0.65rem; font-weight: 900; padding: 2px 7px; border-radius: 50px; }
+        #notif-panel { position: absolute; top: 130%; right: 0; width: 320px; background: #111; border: 1px solid var(--border); border-radius: 16px; display: none; box-shadow: 0 20px 40px rgba(0,0,0,0.9); z-index: 3000; }
+        header { padding: 100px 20px; text-align: center; }
+        .h-title { font-family: 'Montserrat'; font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; line-height: 0.9; margin-bottom: 20px; }
         .h-title span { color: var(--brand); }
-        .container { max-width: 1300px; margin: 0 auto; padding: 0 20px; }
-        .search-area { position: relative; margin: -30px auto 50px; max-width: 800px; z-index: 1000; }
-        .search-box { background: #fff; border-radius: 50px; padding: 5px 20px; display: flex; align-items: center; }
-        .search-box input { flex: 1; border: none; padding: 15px; font-size: 1rem; font-weight: 600; outline: none; color:#000; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 60px; }
-        .card { background: var(--surface); border-radius: 15px; border: 1px solid var(--border); overflow: hidden; height: 480px; text-decoration: none; color: inherit; display: flex; flex-direction: column; position: relative; transition: 0.3s; }
-        .card:hover { border-color: var(--brand); transform: translateY(-5px); }
-        .c-img { height: 180px; background: #000; }
-        .c-img img { width: 100%; height: 100%; object-fit: cover; }
-        .badge-new { position: absolute; top: 15px; left: 15px; background: var(--brand); color: #fff; font-weight: 900; font-size: 0.6rem; padding: 4px 10px; border-radius: 50px; z-index: 10; text-transform: uppercase; letter-spacing: 1px; }
-        .c-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
-        .c-body h3 { font-family: 'Montserrat'; font-size: 1.1rem; margin-bottom: 10px; line-height: 1.3; }
-        .c-meta { font-size: 0.7rem; color: var(--gold); font-weight: 800; margin-bottom: 10px; }
-        .c-desc { font-size: 0.8rem; color: #888; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
-        #update-banner { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #fff; color: #000; padding: 15px 25px; border-radius: 50px; font-weight: 900; font-size: 0.9rem; z-index: 5000; display: none; box-shadow: 0 10px 30px rgba(0,0,0,0.5); align-items: center; gap: 15px; }
-        #update-banner button { background: var(--brand); color: #fff; border: none; padding: 8px 15px; border-radius: 20px; font-weight: 900; cursor: pointer; }
-        #offline-msg { text-align: center; padding: 20px; background: #222; font-size: 0.8rem; display: none; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 25px; }
+        .search-area { margin: -50px auto 60px; max-width: 900px; position: relative; z-index: 1000; }
+        .search-box { background: #fff; border-radius: 100px; padding: 8px 30px; display: flex; box-shadow: 0 30px 60px rgba(0,0,0,0.6); align-items: center; }
+        .search-box input { flex: 1; border: none; padding: 18px; font-size: 1.1rem; font-weight: 600; outline: none; color: #000; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; margin-bottom: 100px; }
+        .card { background: var(--surface); border-radius: 24px; border: 1px solid var(--border); overflow: hidden; height: 580px; text-decoration: none; color: inherit; display: flex; flex-direction: column; position: relative; transition: 0.4s; }
+        .card:hover { border-color: var(--brand); transform: translateY(-12px); }
+        .c-img { height: 230px; background: #000; position: relative; overflow: hidden; }
+        .c-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        .badge-new { position: absolute; top: 20px; left: 20px; background: var(--brand); color: #fff; font-weight: 900; font-size: 0.7rem; padding: 6px 14px; border-radius: 100px; z-index: 10; }
+        .c-body { padding: 35px 25px 25px; flex: 1; display: flex; flex-direction: column; }
+        .c-body h3 { font-family: 'Montserrat'; font-size: 1.25rem; font-weight: 800; margin-bottom: 12px; line-height: 1.3; color: #fff; }
+        .c-tag { font-size: 0.65rem; font-weight: 900; text-transform: uppercase; background: rgba(255,255,255,0.05); padding: 5px 12px; border-radius: 6px; color: var(--gold); margin-right: 5px; }
+        .c-desc { font-size: 0.9rem; color: #888; line-height: 1.6; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; margin-bottom: 20px; }
+        .c-footer { margin-top: auto; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 15px; }
+        .c-plat { font-size: 0.75rem; font-weight: 800; color: var(--brand); }
+        #course-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 9000; display: none; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(10px); }
+        .modal-content { background: var(--surface); max-width: 900px; width: 100%; border-radius: 30px; border: 1px solid var(--border); overflow: hidden; position: relative; }
+        .modal-close { position: absolute; top: 20px; right: 20px; font-size: 2rem; cursor: pointer; color: #fff; z-index: 100; }
+        #offline-banner { text-align: center; background: var(--brand); color: #fff; padding: 10px; font-weight: 900; font-size: 0.8rem; display: none; }
     </style>
 </head>
 <body>
-    <div id="offline-msg">⚠️ Estás en modo offline.</div>
+    <div id="offline-banner">ESTÁS EN MODO OFFLINE</div>
     <nav>
         <div class="nav-logo">LA CLAVE<span> ACADEMY</span></div>
-        <div class="notif-wrap" onclick="toggleNotif()"><span style="font-size:1.5rem">🔔</span><span class="notif-count">3</span><div id="notif-panel"></div></div>
+        <div class="notif-wrap" onclick="toggleNotif()"><span style="font-size:1.4rem">🔔</span><span class="notif-count" id="n-count">0</span><div id="notif-panel"></div></div>
     </nav>
-    <header><h1 class="h-title">LA CLAVE<br><span>ACADEMY</span></h1><p style="color:var(--text-dim); margin-top:10px;">v54.0 - PWA & Novedades</p></header>
+    <header><h1 class="h-title">EDUCACIÓN DE<br><span>ÉLITE GRATUITA</span></h1><p style="color:var(--text-dim); max-width:600px; margin:20px auto; font-size:1.2rem; font-weight:300;">Catálogo actualizado automáticamente.</p></header>
     <div class="container">
-        <div class="search-area"><div class="search-box"><input type="text" id="q" placeholder="Buscar novedades..."></div></div>
+        <div class="search-area"><div class="search-box"><input type="text" id="q" placeholder="¿Qué quieres aprender hoy?" autocomplete="off"></div></div>
         <div id="grid" class="grid"></div>
     </div>
-    <div id="update-banner">Nueva versión disponible <button onclick="location.reload()">ACTUALIZAR</button></div>
+    <div id="course-modal"><div class="modal-content" id="modal-inner"></div></div>
     <script>
         const S_URL = 'https://ypzudkxowpxvdggvongz.supabase.co/rest/v1/';
         const S_KEY = 'sb_publishable_KmyqfJTmmW4R5FKUeB5b4A_GVFYnn4b';
         const headers = { 'apikey': S_KEY, 'Authorization': 'Bearer ' + S_KEY };
-        const NOTIFS = [{ text: "12 nuevos cursos de Google Cloud.", date: "Hace 5 min", type: "new" }, { text: "Nueva categoría: Ciberseguridad.", date: "Hace 1 hora", type: "cat" }];
-        function renderNotifs() {
-            const p = document.getElementById('notif-panel'); p.innerHTML = '<div style="padding:15px; font-weight:900; border-bottom:1px solid #333;">NOVEDADES</div>';
-            NOTIFS.forEach(n => { p.innerHTML += `<div class="notif-item ${n.type==='new'?'new':''}">${n.text} <span class="notif-date">${n.date}</span></div>`; });
+        async function checkUpdates() {
+            const res = await fetch(`${S_URL}cursos?select=id,titulo,creado_el&order=creado_el.desc&limit=5`, {headers});
+            const data = await res.json();
+            const panel = document.getElementById('notif-panel'); panel.innerHTML = '<div style="padding:20px; font-weight:900; border-bottom:1px solid #333;">ÚLTIMAS INCORPORACIONES</div>';
+            document.getElementById('n-count').innerText = data.length;
+            data.forEach(c => { panel.innerHTML += `<div style="padding:15px; border-bottom:1px solid #222; font-size:0.8rem"><b>Nuevo:</b> ${c.titulo} <br><small style="color:var(--brand)">Detección automática</small></div>`; });
         }
-        function toggleNotif() { const p = document.getElementById('notif-panel'); p.style.display = p.style.display === 'block' ? 'none' : 'block'; }
-        if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').then(reg => { reg.onupdatefound = () => { document.getElementById('update-banner').style.display = 'flex'; }; }); }
-        window.addEventListener('offline', () => document.getElementById('offline-msg').style.display = 'block');
-        window.addEventListener('online', () => document.getElementById('offline-msg').style.display = 'none');
         async function load() {
-            const g = document.getElementById('grid'); const res = await fetch(`${S_URL}cursos?select=*&limit=12&order=creado_el.desc`, {headers}); const data = await res.json(); g.innerHTML = '';
-            data.forEach((c, idx) => {
-                const card = document.createElement('a'); card.className = 'card'; card.href = c.url; card.target = '_blank';
-                card.innerHTML = `${idx < 4 ? '<span class="badge-new">NUEVO</span>' : ''}<div class="c-img"><img src="${c.imagen_url || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800'}" loading="lazy"></div>
-                    <div class="c-body"><span class="c-meta">Certificación Oficial</span><h3>${c.titulo}</h3><p class="c-desc">${c.descripcion || ''}</p><small style="margin-top:auto; color:var(--text-dim);">${c.plataforma}</small></div>`;
+            const g = document.getElementById('grid'); const q = document.getElementById('q').value;
+            let u = `${S_URL}cursos?select=*&limit=15&order=creado_el.desc`;
+            if(q) u += `&or=(titulo.ilike.*${encodeURIComponent(q)}*,descripcion.ilike.*${encodeURIComponent(q)}*)`;
+            const res = await fetch(u, {headers}); const data = await res.json(); g.innerHTML = '';
+            data.forEach((c, i) => {
+                const isNew = (new Date() - new Date(c.creado_el)) < (48 * 60 * 60 * 1000);
+                const card = document.createElement('div'); card.className = 'card'; card.onclick = () => openCourse(c);
+                card.innerHTML = `${isNew ? '<span class="badge-new">NUEVO</span>' : ''}<div class="c-img"><img src="${c.imagen_url || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800'}" loading="lazy"></div>
+                    <div class="c-body"><div class="c-meta"><span class="c-tag">Certificado Oficial</span><span class="c-tag">Gratis</span></div><h3>${c.titulo}</h3><p class="c-desc">${c.descripcion || ''}</p>
+                        <div class="c-footer"><span class="c-plat">${c.plataforma}</span></div></div>`;
                 g.appendChild(card);
             });
         }
-        renderNotifs(); load();
+        function openCourse(c) {
+            const m = document.getElementById('course-modal'); const inner = document.getElementById('modal-inner');
+            inner.innerHTML = `<span class="modal-close" onclick="document.getElementById('course-modal').style.display='none'">×</span>
+                <div style="height:300px; background:#000"><img src="${c.imagen_url}" style="width:100%; height:100%; object-fit:cover; opacity:0.6"></div>
+                <div style="padding:30px"><h2 style="font-family:Montserrat; font-size:1.5rem; margin-bottom:15px">${c.titulo}</h2><p style="color:#aaa; line-height:1.6; margin-bottom:20px">${c.descripcion || ''}</p>
+                    <a href="${c.url}" target="_blank" style="background:var(--brand); color:#fff; text-decoration:none; padding:12px 30px; border-radius:50px; font-weight:900; display:inline-block">IR AL CURSO</a></div>`;
+            m.style.display = 'flex';
+            const slug = c.titulo.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
+            window.history.pushState({}, '', `?curso=${slug}`);
+        }
+        function toggleNotif() { const p = document.getElementById('notif-panel'); p.style.display = p.style.display === 'block' ? 'none' : 'block'; }
+        window.addEventListener('offline', () => document.getElementById('offline-banner').style.display = 'block');
+        window.addEventListener('online', () => document.getElementById('offline-banner').style.display = 'none');
+        document.getElementById('q').oninput = () => { clearTimeout(window.t); window.t = setTimeout(load, 500); };
+        checkUpdates(); load();
     </script>
 </body>
 </html>
