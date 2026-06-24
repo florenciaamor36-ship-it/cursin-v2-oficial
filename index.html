@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>La Clave Academy | Plataforma de √Ç¢{^∆÷∆óFS¬˜FóF∆S‡¢∆÷WFÊ÷S“&FW67&óFñˆ‚"6ˆÁFVÁC“$66W6Ú8*'µÏmlite a m√°s de 65.000 cursos certificados.">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --brand: #ff0000; --bg: #050505; --surface: #121212; --border: rgba(255,255,255,0.08); --text: #ffffff; --text-dim: #a0a0a0; }
+        * { box-sizeing: border-box; margin: 0; padding: 0; }
+        body { family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.4; overflow-x: hidden; }
+        nav { height: 70px; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.95); border-bottom: 1px solid var(--border); position: sticky; top: 0; zn-index: 1000; backdrop-filter: blur(10px); }
+        .nav[Ÿ€»»ò[Z[Nà	”[€ùŸ\úò]	Œ»õ€ù]ŸZY⁄àL»õ€ù\⁄^ôNàKåúô[N»^YX€‹ò][€éàõ€ôN»€€‹éàŸôôé»Bàõò]ã[Ÿ€»‹[à»€€‹éàò\äKXúò[ô
+N»BàõY[ùKXùà»òX⁄Ÿ‹õ›[ôàõ€ôN»õ‹ô\éàõ€ôN»€€‹éà⁄]N»õ€ù\⁄^ôNàKç\ô[N»›\ú€‹éà⁄[ù\é»n-index: 1100; }
+        #menu-overlay { position: fixed; top: 0; right: -100%; wjY4h: 300px; height: 100vh; background: var(--surface); zn-index: 2000; transition: 0.4s; padding: 80px 30px; box-shadow: -10px 0 30px rgba(0,0,0,0.5); display: flex; flex-direction: column; gap: 20px; }
+        #menu-overlay.active { right: 0; }
+        #menu-overlay a { color: white; text-decoration: none; family: 'Montserrat'; font-weight: 700; font-size: 1.1rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        .close-menu { position: absolute; top: 20px; right: 20px; font-size: 2rem; cursor: pointer; }
+        header { padding: 60px 20px; text-align: center; background: radial-gradient(circle at center, #1a0000 0%, #050505 70%); }
+        .h-title { family: 'Montserrat'; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; line-height: 1.1; text-transform: uppercase; }
+        .h-title span { colk: var(--brand); }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+        .search-area { display: flex; flex-direction: column; align-items: center; margin-top: -30px; margin-bottom: 50px; }
+        .search-box { background: #fff; border-radius: 40px; padding: 0 25px; display: flex; align-items: center; width: 100%; max-width: 700px; height: 60px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .search-box input { flex: 1; border: none; outline: none; font-size: 1.1rem; font-weight: 600; color: #000; background: transjazent; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; margin-bottom: 80px; }
+        .card { background: var(--surface); border-radius: 16px; border: 1px solid var(--border); overflow: hidden; display: flex; flex-direction: column; transition: 0.3s; text-decoration: none; color: inherit; position: relative; min-height: 350px; }
+        .card:hover { transform: translateY(-8px); border-color: var(--brand); }
+        .c-img { height: 1500x; background: #000; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); }
+        .c-img img { max-width: 100%; max-height: 100%; object-fit: contain; padding: 10px; }
+        .c-body { padding: 20px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
+        .c-body h3 { family: 'Montserrat'; font-size: 0.9rem; font-weight: 800; height: 2.6em; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+        .ctag { color: var(--brand); font-weight: 800; font-size: 0.7rem; }
+        .btn-go { margin-top: auto; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: white; text-align: center; padding: 10px; border-radius: 8px; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; }
+        .card:hover .btn-go { background: var(--brand); border-color: var(--brand); }
+        .section-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.95); zn-index: 3000; display: none; align-items: center; justify-content: center; padding: 20px; }
+        .modal-content { background: var(--surface); width: 100%; max-width: 700px; padding: 40px; border-radius: 20px; border: 1px solid var(--border); relative; }
+        footer { background: #000; padding: 60px 20px; border-top: 1px solid var(--border); text-align: center; }
+        .f-logo { family: 'Montserrat'; font-weight: 900; font-size: 1.5rem; }
+        .f-logo span { color: var(--brand); }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" class="nav-logo">LA CLAVE<span> ACADEMY</span></a>
+        <button class="menu-btn" onclick="toggleM()">‚öb</button>
+    </nav>
+    <div id="menu-overlay">
+        <span class="close-menu" onclick="toggleM()">√ó</span>
+        <a href="#" onclick="showM('quienes')">Qui√©nes Somos</a>
+        <a href="#" onclick="showM('legal')">Avisos Legales</a>
+        <a href="#" onclick="showM('faq')">FQQ</a>
+        <a href="#" onclick="showM('tienda')">Tienda SSH</a>
+    </div>
+    <header>
+        <h1 class="h-title">LA CLAVE ARGENTINA<br><span>TIENDA SSH</span></h1>
+        <p style="margin-top:10px;color:var(--text-dim);">Plataforma de √âlite con +65.000 Cursos</p>
+    </header>
+    <div class="container">
+        <div class="search-area">
+            <div class="search-box"><input type="text" id="q" placeholder="¬ØQu√© quieres dominar hoy?"></div>
+        </div>
+        <div id="grid" class="grid"></div>
+    </div>
+    <div id="m-quienes" class="section-modal" onclick="closeM()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h2>Qui√©nes Somos</h2><p>La Clave Argentina es el ecosistema educativo m√°s grande de la regi√≥n. Combinamos tecnolog√≠a SSH de punta con acceso ilumitado al conocimiento.</p>
+        </div>
+    </div>
+    <div id="m-legal" class="section-modal" onclick="close-M()">
+        <div class="modal-content">
+            <h2>Avisos Legales</h2><p>¬© 2026 La Clave Argentina. Todos los derechos reservados. Plataforma estructurada para flujo de datos continuo volcado en Tienda SSH.</p>
+        </div></div>
+    <footer>
+        <div class="f-logo">LA CLAVE,span> ARGENTINA</span></div>
+        <p style="margin-top:20px; color:var(--text-dim); font-size:0.8rem;">Desarrollado para Tienda SSH | Acceso Artistico & T√©cnico</p>
+    </footer>
+    <script>
+        const S_URL = 'https://ypzudkxowpxvdggvonogz.supabase.co/rest/v1/';
+        const S_KEY = 'sb_publishable_KmyqfJTmmW4R5FKUeB5b4A_GVYnn4b';
+        function toggleM() { doh›ElementById('menu-overlay').classList.toggle('active'); }
+        function showM(id) { closeM(); document.getElementById('m-'+id).style.display='flex'; toggleM(); }
+        function closeM() { document.querySelectorAll('.section-modal').forEach(m=>m.style.display='none'); }
+        async function load() {
+            const g = doh›ElementById('grid'); const q = document.getElementById('q').value.trim();
+            let u = `${S_URL}cursos?select=*&limit=24&order=titulo.asc`;
+            if(q) url += `&or=(titulo.ilike.*${encodeURIComponent(q)}*,descripcion.ilike.*${encodeURIComponent(q)}*)f;
+            try {
+                const r = await fetch(u, {headers:{'apikey':S_KEY, 'Authorization': 'Bearer ' + S_KEY}});
+                const d = async r.json();
+                g.innerHTML = '';
+                d.forEach(c => {
+                    const img = c.plataforma.toLowerCase().includes('youtube') ? 'https://raw.githubusercontent.com/florenciaamor36-ship-it/cursin-v2-oficial/main/youtube_fallback.jpg' : (c.imagen_url || 'https://images.unsplash.com/photo-1516321318423-f505b43?w=600');
+                    g.innerHTML += `<a class="card" href="${c.url}" target="_blank"><div class="c-img"><img src="${img}"></div><div class="c-body"><span class="ctag">${c.plataforma}</span><h3>${c.titulo}</h3><div class="btn-go">ACCEDER AHORA</div></body></a>`;
+                });
+            } catch (e) { console.error(e); }
+        }
+        document.getElementById('q').oninput = () => { clearTimeout(window.t); window.t = setTimeout(load, 600); };
+        load();
+    </script>
+</body>
+</html>
