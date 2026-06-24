@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>La Clave Academy | Buscador de Cursos de Élite</title>
-    <meta name="description" content="Encuentra cursos gratuitos de Google, IBM y Microsoft con certificación oficial.">
+    <title>La Clave Academy | Cursos Gratuitos Certificados</title>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#ff0000">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -15,148 +14,89 @@
         nav { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); background: rgba(0,0,0,0.9); position: sticky; top: 0; z-index: 2000; backdrop-filter: blur(15px); }
         .nav-logo { font-family: 'Montserrat'; font-weight: 900; font-size: 1.3rem; }
         .nav-logo span { color: var(--brand); }
-        .discovery-status { font-size: 0.65rem; color: #00ff00; font-weight: 800; display: flex; align-items: center; gap: 5px; background: rgba(0,255,0,0.05); padding: 5px 10px; border-radius: 50px; }
-        .dot { width: 6px; height: 6px; background: #00ff00; border-radius: 50%; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
-        header { padding: 80px 20px; text-align: center; }
-        .h-title { font-family: 'Montserrat'; font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 900; line-height: 0.9; }
+        header { padding: 60px 20px; text-align: center; }
+        .h-title { font-family: 'Montserrat'; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 900; line-height: 1; }
         .h-title span { color: var(--brand); }
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 25px; }
-        .search-area { margin: -50px auto 60px; max-width: 900px; position: relative; z-index: 1000; }
-        .search-box { background: #fff; border-radius: 100px; padding: 5px 25px; display: flex; align-items: center; box-shadow: 0 30px 60px rgba(0,0,0,0.6); }
-        .search-box input { flex: 1; border: none; padding: 18px; font-size: 1.1rem; font-weight: 600; outline: none; color: #000; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; margin-bottom: 100px; }
-        .card { background: var(--surface); border-radius: 24px; border: 1px solid var(--border); overflow: hidden; height: 560px; text-decoration: none; color: inherit; display: flex; flex-direction: column; position: relative; transition: 0.4s; cursor: pointer; }
-        .card:hover { border-color: var(--brand); transform: translateY(-10px); }
-        .c-img { height: 220px; background: #000; position: relative; overflow: hidden; }
-        .c-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.5s; }
-        .card:hover .c-img img { transform: scale(1.1); opacity: 1; }
-        .badge-new { position: absolute; top: 20px; left: 20px; background: var(--brand); color: #fff; font-weight: 900; font-size: 0.7rem; padding: 6px 14px; border-radius: 100px; z-index: 10; box-shadow: 0 10px 20px rgba(255,0,0,0.3); }
-        .c-body { padding: 35px 25px 25px; flex: 1; display: flex; flex-direction: column; }
-        .c-body h3 { font-family: 'Montserrat'; font-size: 1.25rem; font-weight: 800; margin-bottom: 12px; line-height: 1.3; color: #fff; }
-        .c-tag { font-size: 0.65rem; font-weight: 900; text-transform: uppercase; background: rgba(255,255,255,0.05); padding: 5px 12px; border-radius: 6px; color: var(--gold); margin-right: 5px; }
-        .c-desc { font-size: 0.9rem; color: #888; line-height: 1.6; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; margin-bottom: 20px; }
-        .c-footer { margin-top: auto; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 15px; }
-        .c-plat { font-size: 0.75rem; font-weight: 800; color: var(--brand); }
-        #page-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 9000; display: none; overflow-y: auto; padding: 0; }
-        .p-header { height: 400px; position: relative; background: #000; }
-        .p-header img { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; }
-        .p-content { max-width: 900px; margin: -100px auto 100px; position: relative; background: var(--surface); border-radius: 40px; padding: 60px; border: 1px solid var(--border); }
-        .p-back { position: fixed; top: 30px; left: 30px; background: #fff; color: #000; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; cursor: pointer; z-index: 10000; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
-        #loader { position: fixed; inset: 0; background: var(--bg); z-index: 10000; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 20px; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+        .search-area { margin: 20px auto 40px; max-width: 800px; position: relative; z-index: 1000; }
+        .search-box { background: #fff; border-radius: 100px; padding: 5px 20px; display: flex; align-items: center; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .search-box input { flex: 1; border: none; padding: 15px; font-size: 1rem; font-weight: 600; outline: none; color: #000; width: 100%; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 60px; }
+        .card { background: var(--surface); border-radius: 20px; border: 1px solid var(--border); overflow: hidden; height: 500px; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: 0.3s; }
+        .card:hover { border-color: var(--brand); transform: translateY(-5px); }
+        .c-img { height: 180px; background: #000; position: relative; }
+        .c-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        .c-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+        .c-body h3 { font-family: 'Montserrat'; font-size: 1.1rem; margin-bottom: 10px; line-height: 1.3; }
+        .c-plat { font-size: 0.7rem; font-weight: 900; color: var(--brand); text-transform: uppercase; margin-top: auto; }
+        .c-desc { font-size: 0.85rem; color: #888; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-top: 10px; }
+        #loader { position: fixed; inset: 0; background: var(--bg); z-index: 10000; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 20px; transition: opacity 0.5s; }
         .spin { width: 40px; height: 40px; border: 3px solid #222; border-top-color: var(--brand); border-radius: 50%; animation: r 0.8s linear infinite; }
         @keyframes r { to { transform: rotate(360deg); } }
+        
+        /* Modal simple */
+        #modal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 9999; display: none; align-items: center; justify-content: center; padding: 20px; }
+        .m-content { background: var(--surface); max-width: 600px; width: 100%; border-radius: 20px; border: 1px solid var(--border); padding: 30px; position: relative; }
+        .m-close { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; }
     </style>
 </head>
 <body>
-    <div id="loader"><div class="spin"></div><p style="color:var(--brand); font-weight:900; font-family:Montserrat;">SINCRONIZANDO...</p></div>
-    <nav>
-        <div class="nav-logo">LA CLAVE<span> ACADEMY</span></div>
-        <div class="discovery-status"><div class="dot"></div> EXPLORANDO FUENTES (GOOGLE, IBM, MS)</div>
-    </nav>
-    <header><h1 class="h-title">EDUCACIÓN DE<br><span>ÉLITE GRATUITA</span></h1></header>
+    <div id="loader"><div class="spin"></div><p style="font-family:Montserrat; font-weight:900; color:var(--brand);">CARGANDO...</p></div>
+    
+    <nav><div class="nav-logo">LA CLAVE<span> ACADEMY</span></div></nav>
+    
+    <header><h1 class="h-title">CURSOS DE<br><span>ÉLITE</span></h1></header>
+    
     <div class="container">
-        <div class="search-area"><div class="search-box"><input type="text" id="q" placeholder="Buscar entre miles de cursos verificados..." autocomplete="off"></div></div>
+        <div class="search-area"><div class="search-box"><input type="text" id="q" placeholder="¿Qué quieres aprender?"></div></div>
         <div id="grid" class="grid"></div>
     </div>
-    <div id="page-overlay"><div class="p-back" onclick="closePage()">←</div><div id="p-inner"></div></div>
+
+    <div id="modal"><div class="m-content" id="m-inner"></div></div>
+
     <script>
-        // CRITICAL BUGFIX v58
         const S_URL = 'https://ypzudkxowpxvdggvongz.supabase.co/rest/v1/';
         const S_KEY = 'sb_publishable_KmyqfJTmmW4R5FKUeB5b4A_GVFYnn4b';
         const headers = { 'apikey': S_KEY, 'Authorization': 'Bearer ' + S_KEY };
 
         async function load() {
-            const g = document.getElementById('grid');
             const q = document.getElementById('q').value;
-            const loader = document.getElementById('loader');
-            
-            // Handle SPA routing from 404.html
-            const urlParams = new URLSearchParams(window.location.search);
-            const p = urlParams.get('p');
-            if (p && p.startsWith('/cursos/')) {
-                window.targetSlug = p.replace('/cursos/', '');
-            }
-
-            let u = `${S_URL}cursos?select=*&limit=15&order=creado_el.desc`;
+            const g = document.getElementById('grid');
+            let u = `${S_URL}cursos?select=*&limit=20&order=creado_el.desc`;
             if(q) u += `&or=(titulo.ilike.*${encodeURIComponent(q)}*,descripcion.ilike.*${encodeURIComponent(q)}*)`;
             
             try {
                 const res = await fetch(u, {headers});
-                if (!res.ok) throw new Error('Supabase unreachable');
                 const data = await res.json();
+                document.getElementById('loader').style.opacity = '0';
+                setTimeout(() => document.getElementById('loader').style.display = 'none', 500);
                 
-                loader.style.display = 'none';
                 g.innerHTML = '';
-                
-                if (data.length === 0) {
-                    g.innerHTML = '<p style="grid-column: 1/-1; text-align:center; padding:50px; color:#666;">No se encontraron cursos.</p>';
-                    return;
-                }
-
                 data.forEach(c => {
-                    const isNew = (new Date() - new Date(c.creado_el)) < (72 * 60 * 60 * 1000);
-                    const card = document.createElement('div'); card.className = 'card';
-                    card.onclick = () => openPage(c);
-                    card.innerHTML = `
-                        ${isNew ? '<span class="badge-new">NUEVO</span>' : ''}
-                        <div class="c-img"><img src="${c.imagen_url || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800'}" loading="lazy"></div>
-                        <div class="c-body">
-                            <div class="c-meta"><span class="c-tag">Certificado</span><span class="c-tag">Gratis</span></div>
-                            <h3>${c.titulo}</h3>
-                            <p class="c-desc">${c.descripcion || ''}</p>
-                            <div class="c-footer"><span class="c-plat">${c.plataforma}</span></div>
-                        </div>`;
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.onclick = () => openC(c);
+                    card.innerHTML = `<div class="c-img"><img src="${c.imagen_url || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800'}" loading="lazy"></div>
+                        <div class="c-body"><h3>${c.titulo}</h3><p class="c-desc">${c.descripcion || ''}</p><div class="c-plat">${c.plataforma}</div></div>`;
                     g.appendChild(card);
                 });
-
-                // Handle direct course link
-                const courseSlug = urlParams.get('curso') || window.targetSlug;
-                if (courseSlug && !window.modalOpen) {
-                    const target = data.find(c => c.titulo.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '') === courseSlug);
-                    if (target) openPage(target);
-                }
             } catch (e) {
-                console.error('CRITICAL LOAD ERROR:', e);
-                loader.innerHTML = `<div style="text-align:center; padding:20px;">
-                    <p style="color:white; margin-bottom:20px;">⚠️ No se pudo conectar con la base de datos.</p>
-                    <button onclick="location.reload()" style="background:var(--brand); color:white; border:none; padding:10px 30px; border-radius:50px; cursor:pointer; font-weight:900;">REINTENTAR</button>
-                </div>`;
+                document.getElementById('loader').innerHTML = '<p style="color:white;">Error de conexión. Reintenta.</p>';
             }
         }
 
-        function openPage(c) {
-            window.modalOpen = true;
-            const overlay = document.getElementById('page-overlay');
-            const inner = document.getElementById('p-inner');
-            overlay.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-            inner.innerHTML = `
-                <div class="p-header"><img src="${c.imagen_url}"></div>
-                <div class="p-content">
-                    <div style="font-weight:900; color:var(--brand); margin-bottom:10px; font-size:0.8rem; text-transform:uppercase">${c.plataforma}</div>
-                    <h1 style="font-family:Montserrat; font-size:2.5rem; line-height:1.1; margin-bottom:30px">${c.titulo}</h1>
-                    <p style="font-size:1.1rem; line-height:1.7; color:#aaa; margin-bottom:40px">${c.descripcion || ''}</p>
-                    <a href="${c.url}" target="_blank" style="display:block; text-align:center; background:var(--brand); color:#fff; text-decoration:none; padding:20px; border-radius:100px; font-weight:900;">IR AL CURSO</a>
-                </div>`;
-            const slug = c.titulo.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
-            window.history.pushState({}, '', `?curso=${slug}`);
-            document.title = `${c.titulo} | La Clave Academy`;
+        function openC(c) {
+            const m = document.getElementById('modal');
+            document.getElementById('m-inner').innerHTML = `<span class="m-close" onclick="document.getElementById('modal').style.display='none'">×</span>
+                <h2 style="margin-bottom:15px; font-family:Montserrat;">${c.titulo}</h2>
+                <p style="color:#aaa; margin-bottom:25px; line-height:1.6;">${c.descripcion || ''}</p>
+                <a href="${c.url}" target="_blank" style="display:block; text-align:center; background:var(--brand); color:#fff; text-decoration:none; padding:15px; border-radius:50px; font-weight:900;">VER CURSO</a>`;
+            m.style.display = 'flex';
         }
 
-        function closePage() {
-            document.getElementById('page-overlay').style.display = 'none';
-            document.body.style.overflow = 'auto';
-            window.history.pushState({}, '', window.location.pathname);
-            document.title = "La Clave Academy";
-            window.modalOpen = false;
-        }
-
-        // UNREGISTER SERVICE WORKER TO CLEAR CACHE (v58)
+        // Clean SW for v59
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.getRegistrations().then(regs => {
-                for(let reg of regs) reg.unregister();
-            });
+            navigator.serviceWorker.getRegistrations().then(rs => { for(let r of rs) r.unregister(); });
         }
 
         document.getElementById('q').oninput = () => { clearTimeout(window.t); window.t = setTimeout(load, 500); };
