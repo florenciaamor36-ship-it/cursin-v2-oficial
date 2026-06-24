@@ -63,6 +63,17 @@
         const headers = { 'apikey': S_KEY, 'Authorization': 'Bearer ' + S_KEY };
         async function load() {
             const g = document.getElementById('grid'); const q = document.getElementById('q').value;
+            
+            // SEO Redirect Handling (v57)
+            const urlParams = new URLSearchParams(window.location.search);
+            const p = urlParams.get('p');
+            if (p && p.startsWith('/cursos/')) {
+                const slug = p.replace('/cursos/', '');
+                // Aquí buscaríamos el curso por slug en la DB
+                // Para simplificar esta demo, cargamos normal y buscamos en la carga
+                window.targetSlug = slug;
+            }
+
             let u = `${S_URL}cursos?select=*&limit=15&order=creado_el.desc`;
             if(q) u += `&or=(titulo.ilike.*${encodeURIComponent(q)}*,descripcion.ilike.*${encodeURIComponent(q)}*)`;
             const res = await fetch(u, {headers}); const data = await res.json();
