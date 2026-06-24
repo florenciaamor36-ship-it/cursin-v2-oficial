@@ -104,16 +104,18 @@
         }
         .card:hover { transform: translateY(-10px); border-color: var(--brand); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
 
-        .c-img { height: 210px; background: #000; position: relative; overflow: hidden; }
-        .c-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .card:hover .c-img img { transform: scale(1.05); }
+        .c-img { height: 210px; background: #000; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .c-img img.main-thumb { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .card:hover .c-img img.main-thumb { transform: scale(1.05); }
 
-        /* LOGO INSTITUCIÓN SOBREPUESTO */
+        /* LOGO INSTITUCIÓN SOBREPUESTO - Tamaño Controlado (Pilar v61) */
         .c-logo { 
             position: absolute; bottom: 15px; right: 15px; 
-            width: 45px; height: 45px; background: #fff; 
-            border-radius: 10px; padding: 5px; display: flex; 
-            align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            width: 42px; height: 42px; background: #fff; 
+            border-radius: 10px; padding: 6px; display: flex; 
+            align-items: center; justify-content: center; 
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+            z-index: 20;
         }
         .c-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
@@ -228,7 +230,8 @@
                     
                     card.innerHTML = `
                         <div class="c-img">
-                            <img src="${c.imagen_url || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800'}" loading="lazy">
+                            <img class="main-thumb" src="${c.imagen_url || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800'}" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800'" loading="lazy">
                             <div class="c-logo"><img src="${logo}"></div>
                         </div>
                         <div class="c-body">
