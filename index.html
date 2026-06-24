@@ -96,7 +96,8 @@
             background: #0f0f0f; flex-direction: column; padding: 40px 20px; 
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 5000;
             border-right: 1px solid var(--border);
-            display: flex; gap: 15px; align-items: flex-start;
+            display: flex !important; gap: 15px; align-items: flex-start;
+            visibility: visible;
         }
         .nav-links.active { left: 0; }
         .nav-links h4 { color: var(--brand); font-family: Montserrat; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; margin: 20px 0 10px; }
@@ -187,25 +188,25 @@
 
     <div id="menu-overlay" onclick="toggleM()"></div>
     <nav>
-        <div class="menu-toggle" onclick="toggleM()" style="display:block">☰</div>
+        <div class="menu-toggle" onclick="toggleM()" style="display:block; cursor:pointer; font-size:1.8rem; color:white; z-index:6000;">☰</div>
         <div class="nav-logo">LA CLAVE<span> ACADEMY</span></div>
         <div class="nav-links" id="n-links">
-            <span style="position:absolute; top:20px; right:20px; font-size:1.5rem; cursor:pointer;" onclick="toggleM()">×</span>
-            <div class="nav-logo">LA CLAVE<span> ACADEMY</span></div>
+            <span style="position:absolute; top:20px; right:20px; font-size:2rem; cursor:pointer; color:white;" onclick="toggleM()">×</span>
+            <div class="nav-logo" style="margin-bottom:20px; display:block;">LA CLAVE<span> ACADEMY</span></div>
             
-            <h4>Secciones</h4>
-            <a href="javascript:void(0)" onclick="toggleFAQ()">Preguntas Frecuentes</a>
-            <a href="#footer" onclick="toggleM()">Legal & Derechos</a>
+            <h4 style="margin-top:20px; color:var(--brand); font-size:0.75rem; letter-spacing:2px;">SECCIONES</h4>
+            <a href="javascript:void(0)" onclick="toggleFAQ()" style="color:white; text-decoration:none; display:block; padding:10px 0;">Preguntas Frecuentes</a>
+            <a href="#footer" onclick="toggleM()" style="color:white; text-decoration:none; display:block; padding:10px 0;">Legal & Derechos</a>
             
-            <h4>Categorías</h4>
-            <a href="javascript:void(0)" onclick="setCat('Todos')">📚 Todos los Cursos</a>
-            <a href="javascript:void(0)" onclick="setCat('Inteligencia Artificial')">🤖 Inteligencia Artificial</a>
-            <a href="javascript:void(0)" onclick="setCat('Programación')">💻 Programación</a>
-            <a href="javascript:void(0)" onclick="setCat('Marketing')">📈 Marketing Digital</a>
-            <a href="javascript:void(0)" onclick="setCat('Diseño')">🎨 Diseño & Creatividad</a>
-            <a href="javascript:void(0)" onclick="setCat('Negocios')">💼 Negocios & Finanzas</a>
-            <a href="javascript:void(0)" onclick="setCat('Idiomas')">🌐 Idiomas</a>
-            <a href="javascript:void(0)" onclick="setCat('Salud')">🏥 Salud & Bienestar</a>
+            <h4 style="margin-top:20px; color:var(--brand); font-size:0.75rem; letter-spacing:2px;">CATEGORÍAS</h4>
+            <a href="javascript:void(0)" onclick="setCat('Todos')" style="color:white; text-decoration:none; display:block; padding:10px 0;">📚 Todos los Cursos</a>
+            <a href="javascript:void(0)" onclick="setCat('Inteligencia Artificial')" style="color:white; text-decoration:none; display:block; padding:10px 0;">🤖 Inteligencia Artificial</a>
+            <a href="javascript:void(0)" onclick="setCat('Programación')" style="color:white; text-decoration:none; display:block; padding:10px 0;">💻 Programación</a>
+            <a href="javascript:void(0)" onclick="setCat('Marketing')" style="color:white; text-decoration:none; display:block; padding:10px 0;">📈 Marketing Digital</a>
+            <a href="javascript:void(0)" onclick="setCat('Diseño')" style="color:white; text-decoration:none; display:block; padding:10px 0;">🎨 Diseño & Creatividad</a>
+            <a href="javascript:void(0)" onclick="setCat('Negocios')" style="color:white; text-decoration:none; display:block; padding:10px 0;">💼 Negocios & Finanzas</a>
+            <a href="javascript:void(0)" onclick="setCat('Idiomas')" style="color:white; text-decoration:none; display:block; padding:10px 0;">🌐 Idiomas</a>
+            <a href="javascript:void(0)" onclick="setCat('Salud')" style="color:white; text-decoration:none; display:block; padding:10px 0;">🏥 Salud & Bienestar</a>
         </div>
         <div class="notif-btn" onclick="toggleN()">🔔<span class="notif-badge">3</span></div>
         <div id="n-panel">
