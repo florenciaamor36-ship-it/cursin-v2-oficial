@@ -1,0 +1,13 @@
+{
+  "name": "La Clave Academy",
+  "short_name": "La Clave",
+  "description": "Buscador de cursos gratuitos con certificación oficial.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#ff0000",
+  "icons": [
+    { "src": "https://cdn-icons-png.flaticon.com/512/3429/3429141.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "https://cdn-icons-png.flaticon.com/512/3429/3429141.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
