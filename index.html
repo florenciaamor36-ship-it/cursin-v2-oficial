@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursin V2 - OFICIAL</title>
+    <link rel="stylesheet" href="style.css?v=5">
+    <style>
+        .is-featured { border: 2px solid #eab308 !important; background: rgba(234, 179, 8, 0.05) !important; box-shadow: 0 4px 15px rgba(234, 179, 8, 0.2); }
+        .badge-featured { background: #eab308; color: black; padding: 4px 10px; font-size: 11px; font-weight: 900; text-transform: uppercase; border-radius: 4px; display: inline-block; }
+        .card p.desc { font-size: 0.85rem; color: #555; margin-top: 10px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.4; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; justify-content: center; align-items: center; z-index: 1000; backdrop-filter: blur(5px); }
+        .modal-content { background: white; padding: 30px; border-radius: 15px; max-width: 500px; width: 90%; position: relative; animation: slideUp 0.3s; }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .modal-close { position: absolute; top: 15px; right: 15px; font-size: 1.5rem; cursor: pointer; color: #999; }
+        .btn { display:block; text-align:center; padding:15px; background:#007bff; color:white; text-decoration:none; border-radius:8px; margin-top:10px; }
+    </style>
+</head>
+<body>
+    <header><div class="header-container"><h1>Cursin V2 📚</h1><p id="totalCount">Cargando...</p>
+    <div class="search-bar"><input type="text" id="searchInput" placeholder="Buscar cursos certificados..."></div>
+    <div class="filters"><select id="categoryFilter"><option value="">Categorías</option></select></div></div></header>
+    <main class="container"><div id="courseGrid" class="grid"></div><div id="loading" class="loading">Buscando...</div></main>
+    <div id="courseModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <div id="modalTag"></div><h2 id="modalTitle"></h2><p id="modalDesc"></p>
+            <a id="modalLink" href="#" target="_blank" class="btn">Empezar curso ahora</a>
+        </div>
+    </div>
+    <script>
+        const S_URL = 'https://ypzudkxowpxvdggvongz.supabase.co/rest/v1/';
+        const S_KEY = 'sb_publishable_KmyqfJTmmW4R5FKUeB5b4A_GVFYnn4b';
+        const grid = document.getElementById('courseGrid');
+        const searchInput = document.getElementById('searchInput');
+        const catFilter = document.getElementById('categoryFilter');
+        const loading = document.getElementById('loading');
+        const totalCount = document.getElementById('totalCount');
+
+        function openModal(c) {
+            document.getElementById('modalTitle').textContent = c.titulo;
+            document.getElementById('modalDesc').textContent = c.descripcion || 'Sin descripción disponible.';
+            document.getElementById('modalLink').href = c.url;
+            document.getElementById('modalTag').innerHTML = `<span class="tag tag-plat">${c.plataforma}</span>`;
+            document.getElementById('courseModal').style.display = 'flex';
+        }
+        window.closeModal = () => document.getElementById('courseModal').style.display = 'none';
+
+        function getThumb(c) {
+            const cat = (c.categorias ? c.categorias.nombre : '').toLowerCase();
+            if (cat.includes('program')) return 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400';
+            return 'https://images.unsplash.com/photo-1513258496099-48168024aec0?w=400';
+        }
+
+        async function fetchCourses(q = '', cat = '') {
+            loading.style.display = 'block'; grid.innerHTML = '';
+            let url = `${S_URL}cursos?select=*,categorias(nombre)&limit=50`;
+            if (q) url += `&or=(titulo.ilike.*${q}*,descripcion.ilike.*${q}*)`;
+            if (cat) url += `&categorias.nombre=eq.${cat}`;
+            try {
+                const r = await fetch(url, { headers: { 'apikey': S_KEY, 'Authorization': `Bearer ${S_KEY}` } });
+                const data = await r.json();
+                data.forEach(c => {
+                    const isF = (c.plataforma||'').toLowerCase().includes('santander');
+                    const div = document.createElement('div');
+                    div.className = `card ${isF?'is-featured':''}`;
+                    div.onclick = () => openModal(c);
+                    div.innerHTML = `<div class="card-img" style="height:140px; background:url('${getThumb(c)}') center/cover;"></div>
+                    <div style="padding:15px;"><h3>${c.titulo}</h3><p class="desc">${c.descripcion||''}</p></div>`;
+                    grid.appendChild(div);
+                });
+            } finally { loading.style.display = 'none'; }
+        }
+
+        async function init() {
+            try {
+                const rc = await fetch(S_URL + 'categorias', { headers: { 'apikey': S_KEY } });
+                const cats = await rc.json();
+                cats.forEach(c => { 
+                    const o = document.createElement('option'); o.value = c.nombre; o.textContent = c.nombre; catFilter.appendChild(o); 
+                });
+                await fetchCourses();
+                const rt = await fetch(S_URL + 'cursos?select=count', { headers: { 'apikey': S_KEY } });
+                const counts = await rt.json();
+                totalCount.textContent = `Explorando ${counts[0].count} cursos.`;
+            } catch(e) { console.error(e); }
+        }
+        searchInput.addEventListener('input', () => fetchCourses(searchInput.value, catFilter.value));
+        catFilter.addEventListener('change', () => fetchCourses(searchInput.value, catFilter.value));
+        init();
+    </script>
+</body></html>
+
