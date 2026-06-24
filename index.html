@@ -309,6 +309,10 @@
                     let logo = 'https://cdn-icons-png.flaticon.com/512/3429/3429141.png';
                     for(let k in LOGOS) { if(c.plataforma.toLowerCase().includes(k)) logo = LOGOS[k]; }
 
+                    // LIMPIEZA DE DESCRIPCIÓN (Remover HTML y caracteres de escape)
+                    let cleanDesc = (c.descripcion || '').replace(/<[^>]*>?/gm, '').replace(/\\n/g, ' ').replace(/\\/g, '');
+                    if(!cleanDesc) cleanDesc = 'Este curso oficial certificado ofrece formación técnica avanzada de nivel élite para potenciar tu carrera profesional inmediata con el respaldo de las mejores instituciones.';
+
                     grid.innerHTML += `
                         <a class="card" href="${c.url}" target="_blank">
                             <div class="c-img">
@@ -317,7 +321,7 @@
                             </div>
                             <div class="c-body">
                                 <h3>${c.titulo}</h3>
-                                <p class="c-desc">${c.descripcion || 'Este curso oficial certificado ofrece formación técnica avanzada de nivel élite para potenciar tu carrera profesional inmediata con el respaldo de las mejores instituciones.'}</p>
+                                <p class="c-desc">${cleanDesc}</p>
                                 <div class="c-plat">${c.plataforma}</div>
                                 <div class="btn-go">Ir al Curso</div>
                             </div>
