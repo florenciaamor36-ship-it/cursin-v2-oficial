@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>La Clave Academy | Educación de Élite</title>
+    <title>La Clave Academy | Educación de Élite Certificada</title>
     
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#ff0000">
@@ -12,129 +12,115 @@
     <style>
         :root {
             --brand: #ff0000;
-            --brand-hover: #cc0000;
             --gold: #ffd700;
             --bg: #050505;
-            --surface: #1a1a1a; /* Contraste real contra fondo */
-            --border: rgba(255,255,255,0.1);
+            --surface: #141414;
+            --border: rgba(255,255,255,0.08);
             --text: #ffffff;
             --text-dim: #a0a0a0;
             --radius: 12px;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background: var(--bg); 
-            color: var(--text); 
-            overflow-x: hidden;
-            line-height: 1.4;
-        }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; line-height: 1.4; }
 
-        /* BARRA DE NAVEGACIÓN */
+        /* NAV */
         nav { 
-            height: 70px;
-            padding: 0 20px;
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            background: #000;
-            border-bottom: 1px solid var(--border);
-            position: sticky; top: 0; z-index: 1000;
+            height: 70px; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; 
+            background: #000; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000;
         }
-        .nav-logo { font-family: 'Montserrat'; font-weight: 900; font-size: 1.2rem; cursor: pointer; }
+        .nav-logo { font-family: 'Montserrat'; font-weight: 900; font-size: 1.1rem; cursor: pointer; text-align: center; flex: 1; }
         .nav-logo span { color: var(--brand); }
-        .menu-btn { font-size: 1.8rem; cursor: pointer; color: #fff; }
+        .menu-btn { font-size: 1.8rem; cursor: pointer; color: #fff; width: 40px; }
 
-        /* SIDEBAR (MENÚ HAMBURGUESA DEFINITIVO) */
+        /* SIDEBAR DEFINITIVO v72 */
         #sidebar {
             position: fixed; top: 0; left: -100%; width: 300px; height: 100vh;
             background: #0f0f0f; z-index: 9999; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border-right: 1px solid var(--border);
-            padding: 30px 20px; display: flex; flex-direction: column;
+            border-right: 1px solid var(--border); padding: 30px 20px; display: flex; flex-direction: column;
+            overflow-y: auto;
         }
         #sidebar.active { left: 0; }
-        #sidebar .close { align-self: flex-end; font-size: 2rem; cursor: pointer; margin-bottom: 20px; }
-        #sidebar h4 { color: var(--brand); font-family: Montserrat; font-size: 0.75rem; letter-spacing: 2px; margin: 25px 0 10px; text-transform: uppercase; }
-        #sidebar a { color: #fff; text-decoration: none; padding: 12px 15px; border-radius: 8px; font-size: 0.95rem; display: block; }
+        #sidebar .close { align-self: flex-end; font-size: 2rem; cursor: pointer; margin-bottom: 10px; }
+        #sidebar h4 { color: var(--brand); font-family: Montserrat; font-size: 0.7rem; letter-spacing: 2px; margin: 20px 0 10px; text-transform: uppercase; border-bottom: 1px solid rgba(255,0,0,0.2); padding-bottom: 5px; }
+        #sidebar a { color: #fff; text-decoration: none; padding: 10px 12px; border-radius: 6px; font-size: 0.9rem; display: block; transition: 0.2s; }
         #sidebar a:hover { background: rgba(255,255,255,0.05); color: var(--brand); }
 
-        #overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 9000; display: none; backdrop-filter: blur(4px); }
-
-        /* HERO */
-        header { padding: 60px 20px; text-align: center; }
-        .h-title { font-family: 'Montserrat'; font-size: clamp(2.2rem, 8vw, 4rem); font-weight: 900; line-height: 1.1; }
-        .h-title span { color: var(--brand); }
+        #overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9000; display: none; backdrop-filter: blur(4px); }
 
         /* MAIN */
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+        header { padding: 50px 20px 40px; text-align: center; }
+        .h-title { font-family: 'Montserrat'; font-size: clamp(2rem, 7vw, 3.5rem); font-weight: 900; line-height: 1.1; }
+        .h-title span { color: var(--brand); }
+        .h-desc { color: var(--text-dim); font-size: 0.95rem; max-width: 700px; margin: 15px auto 0; }
+
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 20px; display: flex; flex-direction: column; align-items: center; }
         
         .search-box { 
             background: #fff; border-radius: 50px; padding: 5px 25px; 
             display: flex; align-items: center; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            margin-bottom: 40px; margin-top: -30px;
-            width: 100%; max-width: 800px; margin-inline: auto; /* Asegurar centrado */
+            margin-bottom: 40px; width: 100%; max-width: 600px;
         }
-        .search-box input { flex: 1; border: none; padding: 15px; font-size: 1rem; font-weight: 600; outline: none; color: #000; width: 100%; }
+        .search-box input { flex: 1; border: none; padding: 12px; font-size: 1rem; font-weight: 600; outline: none; color: #000; width: 100%; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; margin-bottom: 60px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; margin-bottom: 60px; width: 100%; }
 
         .card { 
             background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border);
             overflow: hidden; display: flex; flex-direction: column; transition: 0.3s;
-            text-decoration: none; color: inherit; height: 500px; position: relative;
+            text-decoration: none; color: inherit; height: 480px; position: relative;
         }
-        .card:hover { transform: translateY(-8px); border-color: var(--brand); }
+        .card:hover { transform: translateY(-5px); border-color: var(--brand); }
 
         .c-img { height: 180px; background: #111; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
         .c-img img.main { width: 100%; height: 100%; object-fit: cover; }
         
+        /* LOGOS ULTRA PEQUEÑOS Y DEFINIDOS v72 */
         .c-logo { 
-            position: absolute; bottom: 8px; right: 8px; width: 22px; height: 22px; 
+            position: absolute; bottom: 8px; right: 8px; width: 20px; height: 20px; 
             background: #fff; border-radius: 4px; padding: 2px; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.4); z-index: 10;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5); z-index: 10;
         }
-        .c-logo img { width: 100%; height: 100%; object-fit: contain; }
-        .c-logo img { width: 100%; height: 100%; object-fit: contain; }
+        .c-logo img { width: 100%; height: 100%; object-fit: contain; image-rendering: -webkit-optimize-contrast; }
 
-        .c-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
-        .c-body h3 { font-family: 'Montserrat'; font-size: 1.1rem; font-weight: 800; margin-bottom: 10px; height: 2.8em; overflow: hidden; }
-        .c-desc { font-size: 0.85rem; color: var(--text-dim); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 15px; }
-        .c-plat { margin-top: auto; color: var(--brand); font-weight: 800; font-size: 0.75rem; text-transform: uppercase; }
+        .c-body { padding: 18px; flex: 1; display: flex; flex-direction: column; }
+        .c-body h3 { font-family: 'Montserrat'; font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; height: 2.8em; overflow: hidden; }
+        .c-desc { font-size: 0.8rem; color: var(--text-dim); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 12px; }
+        .c-plat { margin-top: auto; color: var(--brand); font-weight: 800; font-size: 0.7rem; text-transform: uppercase; }
 
-        /* PAGINACIÓN DEFINITIVA v69 */
-        .pagi { display: flex; justify-content: center; align-items: center; gap: 8px; margin: 40px 0 80px; flex-wrap: wrap; }
+        /* PAGINACIÓN */
+        .pagi { display: flex; justify-content: center; align-items: center; gap: 5px; margin-bottom: 60px; flex-wrap: wrap; width: 100%; }
         .p-btn { 
             background: var(--surface); color: #fff; border: 1px solid var(--border); 
-            min-width: 40px; height: 40px; padding: 0 10px; border-radius: 8px; 
+            min-width: 35px; height: 35px; border-radius: 6px; 
             display: flex; align-items: center; justify-content: center; 
-            cursor: pointer; font-weight: 700; transition: 0.2s; font-size: 0.85rem;
+            cursor: pointer; font-weight: 700; font-size: 0.8rem;
         }
-        .p-btn:hover:not(:disabled) { background: var(--brand); border-color: var(--brand); }
         .p-btn.active { background: var(--brand); border-color: var(--brand); }
-        .p-btn:disabled { opacity: 0.2; cursor: not-allowed; }
-        .p-dots { color: #444; font-weight: 900; }
+        .p-dots { color: #444; font-weight: 900; padding: 0 5px; }
 
-        /* ERROR & RETRY */
+        /* STATUS / LOADER CENTRADO */
         #status-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 10000; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px; }
-        .spin { width: 50px; height: 50px; border: 4px solid #222; border-top-color: var(--brand); border-radius: 50%; animation: r 0.8s linear infinite; margin-bottom: 20px; }
+        #status-content { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; text-align: center; }
+        .spin { width: 45px; height: 45px; border: 4px solid #222; border-top-color: var(--brand); border-radius: 50%; animation: r 0.8s linear infinite; margin-bottom: 15px; }
         @keyframes r { to { transform: rotate(360deg); } }
         
-        .btn-retry {
-            background: var(--brand); color: white; border: none; padding: 15px 40px; 
-            border-radius: 50px; font-weight: 900; cursor: pointer; font-family: Montserrat;
-            box-shadow: 0 10px 30px rgba(255,0,0,0.3); margin-top: 20px;
-        }
+        .btn-retry { background: var(--brand); color: white; border: none; padding: 12px 35px; border-radius: 50px; font-weight: 900; cursor: pointer; font-family: Montserrat; margin-top: 20px; box-shadow: 0 10px 20px rgba(255,0,0,0.3); }
 
-        footer { padding: 80px 20px; text-align: center; border-top: 1px solid var(--border); background: #000; }
-        .f-legal { font-size: 0.7rem; color: #444; margin-top: 20px; line-height: 1.6; }
+        /* FAQ MODAL */
+        #faq-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 10001; display: none; align-items: center; justify-content: center; padding: 20px; }
+        .faq-content { background: var(--surface); max-width: 600px; width: 100%; border-radius: 20px; border: 1px solid var(--border); padding: 30px; position: relative; max-height: 80vh; overflow-y: auto; }
+
+        footer { padding: 60px 20px; text-align: center; border-top: 1px solid var(--border); background: #000; width: 100%; }
+        .f-credits { font-size: 0.75rem; color: #555; margin-top: 25px; line-height: 1.8; }
+        .f-credits b { color: #888; }
     </style>
 </head>
 <body>
     <div id="status-overlay">
-        <div id="status-content" style="text-align:center;">
+        <div id="status-content">
             <div class="spin"></div>
-            <p style="font-family:Montserrat; font-weight:900; color:var(--brand); letter-spacing:2px;">SINCRONIZANDO...</p>
+            <p style="font-family:Montserrat; font-weight:900; color:var(--brand); letter-spacing:2px; font-size:0.8rem;">SINCRONIZANDO...</p>
         </div>
     </div>
 
@@ -142,47 +128,65 @@
 
     <div id="sidebar">
         <div class="close" onclick="toggleMenu()">×</div>
-        <div class="nav-logo">LA CLAVE<span> ACADEMY</span></div>
+        <div class="nav-logo" style="text-align:left; font-size:1.4rem;">LA CLAVE<span> ACADEMY</span></div>
         
         <h4>Plataforma</h4>
         <a href="javascript:void(0)" onclick="location.reload()">🏠 Inicio</a>
-        <a href="javascript:void(0)" onclick="alert('Preguntas frecuentes próximamente')">❓ FAQ</a>
+        <a href="javascript:void(0)" onclick="toggleFAQ()">❓ Preguntas Frecuentes</a>
         
         <h4>Categorías</h4>
         <a href="javascript:void(0)" onclick="setCat('Todos')">📚 Todos los Cursos</a>
-        <a href="javascript:void(0)" onclick="setCat('Inteligencia Artificial')">🤖 IA</a>
-        <a href="javascript:void(0)" onclick="setCat('Programación')">💻 Programación</a>
-        <a href="javascript:void(0)" onclick="setCat('Marketing')">📈 Marketing</a>
+        <a href="javascript:void(0)" onclick="setCat('Inteligencia Artificial')">🤖 IA e Innovación</a>
+        <a href="javascript:void(0)" onclick="setCat('Programación')">💻 Programación y Dev</a>
+        <a href="javascript:void(0)" onclick="setCat('Marketing')">📈 Marketing y Ventas</a>
+        <a href="javascript:void(0)" onclick="setCat('Diseño')">🎨 Diseño y UX</a>
+        <a href="javascript:void(0)" onclick="setCat('Negocios')">💼 Negocios y Liderazgo</a>
+        <a href="javascript:void(0)" onclick="setCat('Idiomas')">🌐 Idiomas del Mundo</a>
+        <a href="javascript:void(0)" onclick="setCat('Salud')">🏥 Salud y Bienestar</a>
         
         <h4>Entidades</h4>
-        <a href="javascript:void(0)" onclick="setPlat('Google')">🔍 Google</a>
-        <a href="javascript:void(0)" onclick="setPlat('IBM')">🔍 IBM</a>
-        <a href="javascript:void(0)" onclick="setPlat('Microsoft')">🔍 Microsoft</a>
-        <a href="javascript:void(0)" onclick="setPlat('UNAM')">🔍 UNAM</a>
-        <a href="javascript:void(0)" onclick="setPlat('Cisco')">🔍 Cisco</a>
+        <a href="javascript:void(0)" onclick="setPlat('Google')">⭐ Google</a>
+        <a href="javascript:void(0)" onclick="setPlat('IBM')">⭐ IBM Corporation</a>
+        <a href="javascript:void(0)" onclick="setPlat('Microsoft')">⭐ Microsoft Learn</a>
+        <a href="javascript:void(0)" onclick="setPlat('UNAM')">⭐ UNAM México</a>
+        <a href="javascript:void(0)" onclick="setPlat('Cisco')">⭐ Cisco Networking Academy</a>
+        <a href="javascript:void(0)" onclick="setPlat('Meta')">⭐ Meta (Facebook)</a>
     </div>
 
     <nav>
         <div class="menu-btn" onclick="toggleMenu()">☰</div>
         <div class="nav-logo">LA CLAVE<span> ACADEMY</span></div>
-        <div style="width:30px"></div>
+        <div style="width:40px"></div>
     </nav>
 
     <header>
         <h1 class="h-title">EDUCACIÓN DE<br><span>ÉLITE GRATUITA</span></h1>
+        <p class="h-desc">La plataforma de búsqueda educativa más potente de Hispanoamérica. Accede a formación certificada por las mejores instituciones del mundo sin costo.</p>
     </header>
 
     <div class="container">
-        <div class="search-box"><input type="text" id="q" placeholder="¿Qué quieres dominar hoy?" autocomplete="off"></div>
+        <div class="search-box"><input type="text" id="q" placeholder="¿Qué habilidad quieres dominar?" autocomplete="off"></div>
         <div id="grid" class="grid"></div>
         <div id="pagination" class="pagi"></div>
     </div>
 
+    <div id="faq-modal">
+        <div class="faq-content">
+            <span style="position:absolute; top:15px; right:20px; font-size:2rem; cursor:pointer;" onclick="toggleFAQ()">×</span>
+            <h2 style="font-family:Montserrat; margin-bottom:20px; color:var(--brand);">Preguntas Frecuentes</h2>
+            <div style="text-align:left; display:flex; flex-direction:column; gap:20px;">
+                <div><p><b>¿Es gratis?</b></p><p style="color:var(--text-dim); font-size:0.9rem;">Sí, todos los cursos son de acceso gratuito.</p></div>
+                <div><p><b>¿Dan certificado?</b></p><p style="color:var(--text-dim); font-size:0.9rem;">La mayoría ofrece certificado oficial tras completar los requisitos.</p></div>
+                <div><p><b>¿Quiénes somos?</b></p><p style="color:var(--text-dim); font-size:0.9rem;">Un motor de búsqueda especializado en educación de alta calidad.</p></div>
+            </div>
+        </div>
+    </div>
+
     <footer>
-        <div class="nav-logo">LA CLAVE<span> ACADEMY</span></div>
-        <div class="f-legal">
-            <p>© 2026 LA CLAVE ACADEMY. Todos los derechos reservados.</p>
-            <p>Amparado por la Ley 11.723 de Propiedad Intelectual. Prohibida su reproducción total o parcial.</p>
+        <div class="nav-logo" style="font-size:1.5rem;">LA CLAVE<span> ACADEMY</span></div>
+        <div class="f-credits">
+            <p>© 2026 <b>La Clave Argentina</b> & <b>Tienda SSH</b>. Todos los derechos reservados.</p>
+            <p>Amparado por la Ley 11.723 de Propiedad Intelectual. El acceso a la educación es un derecho, el conocimiento es poder.</p>
         </div>
     </footer>
 
@@ -191,7 +195,7 @@
         const S_KEY = 'sb_publishable_KmyqfJTmmW4R5FKUeB5b4A_GVFYnn4b';
         const headers = { 'apikey': S_KEY, 'Authorization': 'Bearer ' + S_KEY };
         
-        let page = 1; const limit = 12; let totalItems = 0;
+        let page = 1; const limit = 12; let totalItems = 65684;
         const LOGOS = { 
             'google': 'https://www.gstatic.com/images/branding/product/2x/googleg_96dp.png', 
             'microsoft': 'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg', 
@@ -199,12 +203,7 @@
             'coursera': 'https://upload.wikimedia.org/wikipedia/commons/9/97/Coursera-Logo_600x600.svg',
             'youtube': 'https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg'
         };
-
-        const FALLBACKS = [
-            'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800',
-            'https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800',
-            'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800'
-        ];
+        const FALLBACKS = ['https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800','https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800','https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800'];
 
         function toggleMenu() {
             const s = document.getElementById('sidebar');
@@ -212,41 +211,28 @@
             const active = s.classList.toggle('active');
             o.style.display = active ? 'block' : 'none';
         }
-
-        function setCat(c) {
-            window.activePlat = '';
-            document.getElementById('q').value = (c === 'Todos') ? '' : c;
-            page = 1; load(); toggleMenu();
+        function toggleFAQ() {
+            const f = document.getElementById('faq-modal');
+            f.style.display = f.style.display === 'flex' ? 'none' : 'flex';
         }
-
-        function setPlat(p) {
-            window.activePlat = p;
-            document.getElementById('q').value = '';
-            page = 1; load(); toggleMenu();
-        }
+        function setCat(c) { window.activePlat = ''; document.getElementById('q').value = (c === 'Todos') ? '' : c; page = 1; load(); toggleMenu(); }
+        function setPlat(p) { window.activePlat = p; document.getElementById('q').value = ''; page = 1; load(); toggleMenu(); }
 
         async function load() {
             const grid = document.getElementById('grid');
             const query = document.getElementById('q').value;
             const overlay = document.getElementById('status-overlay');
             const content = document.getElementById('status-content');
-            
             overlay.style.display = 'flex';
-            content.innerHTML = '<div class="spin"></div><p style="font-family:Montserrat; font-weight:900; color:var(--brand); letter-spacing:2px;">SINCRONIZANDO...</p>';
+            content.innerHTML = '<div class="spin"></div><p style="font-family:Montserrat; font-weight:900; color:var(--brand); letter-spacing:2px; font-size:0.8rem;">SINCRONIZANDO...</p>';
             
             let url = `${S_URL}cursos?select=*&limit=${limit}&offset=${(page-1)*limit}&order=creado_el.desc`;
-            
-            if(window.activePlat) {
-                url += `&plataforma=ilike.*${window.activePlat}*`;
-            } else if(query) {
-                url += `&or=(titulo.ilike.*${encodeURIComponent(query)}*,descripcion.ilike.*${encodeURIComponent(query)}*)`;
-            }
+            if(window.activePlat) { url += `&plataforma=ilike.*${window.activePlat}*`; }
+            else if(query) { url += `&or=(titulo.ilike.*${encodeURIComponent(query)}*,descripcion.ilike.*${encodeURIComponent(query)}*)`; }
 
             try {
                 const res = await fetch(url, { headers: { ...headers, 'Prefer': 'count=exact' } });
-                if(!res.ok) throw new Error();
                 const data = await res.json();
-                
                 const countRange = res.headers.get('content-range');
                 if(countRange) totalItems = parseInt(countRange.split('/')[1]);
 
@@ -254,68 +240,35 @@
                 data.forEach((c, i) => {
                     const card = document.createElement('a');
                     card.className = 'card'; card.href = c.url; card.target = '_blank';
-                    
                     let logo = 'https://cdn-icons-png.flaticon.com/512/3429/3429141.png';
                     const low = c.plataforma.toLowerCase();
                     for(let k in LOGOS) { if(low.includes(k)) logo = LOGOS[k]; }
                     const fb = FALLBACKS[i % FALLBACKS.length];
-                    
-                    card.innerHTML = `
-                        <div class="c-img">
-                            <img class="main" src="${c.imagen_url || fb}" onerror="this.src='${fb}'" loading="lazy">
-                            <div class="c-logo"><img src="${logo}"></div>
-                        </div>
-                        <div class="c-body">
-                            <h3>${c.titulo}</h3>
-                            <p class="c-desc">${c.descripcion || 'Sin descripción disponible.'}</p>
-                            <div class="c-plat">${c.plataforma}</div>
-                        </div>`;
+                    card.innerHTML = `<div class="c-img"><img class="main" src="${c.imagen_url || fb}" onerror="this.src='${fb}'" loading="lazy"><div class="c-logo"><img src="${logo}"></div></div>
+                        <div class="c-body"><h3>${c.titulo}</h3><p class="c-desc">${c.descripcion || 'Sin descripción disponible.'}</p><div class="c-plat">${c.plataforma}</div></div>`;
                     grid.appendChild(card);
                 });
-                
                 renderPagi();
                 overlay.style.display = 'none';
             } catch (e) {
-                content.innerHTML = `
-                    <div style="padding:20px;">
-                        <h2 style="font-family:Montserrat; margin-bottom:10px;">¡UPS! ERROR DE CONEXIÓN</h2>
-                        <p style="color:var(--text-dim);">No pudimos conectar con la base de datos.</p>
-                        <button onclick="location.reload()" class="btn-retry">INTENTAR DE NUEVO</button>
-                    </div>`;
+                content.innerHTML = `<h2 style="font-family:Montserrat; font-size:1.2rem;">ERROR DE CONEXIÓN</h2><button onclick="location.reload()" class="btn-retry">REINTENTAR</button>`;
             }
         }
 
         function renderPagi() {
-            const container = document.getElementById('pagination');
-            container.innerHTML = '';
+            const container = document.getElementById('pagination'); container.innerHTML = '';
             const totalPages = Math.ceil(totalItems / limit);
             if(totalPages <= 1) return;
-
             const addBtn = (p, text, active = false) => {
-                const b = document.createElement('button');
-                b.className = `p-btn ${active ? 'active' : ''}`;
-                b.innerText = text;
-                b.onclick = () => { page = p; load(); window.scrollTo(0, 400); };
+                const b = document.createElement('button'); b.className = `p-btn ${active ? 'active' : ''}`;
+                b.innerText = text; b.onclick = () => { page = p; load(); window.scrollTo(0, 0); };
                 container.appendChild(b);
             };
-
             if (page > 1) addBtn(page - 1, '←');
-
-            let start = Math.max(1, page - 2);
-            let end = Math.min(totalPages, page + 2);
-
-            if(start > 1) {
-                addBtn(1, '1');
-                if(start > 2) container.innerHTML += '<span class="p-dots">...</span>';
-            }
-
-            for(let i = start; i <= end; i++) addBtn(i, i, i === page);
-
-            if(end < totalPages) {
-                if(end < totalPages - 1) container.innerHTML += '<span class="p-dots">...</span>';
-                addBtn(totalPages, totalPages);
-            }
-
+            let s = Math.max(1, page - 2), e = Math.min(totalPages, page + 2);
+            if(s > 1) { addBtn(1, '1'); if(s > 2) container.innerHTML += '<span class="p-dots">...</span>'; }
+            for(let i = s; i <= e; i++) addBtn(i, i, i === page);
+            if(e < totalPages) { if(e < totalPages - 1) container.innerHTML += '<span class="p-dots">...</span>'; addBtn(totalPages, totalPages); }
             if (page < totalPages) addBtn(page + 1, '→');
         }
 
