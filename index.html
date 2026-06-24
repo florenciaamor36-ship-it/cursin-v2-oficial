@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>La Clave Academy | Cursos Premium Gratuitos</title>
+    <title>La Clave Academy | Plataforma Premium de Cursos</title>
     
-    <!-- PWA & SEO -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#ff0000">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -15,260 +14,175 @@
             --brand: #ff0000;
             --gold: #ffd700;
             --bg: #050505;
-            --surface: #141414; /* Más claro que el fondo para contraste real */
-            --border: rgba(255,255,255,0.08);
+            --surface: #1a1a1a;
+            --border: rgba(255,255,255,0.1);
             --text: #ffffff;
-            --text-dim: #999999;
-            --radius: 16px;
+            --text-dim: #a0a0a0;
+            --radius: 12px;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         body { 
             font-family: 'Inter', sans-serif; 
             background: var(--bg); 
             color: var(--text); 
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            line-height: 1.4;
         }
 
-        /* BARRA DE NAVEGACIÓN */
+        /* NAVIGATION */
         nav { 
-            padding: 15px 25px; 
+            height: 70px;
+            padding: 0 20px;
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            border-bottom: 1px solid var(--border); 
             background: rgba(5,5,5,0.95); 
-            position: sticky; 
-            top: 0; 
-            z-index: 2000; 
-            backdrop-filter: blur(10px); 
+            border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; z-index: 1000;
+            backdrop-filter: blur(10px);
         }
-        .nav-logo { font-family: 'Montserrat'; font-weight: 900; font-size: 1.4rem; letter-spacing: -1px; }
+        .nav-logo { font-family: 'Montserrat'; font-weight: 900; font-size: 1.2rem; cursor: pointer; }
         .nav-logo span { color: var(--brand); }
-        
-        .notif-btn { position: relative; cursor: pointer; font-size: 1.4rem; }
-        .notif-badge { 
-            position: absolute; top: -5px; right: -5px; 
-            background: var(--brand); color: #fff; font-size: 0.6rem; 
-            width: 18px; height: 18px; border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; font-weight: 900;
-        }
 
-        /* HEADER */
-        header { padding: 60px 20px; text-align: center; background: radial-gradient(circle at top, #1a0000 0%, #050505 100%); }
-        .h-title { font-family: 'Montserrat'; font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 900; line-height: 1; }
-        .h-title span { color: var(--brand); }
-        .h-sub { color: var(--text-dim); margin-top: 15px; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .menu-btn { font-size: 1.8rem; cursor: pointer; color: #fff; display: flex; align-items: center; }
 
-        /* CONTENEDOR PRINCIPAL */
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
-
-        /* BUSCADOR & FILTROS */
-        .search-area { margin: -40px auto 40px; max-width: 900px; z-index: 1000; position: relative; }
-        .search-box { 
-            background: #fff; border-radius: 100px; padding: 5px 25px; 
-            display: flex; align-items: center; box-shadow: 0 25px 50px rgba(0,0,0,0.5); 
-        }
-        .search-box input { 
-            flex: 1; border: none; padding: 18px; font-size: 1.1rem; 
-            font-weight: 600; outline: none; color: #000; 
-        }
-        
-        .cats { 
-            display: flex; gap: 10px; overflow-x: auto; padding: 10px 0 25px; 
-            scrollbar-width: none; -ms-overflow-style: none;
-        }
-        .cats::-webkit-scrollbar { display: none; }
-        .cat-btn { 
-            background: var(--surface); color: var(--text); padding: 12px 24px; 
-            border-radius: 100px; border: 1px solid var(--border); 
-            white-space: nowrap; cursor: pointer; font-weight: 600; font-size: 0.85rem;
-            transition: 0.3s;
-        }
-        .cat-btn:hover, .cat-btn.active { background: var(--brand); border-color: var(--brand); box-shadow: 0 4px 15px rgba(255,0,0,0.3); }
-
-        /* MENÚ HAMBURGUESA v64 */
-        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: #fff; }
-        /* MENÚ LATERAL v65 */
-        .nav-links { 
-            position: fixed; top: 0; left: -100%; width: 280px; height: 100vh; 
-            background: #0f0f0f; flex-direction: column; padding: 40px 20px; 
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 5000;
+        /* SIDEBAR MENU v68 */
+        #sidebar {
+            position: fixed; top: 0; left: -100%; width: 300px; height: 100vh;
+            background: #0f0f0f; z-index: 5000; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border-right: 1px solid var(--border);
-            display: flex !important; gap: 15px; align-items: flex-start;
-            visibility: visible;
+            display: flex; flex-direction: column; padding: 30px 20px;
         }
-        .nav-links.active { left: 0; }
-        .nav-links h4 { color: var(--brand); font-family: Montserrat; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; margin: 20px 0 10px; }
-        .nav-links a { width: 100%; padding: 10px; border-radius: 8px; font-size: 0.9rem; }
-        .nav-links a:hover { background: rgba(255,255,255,0.05); }
+        #sidebar.active { left: 0; }
+        #sidebar h4 { color: var(--brand); font-family: Montserrat; font-size: 0.7rem; letter-spacing: 2px; margin: 25px 0 10px; text-transform: uppercase; }
+        #sidebar a { color: #fff; text-decoration: none; padding: 12px 15px; border-radius: 8px; font-size: 0.95rem; font-weight: 500; display: block; transition: 0.2s; }
+        #sidebar a:hover { background: rgba(255,255,255,0.05); color: var(--brand); }
+        .close-menu { align-self: flex-end; font-size: 2rem; cursor: pointer; margin-bottom: 20px; }
 
-        /* Overlay para el menú */
-        #menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 4000; display: none; backdrop-filter: blur(5px); }
+        #overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 4000; display: none; backdrop-filter: blur(4px); }
 
-        /* GRID DE TARJETAS */
-        .grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
-            gap: 25px; margin-bottom: 50px; 
-        }
+        /* HERO */
+        header { padding: 80px 20px 60px; text-align: center; }
+        .h-title { font-family: 'Montserrat'; font-size: clamp(2.2rem, 8vw, 4rem); font-weight: 900; line-height: 1.1; }
+        .h-title span { color: var(--brand); }
+        .h-sub { color: var(--text-dim); margin-top: 15px; font-size: 1rem; max-width: 600px; margin-inline: auto; }
+
+        /* MAIN CONTENT */
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+        
+        .search-wrap { margin-top: -30px; margin-bottom: 40px; position: relative; z-index: 10; }
+        .search-box { background: #fff; border-radius: 50px; padding: 5px 25px; display: flex; align-items: center; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .search-box input { flex: 1; border: none; padding: 15px; font-size: 1rem; font-weight: 600; outline: none; color: #000; width: 100%; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; margin-bottom: 60px; }
 
         .card { 
-            background: var(--surface); border-radius: var(--radius); 
-            border: 1px solid var(--border); overflow: hidden; 
-            display: flex; flex-direction: column; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-            text-decoration: none; color: inherit; height: 540px;
-            position: relative;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border);
+            overflow: hidden; display: flex; flex-direction: column; transition: 0.3s;
+            text-decoration: none; color: inherit; height: 520px; position: relative;
         }
-        .card:hover { 
-            transform: translateY(-8px); 
-            border-color: rgba(255,255,255,0.2); 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6); 
-            background: #1c1c1c; /* Aclarado sutil al hover */
-        }
+        .card:hover { transform: translateY(-8px); border-color: var(--brand); box-shadow: 0 15px 30px rgba(0,0,0,0.5); }
 
-        .c-img { height: 210px; background: #111; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-        .c-img img.main-thumb { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .card:hover .c-img img.main-thumb { transform: scale(1.05); }
-
-        /* LOGO INSTITUCIÓN - REDISEÑO RADICAL v62 */
+        .c-img { height: 200px; background: #111; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .c-img img.main { width: 100%; height: 100%; object-fit: cover; }
+        
         .c-logo { 
-            position: absolute; bottom: 15px; right: 15px; 
-            width: 38px; height: 38px; background: #fff; 
-            border-radius: 8px; padding: 5px; display: flex; 
-            align-items: center; justify-content: center; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-            z-index: 20;
+            position: absolute; bottom: 12px; right: 12px; width: 34px; height: 34px; 
+            background: #fff; border-radius: 6px; padding: 4px; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
-        /* Forzar que el logo de YouTube o cualquier otro no se vea "feo" o gigante */
         .c-logo img { width: 100%; height: 100%; object-fit: contain; }
 
-        .c-body { padding: 25px; flex: 1; display: flex; flex-direction: column; }
-        .c-tag { color: var(--brand); font-weight: 800; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-        .c-body h3 { font-family: 'Montserrat'; font-size: 1.2rem; font-weight: 800; line-height: 1.3; margin-bottom: 12px; height: 3.1em; overflow: hidden; }
-        .c-desc { font-size: 0.85rem; color: var(--text-dim); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 20px; }
-        .c-plat { margin-top: auto; font-weight: 700; font-size: 0.8rem; color: #fff; display: flex; align-items: center; gap: 8px; }
-        .c-plat::before { content: ''; width: 8px; height: 8px; background: var(--brand); border-radius: 50%; }
+        .c-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+        .c-body h3 { font-family: 'Montserrat'; font-size: 1.15rem; font-weight: 800; margin-bottom: 10px; height: 3em; overflow: hidden; line-height: 1.4; }
+        .c-desc { font-size: 0.85rem; color: var(--text-dim); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 15px; }
+        .c-footer { margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .c-plat { color: var(--brand); font-weight: 800; font-size: 0.75rem; text-transform: uppercase; }
 
-        /* PAGINACIÓN NUMÉRICA v62 */
-        .pagi { display: flex; justify-content: center; align-items: center; gap: 5px; margin: 50px 0 100px; flex-wrap: wrap; }
+        /* PAGINATION v68 */
+        .pagi { display: flex; justify-content: center; align-items: center; gap: 6px; margin: 40px 0 80px; flex-wrap: wrap; }
         .p-btn { 
             background: var(--surface); color: #fff; border: 1px solid var(--border); 
-            width: 38px; height: 38px; border-radius: 6px; 
+            min-width: 38px; height: 38px; padding: 0 10px; border-radius: 6px; 
             display: flex; align-items: center; justify-content: center; 
-            cursor: pointer; font-weight: 700; transition: 0.2s; font-size: 0.8rem;
+            cursor: pointer; font-weight: 700; transition: 0.2s; font-size: 0.85rem;
         }
         .p-btn:hover:not(:disabled) { background: var(--brand); border-color: var(--brand); }
-        .p-btn.active { background: var(--brand); border-color: var(--brand); box-shadow: 0 4px 10px rgba(255,0,0,0.3); }
+        .p-btn.active { background: var(--brand); border-color: var(--brand); }
         .p-btn:disabled { opacity: 0.2; cursor: not-allowed; }
-        .p-dots { color: #444; padding: 0 5px; font-weight: 900; }
+        .p-dots { color: #444; font-weight: 900; }
 
-        /* LOADER */
-        #loader { 
-            position: fixed; inset: 0; background: var(--bg); z-index: 10000; 
-            display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 20px;
-        }
+        /* LOADER & RETRY v68 */
+        #loader { position: fixed; inset: 0; background: var(--bg); z-index: 10000; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px; }
+        .spin { width: 50px; height: 50px; border: 4px solid #222; border-top-color: var(--brand); border-radius: 50%; animation: r 0.8s linear infinite; margin-bottom: 20px; }
+        @keyframes r { to { transform: rotate(360deg); } }
+        
+        .error-box { text-align: center; max-width: 400px; }
         .btn-retry {
-            background: var(--brand); color: white; border: none; padding: 14px 35px; 
+            background: var(--brand); color: white; border: none; padding: 15px 40px; 
             border-radius: 50px; font-weight: 900; cursor: pointer; font-family: Montserrat;
-            box-shadow: 0 10px 30px rgba(255,0,0,0.4); transition: 0.3s;
+            box-shadow: 0 10px 30px rgba(255,0,0,0.3); transition: 0.3s; margin-top: 20px;
         }
         .btn-retry:hover { transform: scale(1.05); background: #cc0000; }
-        .spin { width: 50px; height: 50px; border: 4px solid #222; border-top-color: var(--brand); border-radius: 50%; animation: r 0.8s linear infinite; }
-        @keyframes r { to { transform: rotate(360deg); } }
 
-        /* NOTIFICACIONES PANEL */
-        #n-panel { 
-            position: absolute; top: 70px; right: 20px; width: 320px; 
-            background: #181818; border: 1px solid var(--border); 
-            border-radius: 15px; display: none; box-shadow: 0 20px 40px rgba(0,0,0,0.8); z-index: 3000;
-        }
-        .n-header { padding: 15px; border-bottom: 1px solid var(--border); font-weight: 900; font-family: Montserrat; font-size: 0.9rem; }
-        .n-item { padding: 15px; border-bottom: 1px solid var(--border); font-size: 0.8rem; }
+        footer { padding: 60px 20px; text-align: center; border-top: 1px solid var(--border); background: #000; }
+        .f-copy { font-size: 0.7rem; color: #444; margin-top: 20px; }
     </style>
 </head>
 <body>
-    <div id="loader"><div class="spin"></div><p style="margin-top:20px; font-family:Montserrat; font-weight:900; color:var(--brand); letter-spacing:2px;">SINCRONIZANDO...</p></div>
+    <div id="loader">
+        <div id="loader-content">
+            <div class="spin"></div>
+            <p style="font-family:Montserrat; font-weight:900; color:var(--brand); letter-spacing:2px;">SINCRONIZANDO...</p>
+        </div>
+    </div>
 
-    <div id="menu-overlay" onclick="toggleM()"></div>
+    <div id="overlay" onclick="toggleMenu()"></div>
+
+    <div id="sidebar">
+        <div class="close-menu" onclick="toggleMenu()">×</div>
+        <div class="nav-logo" style="margin-bottom:20px;">LA CLAVE<span> ACADEMY</span></div>
+        
+        <h4>Navegación</h4>
+        <a href="javascript:void(0)" onclick="location.reload()">Inicio</a>
+        <a href="javascript:void(0)" onclick="alert('Próximamente')">Preguntas Frecuentes</a>
+        
+        <h4>Categorías</h4>
+        <a href="javascript:void(0)" onclick="setCat('Todos')">📚 Todos los Cursos</a>
+        <a href="javascript:void(0)" onclick="setCat('Inteligencia Artificial')">🤖 IA</a>
+        <a href="javascript:void(0)" onclick="setCat('Programación')">💻 Programación</a>
+        <a href="javascript:void(0)" onclick="setCat('Marketing')">📈 Marketing</a>
+        <a href="javascript:void(0)" onclick="setCat('Diseño')">🎨 Diseño</a>
+        <a href="javascript:void(0)" onclick="setCat('Negocios')">💼 Negocios</a>
+        <a href="javascript:void(0)" onclick="setCat('Idiomas')">🌐 Idiomas</a>
+    </div>
+
     <nav>
-        <div class="menu-toggle" onclick="toggleM()" style="display:block; cursor:pointer; font-size:1.8rem; color:white; z-index:6000;">☰</div>
-        <div class="nav-logo">LA CLAVE<span> ACADEMY</span></div>
-        <div class="nav-links" id="n-links">
-            <span style="position:absolute; top:20px; right:20px; font-size:2rem; cursor:pointer; color:white;" onclick="toggleM()">×</span>
-            <div class="nav-logo" style="margin-bottom:20px; display:block;">LA CLAVE<span> ACADEMY</span></div>
-            
-            <h4 style="margin-top:20px; color:var(--brand); font-size:0.75rem; letter-spacing:2px;">SECCIONES</h4>
-            <a href="javascript:void(0)" onclick="toggleFAQ()" style="color:white; text-decoration:none; display:block; padding:10px 0;">Preguntas Frecuentes</a>
-            <a href="#footer" onclick="toggleM()" style="color:white; text-decoration:none; display:block; padding:10px 0;">Legal & Derechos</a>
-            
-            <h4 style="margin-top:20px; color:var(--brand); font-size:0.75rem; letter-spacing:2px;">CATEGORÍAS</h4>
-            <a href="javascript:void(0)" onclick="setCat('Todos')" style="color:white; text-decoration:none; display:block; padding:10px 0;">📚 Todos los Cursos</a>
-            <a href="javascript:void(0)" onclick="setCat('Inteligencia Artificial')" style="color:white; text-decoration:none; display:block; padding:10px 0;">🤖 Inteligencia Artificial</a>
-            <a href="javascript:void(0)" onclick="setCat('Programación')" style="color:white; text-decoration:none; display:block; padding:10px 0;">💻 Programación</a>
-            <a href="javascript:void(0)" onclick="setCat('Marketing')" style="color:white; text-decoration:none; display:block; padding:10px 0;">📈 Marketing Digital</a>
-            <a href="javascript:void(0)" onclick="setCat('Diseño')" style="color:white; text-decoration:none; display:block; padding:10px 0;">🎨 Diseño & Creatividad</a>
-            <a href="javascript:void(0)" onclick="setCat('Negocios')" style="color:white; text-decoration:none; display:block; padding:10px 0;">💼 Negocios & Finanzas</a>
-            <a href="javascript:void(0)" onclick="setCat('Idiomas')" style="color:white; text-decoration:none; display:block; padding:10px 0;">🌐 Idiomas</a>
-            <a href="javascript:void(0)" onclick="setCat('Salud')" style="color:white; text-decoration:none; display:block; padding:10px 0;">🏥 Salud & Bienestar</a>
-        </div>
-        <div class="notif-btn" onclick="toggleN()">🔔<span class="notif-badge">3</span></div>
-        <div id="n-panel">
-            <div class="n-header">NOVEDADES</div>
-            <div class="n-item">🔥 15 nuevos cursos de IA agregados hoy.</div>
-            <div class="n-item">✅ Google actualizó sus certificaciones.</div>
-            <div class="n-item">🚀 Nueva interfaz optimizada v65.</div>
-        </div>
+        <div class="menu-btn" onclick="toggleMenu()">☰</div>
+        <div class="nav-logo" onclick="location.reload()">LA CLAVE<span> ACADEMY</span></div>
+        <div style="width:30px"></div> <!-- Spacer -->
     </nav>
 
     <header>
-        <h1 class="h-title">EL FUTURO DE LA<br><span>FORMACIÓN PROFESIONAL</span></h1>
-        <p class="h-sub">Accede a más de 65,000 cursos gratuitos de las instituciones más prestigiosas del mundo.</p>
+        <h1 class="h-title">EL FUTURO DE LA<br><span>EDUCACIÓN ÉLITE</span></h1>
+        <p class="h-sub">Explora el catálogo gratuito más grande con certificación oficial.</p>
     </header>
 
     <div class="container">
-        <div class="search-area">
-            <div class="search-box"><input type="text" id="q" placeholder="¿Qué quieres aprender hoy?" autocomplete="off"></div>
-        </div>
-
-        <div class="cats" id="cat-list">
-            <div class="cat-btn active">Todos</div>
-            <div class="cat-btn">Inteligencia Artificial</div>
-            <div class="cat-btn">Programación</div>
-            <div class="cat-btn">Marketing</div>
-            <div class="cat-btn">Diseño</div>
-            <div class="cat-btn">Negocios</div>
+        <div class="search-wrap">
+            <div class="search-box"><input type="text" id="q" placeholder="¿Qué quieres aprender?" autocomplete="off"></div>
         </div>
 
         <div id="grid" class="grid"></div>
-
-        <div class="pagi" id="pagi-numbers"></div>
+        <div id="pagi-numbers" class="pagi"></div>
     </div>
 
-    <!-- FAQ & LEGAL v64 -->
-    <div id="faq-modal" style="position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:9000; display:none; align-items:center; justify-content:center; padding:20px; overflow-y:auto;">
-        <div style="background:var(--surface); max-width:700px; width:100%; border-radius:30px; border:1px solid var(--border); padding:40px; position:relative;">
-            <span style="position:absolute; top:20px; right:30px; font-size:2rem; cursor:pointer;" onclick="toggleFAQ()">×</span>
-            <h2 style="font-family:Montserrat; margin-bottom:30px;">Preguntas Frecuentes</h2>
-            <div style="display:flex; flex-direction:column; gap:20px; text-align:left;">
-                <div><h4 style="color:var(--brand)">¿Los cursos son realmente gratis?</h4><p style="color:#888; font-size:0.9rem;">Sí, todos los cursos indexados en La Clave Academy son de acceso gratuito en sus plataformas de origen.</p></div>
-                <div><h4 style="color:var(--brand)">¿Obtengo certificado?</h4><p style="color:#888; font-size:0.9rem;">La mayoría de los cursos ofrecen certificación. Algunos pueden requerir un pago mínimo a la plataforma (Google, Coursera) para emitir el certificado oficial.</p></div>
-                <div><h4 style="color:var(--brand)">¿Cada cuánto se actualiza?</h4><p style="color:#888; font-size:0.9rem;">Nuestro sistema de descubrimiento automático busca nuevos cursos cada 24 horas.</p></div>
-            </div>
-        </div>
-    </div>
-
-    <footer style="padding:100px 20px; text-align:center; border-top:1px solid var(--border); background:#000;">
-        <div class="nav-logo" style="margin-bottom:30px;">LA CLAVE<span> ACADEMY</span></div>
-        <p style="color:var(--text-dim); font-size:0.9rem; max-width:800px; margin:0 auto 40px; line-height:1.8;">
-            La Clave Academy es un buscador independiente de recursos educativos. Los derechos de propiedad intelectual de los cursos pertenecen a sus respectivos autores e instituciones.
-        </p>
-        <div style="font-size:0.75rem; color:#444; display:flex; flex-direction:column; gap:10px;">
-            <p>© 2026 LA CLAVE ACADEMY ARGENTINA. Todos los derechos reservados.</p>
-            <p>Amparado bajo la Ley de Propiedad Intelectual 11.723.</p>
-            <p>Términos de Servicio | Política de Privacidad | Derechos de Autor</p>
+    <footer id="footer">
+        <div class="nav-logo">LA CLAVE<span> ACADEMY</span></div>
+        <div class="f-copy">
+            <p>© 2026 LA CLAVE ACADEMY. Todos los derechos reservados.</p>
+            <p>Ley 11.723 de Propiedad Intelectual.</p>
         </div>
     </footer>
 
@@ -277,7 +191,7 @@
         const S_KEY = 'sb_publishable_KmyqfJTmmW4R5FKUeB5b4A_GVFYnn4b';
         const headers = { 'apikey': S_KEY, 'Authorization': 'Bearer ' + S_KEY };
         
-        let page = 1; const limit = 12; let totalItems = 65684; // Dato real de la auditoría anterior
+        let page = 1; const limit = 12; let totalItems = 65684;
         const LOGOS = { 
             'google': 'https://www.gstatic.com/images/branding/product/2x/googleg_96dp.png', 
             'microsoft': 'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg', 
@@ -286,44 +200,39 @@
             'youtube': 'https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg'
         };
 
-        // Lista de imágenes alternativas para evitar repetición (v62)
         const FALLBACKS = [
             'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800',
             'https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800',
-            'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800',
-            'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800',
-            'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800'
+            'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800'
         ];
 
-        function toggleFAQ() {
-            const f = document.getElementById('faq-modal');
-            f.style.display = f.style.display === 'flex' ? 'none' : 'flex';
-            toggleM();
-        }
-
-        function toggleM() {
-            const l = document.getElementById('n-links');
-            const o = document.getElementById('menu-overlay');
-            l.classList.toggle('active');
-            o.style.display = o.style.display === 'block' ? 'none' : 'block';
+        function toggleMenu() {
+            const s = document.getElementById('sidebar');
+            const o = document.getElementById('overlay');
+            const isActive = s.classList.toggle('active');
+            o.style.display = isActive ? 'block' : 'none';
         }
 
         function setCat(c) {
             document.getElementById('q').value = (c === 'Todos') ? '' : c;
-            page = 1; load(); toggleM();
+            page = 1; load(); toggleMenu();
         }
 
         async function load() {
             const g = document.getElementById('grid');
             const q = document.getElementById('q').value;
-            const l = document.getElementById('loader');
+            const loader = document.getElementById('loader');
+            const loaderContent = document.getElementById('loader-content');
             
-            l.style.display = 'flex';
+            loader.style.display = 'flex';
+            loaderContent.innerHTML = '<div class="spin"></div><p style="font-family:Montserrat; font-weight:900; color:var(--brand); letter-spacing:2px;">SINCRONIZANDO...</p>';
+            
             let u = `${S_URL}cursos?select=*&limit=${limit}&offset=${(page-1)*limit}&order=creado_el.desc`;
             if(q) u += `&or=(titulo.ilike.*${encodeURIComponent(q)}*,descripcion.ilike.*${encodeURIComponent(q)}*)`;
 
             try {
                 const res = await fetch(u, { headers: { ...headers, 'Prefer': 'count=exact' } });
+                if(!res.ok) throw new Error();
                 const data = await res.json();
                 
                 const countRange = res.headers.get('content-range');
@@ -338,31 +247,29 @@
                     let logo = 'https://cdn-icons-png.flaticon.com/512/3429/3429141.png';
                     const lowPlat = c.plataforma.toLowerCase();
                     for(let k in LOGOS) { if(lowPlat.includes(k)) logo = LOGOS[k]; }
-                    const fallbackImg = FALLBACKS[idx % FALLBACKS.length];
+                    const fb = FALLBACKS[idx % FALLBACKS.length];
                     
                     card.innerHTML = `
                         <div class="c-img">
-                            <img class="main-thumb" src="${c.imagen_url || fallbackImg}" 
-                                 onerror="this.src='${fallbackImg}'" loading="lazy">
+                            <img class="main" src="${c.imagen_url || fb}" onerror="this.src='${fb}'" loading="lazy">
                             <div class="c-logo"><img src="${logo}"></div>
                         </div>
                         <div class="c-body">
-                            <div class="c-tag">Certificación Oficial</div>
                             <h3>${c.titulo}</h3>
                             <p class="c-desc">${c.descripcion || 'Accede a la formación de las mejores universidades e instituciones del mundo.'}</p>
-                            <div class="c-plat">${c.plataforma}</div>
+                            <div class="c-footer"><div class="c-plat">${c.plataforma}</div></div>
                         </div>`;
                     g.appendChild(card);
                 });
                 
                 renderPagination();
-                l.style.display = 'none';
+                loader.style.display = 'none';
             } catch (e) {
-                console.error(e);
-                l.innerHTML = `
-                    <div style="text-align:center; padding:40px;">
-                        <div style="font-size:3rem; margin-bottom:20px;">📡</div>
-                        <p style="color:white; font-family:Montserrat; font-weight:700; margin-bottom:25px;">No pudimos sincronizar con la base de datos.</p>
+                loaderContent.innerHTML = `
+                    <div class="error-box">
+                        <div style="font-size:3.5rem; margin-bottom:10px;">📡</div>
+                        <h2 style="font-family:Montserrat; margin-bottom:10px;">ERROR DE CONEXIÓN</h2>
+                        <p style="color:var(--text-dim); font-size:0.9rem;">No pudimos conectar con la base de datos. Verifica tu conexión e intenta de nuevo.</p>
                         <button onclick="location.reload()" class="btn-retry">REINTENTAR AHORA</button>
                     </div>`;
             }
@@ -373,63 +280,42 @@
             container.innerHTML = '';
             const totalPages = Math.ceil(totalItems / limit);
             
-            // Lógica de Paginación Avanzada: 1 2 3 4 5 ... Ultima
-            let start = Math.max(1, page - 2);
-            let end = Math.min(totalPages, page + 2);
-            
-            if (page <= 3) end = Math.min(totalPages, 5);
-            if (page > totalPages - 3) start = Math.max(1, totalPages - 4);
+            const start = Math.max(1, page - 2);
+            const end = Math.min(totalPages, page + 2);
 
-            // First & Prev
             if (page > 1) {
-                const prev = document.createElement('button'); prev.className = 'p-btn'; prev.innerText = '←';
-                prev.onclick = () => { page--; load(); window.scrollTo(0, 400); };
-                container.appendChild(prev);
+                const b = document.createElement('button'); b.className = 'p-btn'; b.innerText = '←';
+                b.onclick = () => { page--; load(); window.scrollTo(0, 400); };
+                container.appendChild(b);
             }
 
             if (start > 1) {
-                const p1 = document.createElement('button'); p1.className = 'p-btn'; p1.innerText = '1';
-                p1.onclick = () => { page = 1; load(); window.scrollTo(0, 400); };
-                container.appendChild(p1);
-                if (start > 2) { const dots = document.createElement('span'); dots.className = 'p-dots'; dots.innerText = '...'; container.appendChild(dots); }
+                const b1 = document.createElement('button'); b1.className = 'p-btn'; b1.innerText = '1';
+                b1.onclick = () => { page = 1; load(); window.scrollTo(0, 400); };
+                container.appendChild(b1);
+                if (start > 2) { const d = document.createElement('span'); d.className = 'p-dots'; d.innerText = '...'; container.appendChild(d); }
             }
 
             for (let i = start; i <= end; i++) {
                 const b = document.createElement('button');
-                b.className = `p-btn ${i === page ? 'active' : ''}`;
-                b.innerText = i;
+                b.className = `p-btn ${i === page ? 'active' : ''}`; b.innerText = i;
                 b.onclick = () => { page = i; load(); window.scrollTo(0, 400); };
                 container.appendChild(b);
             }
 
             if (end < totalPages) {
-                if (end < totalPages - 1) { const dots = document.createElement('span'); dots.className = 'p-dots'; dots.innerText = '...'; container.appendChild(dots); }
-                const pLast = document.createElement('button'); pLast.className = 'p-btn'; pLast.innerText = totalPages;
-                pLast.onclick = () => { page = totalPages; load(); window.scrollTo(0, 400); };
-                container.appendChild(pLast);
+                if (end < totalPages - 1) { const d = document.createElement('span'); d.className = 'p-dots'; d.innerText = '...'; container.appendChild(d); }
+                const bL = document.createElement('button'); bL.className = 'p-btn'; bL.innerText = totalPages;
+                bL.onclick = () => { page = totalPages; load(); window.scrollTo(0, 400); };
+                container.appendChild(bL);
             }
 
-            // Next
             if (page < totalPages) {
-                const next = document.createElement('button'); next.className = 'p-btn'; next.innerText = '→';
-                next.onclick = () => { page++; load(); window.scrollTo(0, 400); };
-                container.appendChild(next);
+                const b = document.createElement('button'); b.className = 'p-btn'; b.innerText = '→';
+                b.onclick = () => { page++; load(); window.scrollTo(0, 400); };
+                container.appendChild(b);
             }
         }
-
-        function toggleN() { 
-            const p = document.getElementById('n-panel'); 
-            p.style.display = p.style.display === 'block' ? 'none' : 'block'; 
-        }
-
-        document.querySelectorAll('.cat-btn').forEach(btn => {
-            btn.onclick = (e) => {
-                document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-                e.target.classList.add('active');
-                document.getElementById('q').value = e.target.innerText === 'Todos' ? '' : e.target.innerText;
-                page = 1; load();
-            };
-        });
 
         document.getElementById('q').oninput = () => { page = 1; clearTimeout(window.t); window.t = setTimeout(load, 600); };
 
