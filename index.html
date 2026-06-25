@@ -3,67 +3,184 @@
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>La Clave Academy | Tienda SSH</title>
+    <title>La Clave Academy | Tienda SSH - v243</title>
     <link href='https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist/full.min.css' rel='stylesheet' />
     <script src='https://cdn.tailwindcss.com'></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { background: #000; color: #fff; font-family: sans-serif; }
-        .card-img { height: 130px; object-fit: contain; background: #080808; padding: 10px; }
+        body { background: #000; color: #fff; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .card-img { height: 140px; object-fit: contain; background: #080808; padding: 15px; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card:hover .card-img { transform: scale(1.05) translateY(-5px); background: #0c0c0c; }
+        .glass-ad {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(220, 38, 38, 0.2);
+            box-shadow: 0 0 40px rgba(220, 38, 38, 0.15);
+        }
+        .text-premium { letter-spacing: -0.02em; }
+        .feature-glow { text-shadow: 0 0 20px rgba(220, 38, 38, 0.5); }
+        @keyframes subtle-glow {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; transform: scale(1.02); }
+        }
+        .animate-glow { animation: subtle-glow 3s infinite ease-in-out; }
     </style>
 </head>
 <body>
     <div class='drawer'>
         <input id='drawer' type='checkbox' class='drawer-toggle' />
         <div class='drawer-content flex flex-col'>
-            <div class='navbar bg-zinc-950 border-b border-zinc-900 sticky top-0 z-50 px-4'>
+            <!-- Navbar Pro -->
+            <div class='navbar bg-black/80 backdrop-blur-md border-b border-zinc-900 sticky top-0 z-50 px-6 py-4'>
                 <div class='flex-none'><label for='drawer' class='btn btn-square btn-ghost text-white'>☰</label></div>
-                <div class='flex-1 font-black text-xl tracking-tighter text-white'>LA CLAVE <span class='text-red-600'>ARGENTINA</span></div>
+                <div class='flex-1 font-black text-2xl tracking-tighter text-white uppercase'>
+                    LA CLAVE <span class='text-red-600'>ARGENTINA</span>
+                    <span class='ml-2 text-[10px] bg-red-600 text-white px-2 py-0.5 rounded-full tracking-widest'>PRO</span>
+                </div>
+                <div class='hidden md:block text-xs font-bold text-zinc-500 uppercase tracking-widest'>TIENDA SSH OFFICIAL</div>
             </div>
-            <main class='p-6 md:p-12 container mx-auto min-h-screen'>
-                <div class='text-center mb-12'>
-                    <h1 class='text-6xl font-black mb-2 uppercase'>TIENDA <span class='text-red-600'>SSH</span></h1>
-                    <p class='text-zinc-500'>Plataforma de Élite | +65.000 Cursos</p>
+
+            <main class='p-6 md:p-16 container mx-auto min-h-screen'>
+                <!-- Branding Section -->
+                <div class='text-center mb-16'>
+                    <div class='inline-block mb-4 px-4 py-1 border border-red-600/30 rounded-full bg-red-600/5'>
+                        <span class='text-red-600 text-[10px] font-black uppercase tracking-[0.4em]'>Ecosistema Educativo de Élite</span>
+                    </div>
+                    <h1 class='text-7xl md:text-8xl font-black mb-4 uppercase tracking-tighter text-premium'>
+                        TIENDA <span class='text-red-600 feature-glow'>SSH</span>
+                    </h1>
+                    <p class='text-zinc-500 font-bold uppercase tracking-[0.2em] text-sm'>Plataforma de Élite | +65.000 Cursos de Alta Gama</p>
                 </div>
-                <div class='max-w-xl mx-auto mb-12'>
-                    <input type='text' id='q' placeholder='Buscar cursos...' class='input input-bordered w-full rounded-full bg-zinc-900 border-zinc-700' oninput='load()' />
+
+                <!-- Search Pro -->
+                <div class='max-w-2xl mx-auto mb-16 relative'>
+                    <input type='text' id='q' placeholder='BUSCAR EN LA BIBLIOTECA DE ÉLITE...' 
+                        class='input input-bordered w-full h-16 rounded-2xl bg-zinc-900/50 border-zinc-800 text-white font-bold placeholder:text-zinc-600 focus:border-red-600 transition-all' 
+                        oninput='load()' />
+                    <div class='absolute right-4 top-1/2 -translate-y-1/2 text-zinc-600'>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                    </div>
                 </div>
-                <div id='g' class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6'></div>
+
+                <!-- Content Grid -->
+                <div id='g' class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8'></div>
+
+                <!-- Premium Description & FAQ Sections -->
+                <div class='mt-24 grid grid-cols-1 md:grid-cols-2 gap-12 border-t border-zinc-900 pt-16'>
+                    <section>
+                        <h2 class='text-2xl font-black mb-6 uppercase tracking-widest text-red-600'>DESCRIPCIÓN PRO</h2>
+                        <div class='space-y-4 text-zinc-400 font-medium leading-relaxed'>
+                            <p>LA CLAVE ACADEMY Y <span class='text-white font-bold'>TIENDA SSH</span> REPRESENTAN EL PINÁCULO DEL APRENDIZAJE DIGITAL. NUESTRA INFRAESTRUCTURA ESTÁ DISEÑADA PARA QUIENES BUSCAN NO SOLO APRENDER, SINO DOMINAR CADA HABILIDAD CON RECURSOS DE NIVEL CORPORATIVO.</p>
+                            <p>ACCESO INSTANTÁNEO, CONTENIDO CURADO Y UNA EXPERIENCIA DE USUARIO SIN FRICCIONES DEFINEN NUESTRO COMPROMISO CON LA EXCELENCIA ARGENTINA.</p>
+                        </div>
+                    </section>
+                    <section>
+                        <h2 class='text-2xl font-black mb-6 uppercase tracking-widest text-red-600'>PREGUNTAS (FAQ)</h2>
+                        <div class='collapse collapse-plus bg-zinc-900/30 border border-zinc-800/50 mb-3'>
+                            <input type="radio" name="my-accordion-3" checked="checked" /> 
+                            <div class="collapse-title text-sm font-black uppercase tracking-wider">¿CÓMO FUNCIONA EL ACCESO SSH?</div>
+                            <div class="collapse-content text-xs text-zinc-500 font-bold uppercase">
+                                <p>EL ACCESO SE CONFIGURA MEDIANTE TÚNELES ENCRIPTADOS QUE GARANTIZAN LA MÁXIMA VELOCIDAD DE DESCARGA Y SEGURIDAD EN TODO EL PAÍS.</p>
+                            </div>
+                        </div>
+                        <div class='collapse collapse-plus bg-zinc-900/30 border border-zinc-800/50'>
+                            <input type="radio" name="my-accordion-3" /> 
+                            <div class="collapse-title text-sm font-black uppercase tracking-wider">¿LOS CURSOS SON PERMANENTES?</div>
+                            <div class="collapse-content text-xs text-zinc-500 font-bold uppercase">
+                                <p>SÍ, UNA VEZ ADQUIRIDO EL PAQUETE ELITE EN TIENDA SSH, TU ACCESO ES VITALICIO Y CUENTA CON ACTUALIZACIONES AUTOMÁTICAS.</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
             </main>
-            <footer class='footer p-10 bg-zinc-950 border-t border-zinc-900'>
+
+            <!-- Footer Pro -->
+            <footer class='footer p-12 bg-zinc-950 border-t border-zinc-900 mt-24 text-zinc-400'>
+                <aside>
+                    <div class='font-black text-3xl tracking-tighter text-white mb-4 uppercase'>LA CLAVE <span class='text-red-600'>ARGENTINA</span></div>
+                    <p class='font-bold uppercase text-xs tracking-widest'>Operado por <span class='text-white'>Tienda SSH Elite</span><br/>Soporte 24/7 de Alta Disponibilidad</p>
+                </aside> 
                 <nav>
-                    <header class='footer-title text-red-600 opacity-100'>La Clave Argentina</header>
-                    <a class='link link-hover' onclick='alert("Quiénes Somos: La Clave Argentina es el ecosistema educativo más potente de la región.")'>Quiénes Somos</a>
-                    <a class='link link-hover' onclick='alert("Legal: © 2026 La Clave Argentina. Plataforma operada por Tienda SSH.")'>Aviso Legal</a>
+                    <header class='footer-title text-red-600 opacity-100 font-black tracking-widest uppercase'>LEGADO</header> 
+                    <a class='link link-hover font-bold uppercase text-xs' onclick='alert("Quiénes Somos: La Clave Argentina es el ecosistema educativo más potente de la región.")'>Quiénes Somos</a>
+                    <a class='link link-hover font-bold uppercase text-|l' onclick='alert("Legal: © 2026 La Clave Argentina. Plataforma operada por Tienda SSH.")'>Aviso Legal</a>
                 </nav>
             </footer>
         </div>
         <div class='drawer-side'>
             <label for='drawer' class='drawer-overlay'></label>
             <ul class='menu p-6 w-80 min-h-full bg-black text-white'>
-                <li class='menu-title text-red-600'>MENÚ SSH</li>
-                <li><a onclick='load()'>Todos los Cursos</a></li>
-                <div class='divider opacity-10'></div>
-                <li><a onclick='alert("FAQ: Acceso vía SSH configurado.")'>Preguntas Frecuentes</a></li>
+                <li class='menu-title text-red-600 font-black tracking-[0.2em] mb-4'>MENÚ SSH ELITE</li>
+                <li><a onclick='load()' class='font-bold uppercase tracking-wider hover:text-red-600'>Biblioteca Completa</a></li>
+                <div class='divider opacity-5'></div>
+                <li><a onclick='alert("Dashboard VIP pronto...")' class='font-bold uppercase tracking-wider'>Dashboard Alumno</a></li>
+                <li><a onclick='alert("FAQ: Acceso vía SSH configurado.")' class='font-bold uppercase tracking-wider'>Soporte Técnico</a></li>
             </ul>
         </div>
     </div>
+
     <script>
         const K = 'sb_publishable_KmyqfJTmmW4R5FKUeB5b4A_GVFYnn4b';
-        const U = 'https://ypzudkxowpxvdggvongz.supabase.co/rest/v1/cursos?select=titulo,plataforma,url,imagen_url&limit=16';
+        const U = 'https://ypzudkxowpxvdggvongz.supabase.co/rest/v1/cursos?select=titulo,plataforma,url,imagen_url&limit=24';
+        
         async function load() {
             const g = document.getElementById('g');
             const q = document.getElementById('q').value;
             let url = U;
             if(q) url += '&or=(titulo.ilike.*' + encodeURIComponent(q) + '*,descripcion.ilike.*' + encodeURIComponent(q) + '*)';
+            
             try {
                 const r = await fetch(url, { headers: { 'apikey': K, 'Authorization': 'Bearer ' + K } });
                 const d = await r.json();
-                g.innerHTML = '';
-                d.forEach(x => {
+                
+                let resHTML = '';
+                d.forEach((x, i) => {
                     const img = x.imagen_url || 'https://raw.githubusercontent.com/florenciaamor36-ship-it/cursin-v2-oficial/main/youtube_fallback.jpg';
-                    g.innerHTML += "<div class='card bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden shadow-2xl'><img src='" + img + "' class='card-img' /><div class='card-body p-6'><div class='badge badge-error text-white font-bold text-[10px]'>" + x.plataforma + "</div><h3 class='font-bold text-sm h-10 line-clamp-2'>" + x.titulo + "</h3><a href='" + x.url + "' target='_blank' class='btn btn-sm btn-error mt-4 text-white font-bold'>ACCEDER</a></div></div>";
+                    const h = `
+                        <div class='card bg-zinc-900 border border-zinc-800 rounded-[2rem] overflow-hidden shadow-2xl transition-all hover:border-red-600/50 group'>
+                            <div class='relative overflow-hidden'>
+                                <img src='${img}?v=243' class='card-img w-full' />
+                                <div class='absolute top-3 left-3'>
+                                    <div class='badge bg-red-600 border-none text-white font-black text-[9px] uppercase tracking-widest px-3 py-2'>${x.plataforma}</div>
+                                </div>
+                            </div>
+                            <div class='card-body p-7'>
+                                <h3 class='font-black text-sm h-10 line-clamp-2 uppercase leading-tight group-hover:text-red-600 transition-colors'>${x.titulo}</h3>
+                                <div class='divider my-1 opacity-5'></div>
+                                <a href='${x.url}?v=243' target='_blank' 
+                                   class='btn btn-sm bg-zinc-800 hover:bg-red-600 border-none mt-4 text-white font-black rounded-xl tracking-widest text-[10px]'>
+                                   DESBLOQUEAR
+                                </a>
+                            </div>
+                        </div>`;
+                    resHTML += h;
+
+                    // Ad card every 4 items - Super Pro Polish
+                    if ((i + 1) % 4 === 0) {
+                        const ad = `
+                            <div class='card glass-ad rounded-[2rem] overflow-hidden flex flex-col justify-center items-center p-10 text-center min-h-[380px] relative group transition-all hover:scale-[1.02] border-red-600/40'>
+                                <div class='absolute inset-0 bg-gradient-to-t from-red-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity'></div>
+                                <div class='relative z-10'>
+                                    <div class='text-red-600 font-black text-[10px] mb-6 tracking-[0.5em] uppercase animate-glow'>TIENDA SSH ELITE</div>
+                                    <h2 class='text-3xl font-black text-white mb-6 leading-[1.1] uppercase tracking-tighter'>
+                                        DOMINA EL <br/><span class='text-red-600'>MERCADO</span>
+                                    </h2>
+                                    <p class='text-zinc-400 text-[10px] mb-8 font-black uppercase tracking-[0.2em] leading-relaxed'>
+                                        ADQUIERE EL ACCESO VIP <br/>Y DESBLOQUEA +65K CURSOS
+                                    </p>
+                                    <button class='btn bg-red-600 hover:bg-red-700 border-none text-white btn-md rounded-rxl px-10 font-black tracking-widest text-xs shadow-[0_10px_20px_rgba(220,38,38,0.3)]'>
+                                        SER MIEMBRO PRO
+                                    </button>
+                                </div>
+                            </div>`;
+                        resHTML += ad;
+                    }
                 });
-            } catch(e) {}
+                
+                g.innerHTML = resHTML;
+            } catch(e) {
+                console.error("Error loading courses:", e);
+            }
         }
         load();
     </script>
