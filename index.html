@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang='es' data-theme='dark'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1.0'><title>La Clave Academy | v284-STABLE-APP</title><link href='https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist/full.min.css' rel='stylesheet'/><script src='https://cdn.tailwindcss.com'></script>
+<!DOCTYPE html><html lang='es' data-theme='dark'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1.0'><title>La Clave Academy | v285-ULTRA-STABLE</title><link href='https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist/full.min.css' rel='stylesheet'/><script src='https://cdn.tailwindcss.com'></script>
 <style>
 body{font-family:sans-serif;background:#000;color:#fff;scroll-behavior:smooth}
 .nav-g{background:rgba(0,0,0,.95);backdrop-filter:blur(15px);border-bottom:1px solid #1a1a1a}
@@ -20,6 +20,8 @@ body { top: 0px !important; }
 .stats-bar { background: rgba(9, 9, 11, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(220, 38, 38, 0.2); }
 .pulse-red { display: inline-block; width: 6px; height: 6px; background: #dc2626; border-radius: 50%; margin-right: 6px; box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); animation: pulse-red-stat 2s infinite; }
 @keyframes pulse-red-stat { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(220, 38, 38, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); } }
+#install-banner { display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 92%; max-width: 400px; background: rgba(20, 20, 20, 0.95); backdrop-filter: blur(20px); color: white; padding: 20px; border-radius: 28px; z-index: 10000; box-shadow: 0 20px 50px rgba(0,0,0,0.8); border: 1px solid rgba(220, 38, 38, 0.3); justify-content: space-between; align-items: center; animation: slideUp 0.5s ease-out; }
+@keyframes slideUp { from { bottom: -100px; opacity: 0; } to { bottom: 20px; opacity: 1; } }
 </style>
 <script type='text/javascript'>
 function googleTranslateElementInit(){
@@ -31,260 +33,34 @@ function googleTranslateElementInit(){
 }
 </script>
 <script type='text/javascript' src='//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit'></script>
-
-<style>
-#install-banner {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 92%;
-    max-width: 400px;
-    background: rgba(20, 20, 20, 0.95);
-    backdrop-filter: blur(20px);
-    color: white;
-    padding: 20px;
-    border-radius: 28px;
-    z-index: 10000;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-    border: 1px solid rgba(220, 38, 38, 0.3);
-    justify-content: space-between;
-    align-items: center;
-    animation: slideUp 0.5s ease-out;
-}
-@keyframes slideUp { from { bottom: -100px; opacity: 0; } to { bottom: 20px; opacity: 1; } }
-</style>
-</head><body><div id='google_translate_element' style='display:none!important'></div><div class='drawer'><input id='dr' type='checkbox' class='drawer-toggle'/><div class='drawer-content flex flex-col'><div class='navbar w-full nav-g sticky top-0 z-50 px-4 md:px-10 h-20 md:h-24'><div class='flex-none'><label for='dr' class='btn btn-square btn-ghost text-white text-2xl font-black'>☰</label></div><div class='flex-1 font-black text-white uppercase italic ml-2'>LA CLAVE <span class='text-red-600'>ARGENTINA</span></div><div class='flex-none hidden sm:flex gap-4 items-center border-l border-zinc-800 ml-4 pl-4 h-10'><div class='flex flex-col items-end'><span class='text-[8px] font-black text-zinc-500 uppercase italic'>v284-STABLE-APP</span><span class='text-xs font-bold text-white uppercase'>Tienda SSH</span></div></div></div>
-
-<div class='stats-bar sticky top-20 md:top-24 z-40 py-2.5 px-4'>
-    <div class='max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3'>
-        <div class='flex items-center gap-5'>
-            <div class='flex items-center'><div class='pulse-red'></div><span class='text-[10px] font-black text-white uppercase italic tracking-wider'>EN VIVO: <span id='online-count' class='text-red-500'>142</span> <span class='text-zinc-500 ml-1'>USUARIOS</span></span></div>
-            <div class='h-3 w-px bg-zinc-800'></div>
-            <span class='text-[10px] font-black text-zinc-400 uppercase tracking-wider'>VISTAS: <span id='vistas-count' class='text-white'>12,450</span></span>
-        </div>
-        <div class='hidden lg:block text-center flex-1'><p class='text-[9px] text-zinc-500 font-bold uppercase tracking-[0.2em]'>Portal Educativo La Clave Academy • Acceso Ilimitado 2026</p></div>
-        <div class='flex items-center gap-2 bg-red-600/10 px-3 py-1 rounded-full border border-red-600/20'>
-            <span class='text-[10px] font-black text-red-600 uppercase tracking-tighter'>CATÁLOGO: <span id='total-cursos' class='text-white'>Cargando...</span> <span class='text-red-600/50'>CURSOS</span></span>
-        </div>
-    </div>
-</div>
-
+</head><body><div id='google_translate_element' style='display:none!important'></div><div class='drawer'><input id='dr' type='checkbox' class='drawer-toggle'/><div class='drawer-content flex flex-col'><div class='navbar w-full nav-g sticky top-0 z-50 px-4 md:px-10 h-20 md:h-24'><div class='flex-none'><label for='dr' class='btn btn-square btn-ghost text-white text-2xl font-black'>☰</label></div><div class='flex-1 font-black text-white uppercase italic ml-2'>LA CLAVE <span class='text-red-600'>ARGENTINA</span></div><div class='flex-none hidden sm:flex gap-4 items-center border-l border-zinc-800 ml-4 pl-4 h-10'><div class='flex flex-col items-end'><span class='text-[8px] font-black text-zinc-500 uppercase italic'>v285-ULTRA</span><span class='text-xs font-bold text-white uppercase'>Tienda SSH</span></div></div></div>
+<div class='stats-bar sticky top-20 md:top-24 z-40 py-2.5 px-4'><div class='max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3'><div class='flex items-center gap-5'><div class='flex items-center'><div class='pulse-red'></div><span class='text-[10px] font-black text-white uppercase italic tracking-wider'>EN VIVO: <span id='online-count' class='text-red-500'>142</span> <span class='text-zinc-500 ml-1'>USUARIOS</span></span></div><div class='h-3 w-px bg-zinc-800'></div><span class='text-[10px] font-black text-zinc-400 uppercase tracking-wider'>VISTAS: <span id='vistas-count' class='text-white'>12,450</span></span></div><div class='hidden lg:block text-center flex-1'><p class='text-[9px] text-zinc-500 font-bold uppercase tracking-[0.2em]'>Portal Educativo La Clave Academy • Acceso Ilimitado 2026</p></div><div class='flex items-center gap-2 bg-red-600/10 px-3 py-1 rounded-full border border-red-600/20'><span class='text-[10px] font-black text-red-600 uppercase tracking-tighter'>CATÁLOGO: <span id='total-cursos' class='text-white'>65,748</span> <span class='text-red-600/50'>CURSOS</span></span></div></div></div>
 <main class='min-h-screen text-center px-4 pt-12 pb-40'><div class='max-w-6xl mx-auto'><div class='inline-block px-6 py-2 rounded-full border border-red-600/30 bg-red-600/5 text-red-600 text-[9px] font-black uppercase mb-4 italic'>Propiedad de La Clave Argentina</div>
 <h1 class='text-4xl md:text-[100px] font-black uppercase tracking-tighter mb-4 leading-none'>LA CLAVE <br><span class='text-red-600'>ACADEMY</span></h1>
 <div class='b-strip shadow-2xl'>
-    <div class='b-slide active'><a href="https://wa.me/5492235590910?text=Hola,%20vengo%20desde%20La%20Clave%20Academy%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n" target="_blank"><img src="ad1.jpg?v=282"></a></div>
-    <div class='b-slide'><a href="https://wa.me/5492235590910?text=Hola,%20vengo%20desde%20La%20Clave%20Academy%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n" target="_blank"><img src="ad2.jpg?v=282"></a></div>
-    <div class='b-slide'><a href="https://wa.me/5492235590910?text=Hola,%20vengo%20desde%20La%20Clave%20Academy%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n" target="_blank"><img src="ad3.jpg?v=282"></a></div>
-    <div class='b-slide'><a href="https://wa.me/5492235590910?text=Hola,%20vengo%20desde%20La%20Clave%20Academy%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n" target="_blank"><img src="ad4.jpg?v=282"></a></div>
+    <div class='b-slide active'><a href="https://wa.me/5492235590910?text=Hola,%20vengo%20desde%20La%20Clave%20Academy%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n" target="_blank"><img src="ad1.jpg?v=285"></a></div>
+    <div class='b-slide'><a href="https://wa.me/5492235590910?text=Hola,%20vengo%20desde%20La%20Clave%20Academy%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n" target="_blank"><img src="ad2.jpg?v=285"></a></div>
+    <div class='b-slide'><a href="https://wa.me/5492235590910?text=Hola,%20vengo%20desde%20La%20Clave%20Academy%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n" target="_blank"><img src="ad3.jpg?v=285"></a></div>
+    <div class='b-slide'><a href="https://wa.me/5492235590910?text=Hola,%20vengo%20desde%20La%20Clave%20Academy%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n" target="_blank"><img src="ad4.jpg?v=285"></a></div>
 </div>
 <div class='max-w-4xl mx-auto mb-20 px-2'><div class='relative flex flex-col md:flex-row bg-zinc-950 border border-zinc-800 rounded-2xl md:rounded-full p-1.5 focus-within:border-red-600 gap-2'><input id='q' type='text' placeholder='¿UBA, UNMDP, MECÁNICA, ALBAÑIL...?' class='input w-full bg-transparent border-none focus:outline-none px-6 font-bold text-white uppercase' oninput='search()'/><button onclick='res()' class='btn btn-error rounded-xl md:rounded-full px-10 text-white font-black h-12'>EXPLORAR</button></div></div>
 <div id='grid' class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'></div>
 <div class='mt-20 flex flex-col items-center gap-8 pb-20'><div class='join bg-zinc-900 border border-zinc-800 p-1.5 rounded-2xl'><button onclick='prevPage()' class='join-item btn btn-ghost text-zinc-500 font-black px-4 uppercase text-[10px]'>« ANT.</button><div id='pages' class='join flex gap-1 px-2'></div><button onclick='nextPage()' class='join-item btn btn-ghost text-zinc-500 font-black px-4 uppercase text-[10px]'>SIG. »</button></div><p id='counter' class='text-[10px] font-black text-zinc-600 uppercase'></p></div></div></main></div>
 <div class='drawer-side z-[100]'><label for='dr' class='drawer-overlay'></label><div class='menu-r min-h-full flex flex-col'><h3 class='text-2xl font-black italic text-white uppercase mb-10'>LA <span class='text-red-600'>CLAVE</span></h3><div class='flex-1 overflow-y-auto pr-2'><p class='text-[10px] font-black text-red-600 mb-6 uppercase'>Oficios & Salida Laboral</p><div class='flex flex-col gap-1 mb-8'><a onclick='cat("mecanica",event)' class='cat-i btn btn-ghost justify-start'>Mecánica Autos/Motos</a><a onclick='cat("construccion",event)' class='cat-i btn btn-ghost justify-start'>Albañilería & Pintura</a><a onclick='cat("plomeria",event)' class='cat-i btn btn-ghost justify-start'>Plomería & Gas</a><a onclick='cat("electricidad",event)' class='cat-i btn btn-ghost justify-start'>Electricidad</a><a onclick='cat("carpinteria",event)' class='cat-i btn btn-ghost justify-start'>Carpintería & Muebles</a><a onclick='cat("artes",event)' class='cat-i btn btn-ghost justify-start'>Manualidades & Murales</a><a onclick='cat("agro",event)' class='cat-i btn btn-ghost justify-start'>Agro & Campo</a></div><p class='text-[10px] font-black text-red-600 mb-6 uppercase'>Entidades Argentinas</p><div class='flex flex-col gap-1 mb-8'><a onclick='cat("unmdp",event)' class='cat-i btn btn-ghost justify-start'>UNMDP Mar del Plata</a><a onclick='cat("uba",event)' class='cat-i btn btn-ghost justify-start'>UBA Buenos Aires</a><a onclick='cat("balcarce",event)' class='cat-i btn btn-ghost justify-start'>Balcarce / Agro</a><a onclick='cat("oficial",event)' class='cat-i btn btn-ghost justify-start'>Capacitación Oficial</a></div><p class='text-[10px] font-black text-red-600 mb-6 uppercase'>General</p><div class='flex flex-col gap-1'><a onclick='cat("",event)' class='cat-i btn btn-ghost justify-start cat-a'>TODOS LOS CURSOS</a><a onclick='cat("ia",event)' class='cat-i btn btn-ghost justify-start'>IA</a><a onclick='cat("programacion",event)' class='cat-i btn btn-ghost justify-start'>Programación</a></div></div></div></div></div>
+<div id='install-banner'><div class='flex items-center gap-4'><div class='bg-red-600 p-2.5 rounded-2xl'><svg class='w-6 h-6 text-white' fill='none' stroke='currentColor' viewBox='0 0 24 24'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4'></path></svg></div><div><p class='text-[12px] font-black uppercase italic text-white'>La Clave Academy</p><p class='text-[10px] font-bold text-zinc-400 uppercase'>Instalar App</p></div></div><button id='btn-install' class='btn btn-sm btn-error text-white font-black rounded-xl px-6 border-none'>INSTALAR</button></div>
 <script>
 const K='sb_publishable_KmyqfJTmmW4R5FKUeB5b4A_GVFYnn4b',U='https://ypzudkxowpxvdggvongz.supabase.co/rest/v1/cursos';let page=1,q='',c='',limit=16;
-let adIdx=0;function rot(){const slides=document.querySelectorAll('.b-slide');if(!slides.length)return;slides[adIdx].classList.remove('active');adIdx=(adIdx+1)%slides.length;slides[adIdx].classList.add('active')}setInterval(rot,4000);
-async function 
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    const banner = document.getElementById('install-banner');
-    if (banner) banner.style.display = 'flex';
-});
-
-const btnInstall = document.getElementById('btn-install');
-if(btnInstall) {
-    btnInstall.addEventListener('click', async () => {
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            if (outcome === 'accepted') {
-                document.getElementById('install-banner').style.display = 'none';
-            }
-            deferredPrompt = null;
-        }
-    });
-}
-load(){const g=document.getElementById('grid'),p=document.getElementById('pages');g.innerHTML='<div class="col-span-full py-40 text-red-600 font-black animate-pulse text-[10px]">SINCRONIZANDO...</div>';let url=U+'?select=*&limit='+limit+'&offset='+((page-1)*limit)+'&order=plataforma.asc,titulo.asc';if(q)url+='&or=(titulo.ilike.*'+encodeURIComponent(q)+'*,descripcion.ilike.*'+encodeURIComponent(q)+'*,plataforma.ilike.*'+encodeURIComponent(q)+'*)';if(c){const m={mecanica:'auto,moto,mecanic,taller,motor,carro,vehiculo',construccion:'albañil,pintur,construc,revoque,ladrillo,arquitectura',plomeria:'plomer,gasist,cañeria,griferia,instalacion sanitaria',electricidad:'electricid,electrotec,tension,cable,electricista',carpinteria:'carpinter,mueble,madera,ebanist',agro:'agro,campo,veterinari,cultivo,siembra,cosecha,agronomo',artes:'manualidad,mural,serigrafia,arte,artista,pintura decorativa',unmdp:'unmdp,mar del plata,mdp,universidad nacional de mar del plata',uba:'uba,buenos aires,uba.ar,universidad de buenos aires',balcarce:'balcarce,inta,balcarce agropecuaria',oficial:'nacional,oficial,gobierno,argentina.gob.ar',ia:'ia,inteligencia artificial',programacion:'programacion,dev,codigo,desarrollo'};if(m[c]){const terms=m[c].split(',');let filters=terms.map(t=>`titulo.ilike.*${t}*,plataforma.ilike.*${t}*`).join(',');url+='&or=('+filters+')';if(c==='mecanica')url+='&titulo.not.ilike.*automatización*';}}try{const r=await fetch(url,{headers:{'apikey':K,'Authorization':'Bearer '+K}});const d=await r.json();g.innerHTML='';if(!d||!d.length){g.innerHTML='<div class="col-span-full py-20 text-white font-black text-center uppercase">No hay resultados.</div>';return}d.forEach(x=>{
+let adIdx=0;function rot(){const s=document.querySelectorAll('.b-slide');if(!s.length)return;s[adIdx].classList.remove('active');adIdx=(adIdx+1)%s.length;s[adIdx].classList.add('active')}setInterval(rot,4000);
+async function load(){const g=document.getElementById('grid'),p=document.getElementById('pages');g.innerHTML='<div class="col-span-full py-40 text-red-600 font-black animate-pulse text-[10px]">SINCRONIZANDO...</div>';let url=U+'?select=*&limit='+limit+'&offset='+((page-1)*limit)+'&order=plataforma.asc,titulo.asc';if(q)url+='&or=(titulo.ilike.*'+encodeURIComponent(q)+'*,descripcion.ilike.*'+encodeURIComponent(q)+'*,plataforma.ilike.*'+encodeURIComponent(q)+'*)';if(c){const m={mecanica:'auto,moto,mecanic,taller,motor,carro,vehiculo',construccion:'albañil,pintur,construc,revoque,ladrillo,arquitectura',plomeria:'plomer,gasist,cañeria,griferia,instalacion sanitaria',electricidad:'electricid,electrotec,tension,cable,electricista',carpinteria:'carpinter,mueble,madera,ebanist',agro:'agro,campo,veterinari,cultivo,siembra,cosecha,agronomo',artes:'manualidad,mural,serigrafia,arte,artista,pintura decorativa',unmdp:'unmdp,mar del plata,mdp,universidad nacional de mar del plata',uba:'uba,buenos aires,uba.ar,universidad de buenos aires',balcarce:'balcarce,inta,balcarce agropecuaria',oficial:'nacional,oficial,gobierno,argentina.gob.ar',ia:'ia,inteligencia artificial',programacion:'programacion,dev,codigo,desarrollo'};if(m[c]){const terms=m[c].split(',');let filters=terms.map(t=>`titulo.ilike.*${t}*,plataforma.ilike.*${t}*`).join(',');url+='&or=('+filters+')';}}try{const r=await fetch(url,{headers:{'apikey':K,'Authorization':'Bearer '+K}});const d=await r.json();g.innerHTML='';if(!d||!d.length){g.innerHTML='<div class="col-span-full py-20 text-white font-black text-center uppercase">No hay resultados.</div>';return}d.forEach(x=>{
 const ytb='https://raw.githubusercontent.com/florenciaamor36-ship-it/cursin-v2-oficial/main/youtube_fallback.jpg',san='https://raw.githubusercontent.com/florenciaamor36-ship-it/cursin-v2-plataforma/main/santander_custom.jpg',goo='https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',mic='https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE1Mu3b?ver=5c31',uba='https://www.uba.ar/images/header/logo-uba.png';
 let img=x.imagen_url||ytb;const plat=(x.plataforma||'').toLowerCase();if(plat.includes('santander'))img=san;else if(plat.includes('google'))img=goo;else if(plat.includes('microsoft')||plat.includes('azure'))img=mic;else if(plat.includes('uba'))img=uba;else if(plat.includes('youtube')||plat.includes('video'))img=ytb;
 let s='';for(let i=0;i<5;i++)s+='<span class="'+(i<(x.puntuacion||5)?'text-yellow-400':'text-zinc-800')+'" style="font-size:10px">★</span>';g.innerHTML+=`<div class='card-c'><div class='img-c'><img src='${img}' onerror="this.src='${ytb}'"></div><div class='p-6 flex flex-col flex-1 text-left'><div class='flex justify-between items-center mb-6 text-[9px] font-black uppercase'><span class='bg-red-600/10 text-red-600 px-2 py-1 rounded'>ENTIDAD: ${x.plataforma.toUpperCase()}</span><div class='flex items-center gap-2'>${x.es_gratis?'<span class="text-green-500 font-bold">GRATIS</span>':'<span class="text-yellow-500 font-bold">PREMIUM/AIC</span>'}${s}</div></div><h3 class='text-sm font-black text-white mb-8 min-h-[4rem] line-clamp-3 uppercase'>${x.titulo}</h3><a href='${x.url}' target='_blank' class='btn btn-block btn-sm btn-error text-white font-black mt-auto rounded-xl uppercase italic text-[11px] h-10'>ACCEDER</a></div></div>`});p.innerHTML='';const start=Math.max(1,page-2);for(let i=start; i<=start+4; i++)p.innerHTML+=`<button onclick='setPage(${i})' class='btn btn-square btn-sm ${i===page?"btn-error text-white":"btn-ghost text-zinc-500"} font-black text-xs rounded-xl'>${i}</button>`;document.getElementById('counter').innerText='PÁGINA '+page}catch(e){g.innerHTML='ERROR'}}
-function search(){clearTimeout(window.t);window.t=setTimeout(()=>{q=document.getElementById('q').value;page=1;
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    const banner = document.getElementById('install-banner');
-    if (banner) banner.style.display = 'flex';
-});
-
-const btnInstall = document.getElementById('btn-install');
-if(btnInstall) {
-    btnInstall.addEventListener('click', async () => {
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            if (outcome === 'accepted') {
-                document.getElementById('install-banner').style.display = 'none';
-            }
-            deferredPrompt = null;
-        }
-    });
-}
-load()},600)}function res(){q=document.getElementById('q').value;page=1;
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    const banner = document.getElementById('install-banner');
-    if (banner) banner.style.display = 'flex';
-});
-
-const btnInstall = document.getElementById('btn-install');
-if(btnInstall) {
-    btnInstall.addEventListener('click', async () => {
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            if (outcome === 'accepted') {
-                document.getElementById('install-banner').style.display = 'none';
-            }
-            deferredPrompt = null;
-        }
-    });
-}
-load()}function setPage(n){page=n;
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    const banner = document.getElementById('install-banner');
-    if (banner) banner.style.display = 'flex';
-});
-
-const btnInstall = document.getElementById('btn-install');
-if(btnInstall) {
-    btnInstall.addEventListener('click', async () => {
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            if (outcome === 'accepted') {
-                document.getElementById('install-banner').style.display = 'none';
-            }
-            deferredPrompt = null;
-        }
-    });
-}
-load();window.scrollTo({top:0,behavior:'smooth'})}function nextPage(){page++;
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    const banner = document.getElementById('install-banner');
-    if (banner) banner.style.display = 'flex';
-});
-
-const btnInstall = document.getElementById('btn-install');
-if(btnInstall) {
-    btnInstall.addEventListener('click', async () => {
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            if (outcome === 'accepted') {
-                document.getElementById('install-banner').style.display = 'none';
-            }
-            deferredPrompt = null;
-        }
-    });
-}
-load();window.scrollTo({top:0,behavior:'smooth'})}function prevPage(){if(page>1){page--;
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    const banner = document.getElementById('install-banner');
-    if (banner) banner.style.display = 'flex';
-});
-
-const btnInstall = document.getElementById('btn-install');
-if(btnInstall) {
-    btnInstall.addEventListener('click', async () => {
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            if (outcome === 'accepted') {
-                document.getElementById('install-banner').style.display = 'none';
-            }
-            deferredPrompt = null;
-        }
-    });
-}
-load();window.scrollTo({top:0,behavior:'smooth'})}}function cat(cat,e){c=cat;q='';page=1;
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    const banner = document.getElementById('install-banner');
-    if (banner) banner.style.display = 'flex';
-});
-
-const btnInstall = document.getElementById('btn-install');
-if(btnInstall) {
-    btnInstall.addEventListener('click', async () => {
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            if (outcome === 'accepted') {
-                document.getElementById('install-banner').style.display = 'none';
-            }
-            deferredPrompt = null;
-        }
-    });
-}
-load();document.getElementById('dr').checked=false;document.querySelectorAll('.cat-i').forEach(x=>x.classList.remove('cat-a'));if(e)e.target.classList.add('cat-a')}
+function search(){clearTimeout(window.t);window.t=setTimeout(()=>{q=document.getElementById('q').value;page=1;load()},600)}function res(){q=document.getElementById('q').value;page=1;load()}function setPage(n){page=n;load();window.scrollTo({top:0,behavior:'smooth'})}function nextPage(){page++;load();window.scrollTo({top:0,behavior:'smooth'})}function prevPage(){if(page>1){page--;load();window.scrollTo({top:0,behavior:'smooth'})}}function cat(cat,e){c=cat;q='';page=1;load();document.getElementById('dr').checked=false;document.querySelectorAll('.cat-i').forEach(x=>x.classList.remove('cat-a'));if(e)e.target.classList.add('cat-a')}
 function anim(id,s,e,d){const obj=document.getElementById(id);if(!obj)return;let st=null;const step=(t)=>{if(!st)st=t;const p=Math.min((t-st)/d,1);obj.innerHTML=Math.floor(p*(e-s)+s).toLocaleString();if(p<1)window.requestAnimationFrame(step)};window.requestAnimationFrame(step)}
+let defPr;window.addEventListener('beforeinstallprompt',(e)=>{e.preventDefault();defPr=e;document.getElementById('install-banner').style.display='flex'});
+document.getElementById('btn-install')?.addEventListener('click',async()=>{if(defPr){defPr.prompt();const {outcome}=await defPr.userChoice;if(outcome==='accepted')document.getElementById('install-banner').style.display='none';defPr=null}});
 setTimeout(()=>{anim('vistas-count',12000,12942,3000);setInterval(()=>{const el=document.getElementById('online-count');if(el){let c=parseInt(el.innerText);el.innerText=Math.max(130,c+(Math.floor(Math.random()*7)-3))}},4000)},1000);
 (async()=>{try{const r=await fetch(U+'?select=id',{method:'HEAD',headers:{'apikey':K,'Authorization':'Bearer '+K,'Prefer':'count=exact'}});const count=r.headers.get('content-range').split('/')[1];document.getElementById('total-cursos').innerText=parseInt(count).toLocaleString()}catch(e){document.getElementById('total-cursos').innerText='65,748'}} )();
-
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    const banner = document.getElementById('install-banner');
-    if (banner) banner.style.display = 'flex';
-});
-
-const btnInstall = document.getElementById('btn-install');
-if(btnInstall) {
-    btnInstall.addEventListener('click', async () => {
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            if (outcome === 'accepted') {
-                document.getElementById('install-banner').style.display = 'none';
-            }
-            deferredPrompt = null;
-        }
-    });
-}
 load()
 </script>
-<footer class='bg-zinc-950 border-t border-zinc-900 pt-20 pb-10 px-6 mt-20'><div class='max-w-6xl mx-auto'><div class='grid grid-cols-1 md:grid-cols-3 gap-12 mb-16 text-center md:text-left'><div><h5 class='text-white font-black uppercase italic mb-4'>Quiénes Somos</h5><p class='text-zinc-600 text-[10px] font-bold uppercase leading-relaxed'>Colectivo Argentino democratizando la formación técnica profesional con salida laboral real.</p></div><div><h5 class='text-white font-black uppercase italic mb-4'>Objetivo</h5><p class='text-zinc-600 text-[10px] font-bold uppercase leading-relaxed'>Centralizar la mejor educación gratuita del país en un solo motor de búsqueda eficiente.</p></div><div><h5 class='text-white font-black uppercase italic mb-4'>Créditos</h5><p class='text-zinc-600 text-[10px] font-bold uppercase leading-relaxed'>Mantenido por <span class='text-red-600'>La Clave Argentina</span> & <span class='text-white'>Tienda SSH</span>. © 2026.</p></div></div><div class='text-center opacity-40 mb-8'><p class='text-[9px] text-zinc-500 font-black uppercase'>Protegido por las Leyes de Propiedad Intelectual - República Argentina</p></div><div class='text-center'><div class='text-white font-black italic uppercase text-2xl tracking-tighter'>LA CLAVE <span class='text-red-600'>ACADEMY</span></div><p class='text-zinc-800 text-[8px] font-black uppercase tracking-[0.4em]'>v282 OFFICIAL</p></div></div></footer>
-<div id='install-banner'>
-    <div class='flex items-center gap-4'>
-        <div class='bg-red-600 p-2.5 rounded-2xl shadow-lg shadow-red-600/20'>
-            <svg class='w-6 h-6 text-white' fill='none' stroke='currentColor' viewBox='0 0 24 24'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4'></path></svg>
-        </div>
-        <div>
-            <p class='text-[12px] font-black uppercase italic tracking-tight text-white'>La Clave Academy</p>
-            <p class='text-[10px] font-bold text-zinc-400 uppercase'>Instalar en mi pantalla</p>
-        </div>
-    </div>
-    <button id='btn-install' class='btn btn-sm btn-error text-white font-black rounded-xl px-6 border-none shadow-lg shadow-red-600/20'>INSTALAR</button>
-</div>
-</body></html>
-
-
+<footer class='bg-zinc-950 border-t border-zinc-900 pt-20 pb-10 px-6 mt-20'><div class='max-w-6xl mx-auto'><div class='grid grid-cols-1 md:grid-cols-3 gap-12 mb-16 text-center md:text-left'><div><h5 class='text-white font-black uppercase italic mb-4'>Quiénes Somos</h5><p class='text-zinc-600 text-[10px] font-bold uppercase leading-relaxed'>Colectivo Argentino democratizando la formación técnica profesional con salida laboral real.</p></div><div><h5 class='text-white font-black uppercase italic mb-4'>Objetivo</h5><p class='text-zinc-600 text-[10px] font-bold uppercase leading-relaxed'>Centralizar la mejor educación gratuita del país en un solo motor de búsqueda eficiente.</p></div><div><h5 class='text-white font-black uppercase italic mb-4'>Créditos</h5><p class='text-zinc-600 text-[10px] font-bold uppercase leading-relaxed'>Mantenido por <span class='text-red-600'>La Clave Argentina</span> & <span class='text-white'>Tienda SSH</span>. © 2026.</p></div></div><div class='text-center opacity-40 mb-8'><p class='text-[9px] text-zinc-500 font-black uppercase'>Protegido por las Leyes de Propiedad Intelectual - República Argentina</p></div><div class='text-center'><div class='text-white font-black italic uppercase text-2xl tracking-tighter'>LA CLAVE <span class='text-red-600'>ACADEMY</span></div><p class='text-zinc-800 text-[8px] font-black uppercase tracking-[0.4em]'>v285 ULTRA STABLE</p></div></div></footer></body></html>
